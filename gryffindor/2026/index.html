@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Подарок гриффиндорцам ко Дню Гриффиндора от Когтеврана">
+  <title>День Гриффиндора — подарок от Когтеврана</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="grain"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="На главную">
+      <span class="brand-mark">✦</span>
+      <span>Когтевран <i>×</i> Гриффиндор</span>
+    </a>
+    <nav>
+      <a href="#gift">Подарок</a>
+      
+      <button class="sound-toggle" id="soundToggle" aria-label="Включить музыку">♫ <span>Музыка</span></button>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-content">
+        <p class="eyebrow">ПОДАРОК КО ДНЮ ГРИФФИНДОРА · 2026</p>
+        <h1>Дорогие<br><em>Гриффиндорцы</em></h1>
+        <p class="hero-text">Как мы все знаем, Огонь, ваш стихийный символ, наделил вас не только любовью к посиделкам у камина, но и эмоциональностью, которой позавидовали бы бразильские сериалы. Но, так как важность эмоциональной стабильности и стрессоустойчивости для волшебника сложно переоценить, мы решили подарить вам коробочку-выручалочку</p>
+        <p class="hero-text">В любой непонятной ситуации вам стоит только протянуть руку и достать подходящий к вашей ситуации антистресс!</p>
+        <p class="hero-text">Пользуйтесь, радуйтесь и сохраняйте спокойствие!</p>
+      </div>
+      <div class="hero-card">
+        <img src="gerb.png" alt="Лев гриффиндорский" width="300">
+        <p>COURAGE · HEART · FIRE</p>
+      </div>
+    </section>
+
+    <section class="gift-section section" id="gift">
+
+<div class="section-heading">
+        <span class="section-number">01</span>
+
+        <div>
+            <p class="eyebrow">ПОДАРОК</p>
+            <h2>Достань игрушку<br></h2>
+        </div>
+    </div>
+
+    <div class="gift-stage">
+
+        <div class="gift-box-wrap">
+
+            <button class="gift-box" id="giftBox">
+                <img src="gift-box.png" alt="Подарочная коробка">
+
+                <span class="spark spark-1">✦</span>
+                <span class="spark spark-2">✧</span>
+                <span class="spark spark-3">✦</span>
+            </button>
+
+            <p class="gift-hint">Нажми на коробку</p>
+
+        </div>
+
+        <div class="result" id="result" aria-live="polite">
+
+            <div class="result-image" id="resultImage">
+                🦁
+            </div>
+
+            <div class="result-content">
+                <p class="result-label">ТЕБЕ ДОСТАЁТСЯ</p>
+
+                <h3 id="resultTitle">
+                    Нажми на коробку
+                </h3>
+
+                <p id="resultDescription">
+                    Внутри спрятан один из маленьких антистрессов для больших гриффиндорских приключений.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+    <section class="collection section">
+      <div class="section-heading compact">
+        <span class="section-number">02</span>
+        <div>
+          <p class="eyebrow">КОЛЛЕКЦИЯ</p>
+          <h2>Антистресс<br><em>для горячих сердец</em></h2>
+        </div>
+      </div>
+      <div class="toy-grid" id="toyGrid"></div>
+    </section>
+
+    <section class="finale">
+      <p>THE HOUSE OF BRAVERY</p>
+      <h2>С Днём Гриффиндора!</h2>
+      <a href="#gift">Открыть коробку ещё раз ↑</a>
+    </section>
+  </main>
+
+  <div class="player" id="player">
+    <div class="player-info">
+      <button id="playButton" class="play" aria-label="Воспроизвести">▶</button>
+      <div>
+        <span>СЕЙЧАС ИГРАЕТ</span>
+        <strong id="trackName">Simple dimple pop it squish</strong>
+      </div>
+    </div>
+    <div class="progress-wrap">
+      <span id="currentTime">0:00</span>
+      <input type="range" id="progress" value="0" min="0" max="100" aria-label="Прогресс трека">
+      <span id="duration">0:00</span>
+    </div>
+    <div class="volume-wrap">
+      <span>♬</span>
+      <input type="range" id="volume" min="0" max="1" value=".65" step=".01" aria-label="Громкость">
+    </div>
+    <!-- Положите свой MP3 рядом с index.html и назовите его music.mp3 -->
+    <audio id="audio" preload="metadata" src="music.mp3"></audio>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
