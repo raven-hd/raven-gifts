@@ -163,10 +163,30 @@ const pageLinks = Array.from(document.querySelectorAll("[data-slide-link]"));
 const pagePrev = document.querySelector("#pagePrev");
 const pageNext = document.querySelector("#pageNext");
 
+const collectionGate = document.querySelector("#collectionGate");
+const gateForm = document.querySelector("#gateForm");
+const gateInput = document.querySelector("#gateInput");
+const gateError = document.querySelector("#gateError");
+const gateCloseElements = Array.from(document.querySelectorAll("[data-gate-close]"));
+
 let currentPageIndex = 0;
+let pendingPageIndex = null;
+let collectionUnlocked = sessionStorage.getItem("collectionUnlocked") === "1";
 
 function pageIndexById(id) {
     return pagePanels.findIndex((panel) => panel.id === id);
+}
+
+function isCollectionIndex(index) {
+    return pagePanels[index] && pagePanels[index].id === "collection";
+}
+
+function normalizeAnswer(value) {
+    return (value || "")
+        .toLowerCase()
+        .replace(/ё/g, "е")
+        .replace(/[^a-zа-я0-9]+/g, "")
+        .trim();
 }
 
 function showPage(index, options = {}) {
@@ -203,6 +223,36 @@ function showPage(index, options = {}) {
     }
 }
 
+function closeCollectionGate() {
+    if (!collectionGate) return;
+    collectionGate.hidden = true;
+    document.body.classList.remove("gate-open");
+    if (gateError) gateError.hidden = true;
+}
+
+function openCollectionGate(targetIndex) {
+    if (!collectionGate) return;
+    pendingPageIndex = targetIndex;
+    collectionGate.hidden = false;
+    document.body.classList.add("gate-open");
+    if (gateError) gateError.hidden = true;
+    if (gateInput) {
+        gateInput.value = "";
+        window.setTimeout(() => gateInput.focus(), 40);
+    }
+}
+
+function requestPage(index, options = {}) {
+    const safeIndex = Math.max(0, Math.min(index, pagePanels.length - 1));
+
+    if (isCollectionIndex(safeIndex) && !collectionUnlocked) {
+        openCollectionGate(safeIndex);
+        return;
+    }
+
+    showPage(safeIndex, options);
+}
+
 pageLinks.forEach((link) => {
     link.addEventListener("click", (event) => {
         const targetId = link.dataset.slideLink;
@@ -210,31 +260,41 @@ pageLinks.forEach((link) => {
 
         if (targetIndex !== -1) {
             event.preventDefault();
-            showPage(targetIndex);
+            requestPage(targetIndex);
         }
     });
 });
 
 if (pagePrev) {
-    pagePrev.addEventListener("click", () => showPage(currentPageIndex - 1));
+    pagePrev.addEventListener("click", () => requestPage(currentPageIndex - 1));
 }
 
 if (pageNext) {
-    pageNext.addEventListener("click", () => showPage(currentPageIndex + 1));
+    pageNext.addEventListener("click", () => requestPage(currentPageIndex + 1));
 }
 
 document.addEventListener("keydown", (event) => {
     const target = event.target;
     const isFormControl = target && ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName);
 
-    if (isFormControl) return;
+    if (isFormControl) {
+        if (event.key === "Escape" && !collectionGate?.hidden) {
+            closeCollectionGate();
+        }
+        return;
+    }
+
+    if (event.key === "Escape" && !collectionGate?.hidden) {
+        closeCollectionGate();
+        return;
+    }
 
     if (event.key === "ArrowLeft") {
-        showPage(currentPageIndex - 1);
+        requestPage(currentPageIndex - 1);
     }
 
     if (event.key === "ArrowRight") {
-        showPage(currentPageIndex + 1);
+        requestPage(currentPageIndex + 1);
     }
 });
 
@@ -243,14 +303,57 @@ window.addEventListener("hashchange", () => {
     const targetIndex = pageIndexById(targetId);
 
     if (targetIndex !== -1 && targetIndex !== currentPageIndex) {
-        showPage(targetIndex, { skipHash: true });
+        requestPage(targetIndex, { skipHash: true });
     }
+});
+
+async function sha256Hex(value) {
+    const bytes = new TextEncoder().encode(value);
+    const digest = await crypto.subtle.digest("SHA-256", bytes);
+    return Array.from(new Uint8Array(digest))
+        .map((byte) => byte.toString(16).padStart(2, "0"))
+        .join("");
+}
+
+const collectionAnswerHash = "db4b26c291a5c75d5849d06b0124a3889808e5c527153ba999cd3da35977af0e";
+
+if (gateForm) {
+    gateForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const answer = normalizeAnswer(gateInput?.value);
+        const answerHash = await sha256Hex(answer);
+
+        if (answerHash === collectionAnswerHash) {
+            collectionUnlocked = true;
+            sessionStorage.setItem("collectionUnlocked", "1");
+            closeCollectionGate();
+            const targetIndex = pendingPageIndex ?? pageIndexById("collection");
+            pendingPageIndex = null;
+            showPage(targetIndex === -1 ? 0 : targetIndex);
+            return;
+        }
+
+        if (gateError) gateError.hidden = false;
+        if (gateInput) gateInput.select();
+    });
+}
+
+gateCloseElements.forEach((element) => {
+    element.addEventListener("click", () => {
+        pendingPageIndex = null;
+        closeCollectionGate();
+    });
 });
 
 const initialHash = location.hash.replace("#", "");
 const initialIndex = pageIndexById(initialHash);
-showPage(initialIndex === -1 ? 0 : initialIndex, { instant: true, skipHash: initialIndex === -1 });
-
+if (initialIndex !== -1 && isCollectionIndex(initialIndex) && !collectionUnlocked) {
+    showPage(0, { instant: true, skipHash: true });
+    openCollectionGate(initialIndex);
+} else {
+    showPage(initialIndex === -1 ? 0 : initialIndex, { instant: true, skipHash: initialIndex === -1 });
+}
 
 /* =========================================================
    РАНДОМАЙЗЕР
@@ -308,15 +411,26 @@ function showToy(toy) {
 
     resultDescription.textContent = toy.description;
 
+    result.classList.remove("is-loading");
     result.classList.add("active");
 }
 
 
 /*
-    Небольшой эффект перебора.
-    Перед финальным подарком несколько раз
-    быстро меняются изображения.
+    Во время выбора игрушки не показываем картинки раньше времени.
+    Вместо этого — нейтральное состояние ожидания.
 */
+
+function showLoadingState() {
+    result.classList.add("active", "is-loading");
+    resultImage.innerHTML = `
+        <div class="result-placeholder" aria-hidden="true">
+            <span>✦</span>
+        </div>
+    `;
+    resultTitle.textContent = "Выбираем игрушку...";
+    resultDescription.textContent = "Коробочка шуршит, магия подбирает подходящий антистресс.";
+}
 
 function drawToy() {
 
@@ -328,70 +442,25 @@ function drawToy() {
 
     if (giftBox) {
         giftBox.classList.remove("open");
-
-        /*
-            Перезапускаем CSS-анимацию.
-        */
         void giftBox.offsetWidth;
-
         giftBox.classList.add("open");
     }
 
-    result.classList.remove("active");
-
     const finalToy = getRandomToy();
+    showLoadingState();
 
-    let counter = 0;
+    window.setTimeout(() => {
+        showToy(finalToy);
+        result.classList.remove("is-loading");
+        isChoosing = false;
 
-    const shuffleInterval = setInterval(() => {
-
-        const previewToy =
-            toys[Math.floor(Math.random() * toys.length)];
-
-        resultImage.innerHTML = `
-            <img
-                src="${previewToy.image}"
-                alt=""
-            >
-        `;
-
-        resultTitle.textContent = previewToy.name;
-
-        counter++;
-
-        /*
-            После нескольких быстрых переключений
-            показываем настоящий результат.
-        */
-
-        if (counter >= 8) {
-
-            clearInterval(shuffleInterval);
-
-            setTimeout(() => {
-
-                showToy(finalToy);
-
-                isChoosing = false;
-
-                /*
-                    Плавно прокручиваем к результату
-                    только на мобильных устройствах.
-                */
-
-                if (window.innerWidth < 800) {
-
-                    result.scrollIntoView({
-                        behavior: "smooth",
-                        block: "center"
-                    });
-
-                }
-
-            }, 180);
+        if (window.innerWidth < 800) {
+            result.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
         }
-
-    }, 110);
+    }, 950);
 }
 
 

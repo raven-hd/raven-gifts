@@ -1184,3 +1184,181 @@ body {
   .hero-text { max-width: 100%; font-size: 15px; line-height: 1.82; }
   .page-arrow { border-color: rgba(240,212,154,.72); background: rgba(39,5,8,.9); }
 }
+
+
+/* =========================================================
+   ПРАВКИ 04.10 — фавикон, скрытый рандомайзер, доступ к коллекции
+   ========================================================= */
+
+.result.is-loading .result-image {
+  background: radial-gradient(circle, rgba(216,179,106,.22), transparent 72%);
+}
+
+.result-placeholder {
+  width: 78%;
+  height: 78%;
+  border-radius: 50%;
+  border: 1px dashed rgba(216,179,106,.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #b1843a;
+  animation: placeholderPulse 1.15s ease-in-out infinite;
+}
+
+.result-placeholder span {
+  font-size: 52px;
+  line-height: 1;
+}
+
+@keyframes placeholderPulse {
+  0%, 100% { transform: scale(.96); opacity: .65; }
+  50% { transform: scale(1.04); opacity: 1; }
+}
+
+body.gate-open {
+  overflow: hidden;
+}
+
+.gate-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+}
+
+
+.gate-modal[hidden] {
+  display: none !important;
+}
+
+.gate-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  color: rgba(110,16,24,.68);
+  font: 300 28px/1 Inter, Arial, sans-serif;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background .2s ease, color .2s ease;
+}
+
+.gate-close:hover {
+  background: rgba(110,16,24,.07);
+  color: var(--red);
+}
+
+.gate-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(18, 3, 6, .72);
+  backdrop-filter: blur(7px);
+}
+
+.gate-dialog {
+  position: relative;
+  z-index: 1;
+  width: min(560px, calc(100% - 32px));
+  padding: 34px 30px 28px;
+  background: #f7ead2;
+  color: var(--ink);
+  border: 1px solid rgba(110,16,24,.18);
+  box-shadow: 0 26px 70px rgba(0,0,0,.3);
+  border-radius: 14px;
+  text-align: center;
+}
+
+.gate-eyebrow {
+  margin: 0 0 10px;
+  font-size: 10px;
+  letter-spacing: .22em;
+  color: #8a5e26;
+  font-weight: 700;
+}
+
+.gate-dialog h2 {
+  font-size: clamp(42px, 6vw, 62px);
+  color: var(--red);
+  margin-bottom: 12px;
+}
+
+.gate-description,
+.gate-hint,
+.gate-error {
+  margin: 0 auto;
+  max-width: 34ch;
+  line-height: 1.75;
+}
+
+.gate-description {
+  font-size: 16px;
+  color: #705a4e;
+}
+
+.gate-form {
+  margin: 24px auto 12px;
+  max-width: 420px;
+  display: grid;
+  gap: 12px;
+}
+
+.gate-input {
+  width: 100%;
+  min-height: 52px;
+  padding: 0 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(110,16,24,.18);
+  background: rgba(255,255,255,.55);
+  color: var(--ink);
+  font: 500 16px/1.2 Inter, Arial, sans-serif;
+}
+
+.gate-input:focus {
+  outline: none;
+  border-color: rgba(110,16,24,.45);
+  box-shadow: 0 0 0 4px rgba(216,179,106,.18);
+}
+
+.gate-submit {
+  min-height: 50px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--red);
+  color: var(--cream);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.gate-submit:hover {
+  background: #5d0c14;
+}
+
+.gate-hint {
+  font-size: 13px;
+  color: #8a7056;
+}
+
+.gate-error {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #8f1c27;
+}
+
+@media (max-width: 620px) {
+  .gate-dialog {
+    padding: 28px 18px 24px;
+    width: min(560px, calc(100% - 20px));
+  }
+
+  .gate-description {
+    font-size: 15px;
+  }
+}
