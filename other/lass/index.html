@@ -12,23 +12,23 @@
     button { -webkit-tap-highlight-color:transparent }
     .scene { position:fixed; inset:0; overflow:hidden; isolation:isolate }
     .scene::before { content:"";position:absolute;inset:-35px;background:url('background.png?v=2') center bottom/cover no-repeat;filter:blur(19px) brightness(.58);z-index:-2 }
-    .scene::after { content:"";position:absolute;inset:0;background:url('background.png?v=2') center bottom/auto 100% no-repeat;z-index:-1;pointer-events:none }
+    .scene::after { content:"";position:absolute;inset:0;background:url('background.png?v=2') center bottom/auto 115% no-repeat;z-index:-1;pointer-events:none }
     .shade { position:absolute;inset:0;background:linear-gradient(90deg,#0b180e5e,transparent 27%,transparent 73%,#0b180e5e);pointer-events:none }
-    .actor { position:absolute;left:50%;bottom:9%;width:min(39vw,520px);height:min(54vh,510px);transform:translateX(-50%);display:flex;align-items:flex-end;justify-content:center;z-index:3;cursor:default }
+    .actor { position:absolute;left:50%;bottom:25%;width:min(30vw,390px);height:min(43vh,400px);transform:translateX(-50%);display:flex;align-items:flex-end;justify-content:center;z-index:3;cursor:default }
     .actor .base,.actor .glasses { display:block;width:100%;height:100%;object-fit:contain;object-position:center bottom;pointer-events:none }
     .actor .base { filter:drop-shadow(0 14px 14px #070e0ab0);animation:breathe 3.2s ease-in-out infinite }
     .actor.bucket .base { width:80% }
-    .actor .glasses { position:absolute;inset:0;transform:translate(6%,-19%);filter:drop-shadow(0 2px 3px #0009) }
+    .actor .glasses { position:absolute;inset:0;transform:translate(0,0);filter:drop-shadow(0 2px 3px #0009) }
     .actor .glasses[hidden] { display:none }
     .actor.armed { filter:drop-shadow(0 0 14px #f8d58c) }
     .item { appearance:none;position:absolute;z-index:5;background:none;border:0;padding:0;cursor:grab;touch-action:none;transition:filter .2s,transform .2s;filter:drop-shadow(0 7px 8px #0009) }
     .item img { display:block;width:100%;height:100%;object-fit:contain;pointer-events:none }
     .item:hover:not(:disabled),.item.armed { filter:drop-shadow(0 0 14px #ffdc90);transform:scale(1.07) }
     .item:disabled { opacity:.68;cursor:default }
-    .wand { width:clamp(125px,14vw,235px);height:clamp(85px,13vh,160px);left:5%;top:52% }
-    .tomato { width:clamp(115px,13vw,190px);height:clamp(100px,16vh,170px);left:10%;top:72% }
-    .glasses-item { width:clamp(135px,15vw,225px);height:clamp(85px,13vh,150px);right:8%;top:53% }
-    .snitch { width:clamp(145px,16vw,240px);height:clamp(80px,14vh,150px);right:5%;top:72% }
+    .wand { width:clamp(100px,10vw,150px);height:clamp(80px,12vh,115px);left:29%;bottom:5% }
+    .tomato { width:clamp(95px,9vw,135px);height:clamp(85px,13vh,120px);left:40%;bottom:4% }
+    .glasses-item { width:clamp(100px,10vw,145px);height:clamp(80px,12vh,115px);right:39%;bottom:5% }
+    .snitch { width:clamp(105px,11vw,155px);height:clamp(80px,12vh,115px);right:28%;bottom:5% }
     .ghost { position:fixed;z-index:30;width:140px;height:140px;object-fit:contain;pointer-events:none;transform:translate(-50%,-50%);filter:drop-shadow(0 8px 10px #0009) }
     .smoke { position:absolute;inset:0;z-index:10;pointer-events:none;overflow:hidden;visibility:hidden }
     .smoke.on { visibility:visible }
@@ -39,12 +39,12 @@
     @keyframes breathe { 50% { transform:scale(1.012,.994) } }
     @keyframes float { 0% { opacity:0;transform:scale(.2) } 30% { opacity:.9 } 100% { opacity:0;transform:translate(var(--dx),-85px) scale(1.6) } }
     @media(max-width:700px) {
-      .scene::after { background-size:auto 100%; }
-      .actor { bottom:15%;width:75vw;height:48vh }
-      .wand { width:30vw;height:13vh;left:2%;top:25% }
-      .tomato { width:29vw;height:14vh;left:1%;top:61% }
-      .glasses-item { width:32vw;height:11vh;right:1%;top:25% }
-      .snitch { width:32vw;height:12vh;right:1%;top:62% }
+      .scene::after { background-size:auto 105%; }
+      .actor { bottom:26%;width:63vw;height:43vh }
+      .wand { width:24vw;height:12vh;left:1%;bottom:7% }
+      .tomato { width:24vw;height:12vh;left:25%;bottom:7% }
+      .glasses-item { width:24vw;height:12vh;right:25%;bottom:7% }
+      .snitch { width:24vw;height:12vh;right:1%;bottom:7% }
     }
     @media(prefers-reduced-motion:reduce) { .actor .base,.puff,.spark { animation:none } }
   </style>
