@@ -27,7 +27,8 @@
     .item img { display:block;width:100%;height:100%;object-fit:contain;pointer-events:none }
     .item:hover:not(:disabled),.item.armed { filter:drop-shadow(0 0 14px #ffdc90);transform:scale(1.07) }
     .item:disabled { opacity:1;cursor:default }
-    .wand { width:clamp(95px,10vw,145px);height:clamp(80px,12vh,115px);left:calc(50% - min(25.5vw,355px));bottom:2% }
+    .wand { width:clamp(95px,10vw,145px);height:clamp(80px,12vh,115px);left:calc(50% - min(26.5vw,370px));bottom:2% }
+    .wand img { transform:rotate(-8deg) }
     .tomato { width:clamp(125px,12vw,175px);height:clamp(105px,16vh,150px);left:calc(50% - min(15vw,210px));bottom:3.2% }
     .casserole { width:clamp(155px,15vw,205px);height:clamp(120px,16vh,170px);left:calc(50% + min(1.5vw,20px));bottom:1.8% }
     .glasses-item { width:clamp(110px,11vw,155px);height:clamp(80px,12vh,115px);left:calc(50% + min(17vw,235px));bottom:2% }
@@ -43,6 +44,9 @@
     .reset { position:absolute;right:max(18px,calc((100vw - 76.7vh)/2 + 16px));top:20px;z-index:8;width:40px;height:40px;border:1px solid #ffffff63;border-radius:50%;background:#14241978;color:#fff6df;cursor:pointer;font-size:25px;line-height:1;backdrop-filter:blur(4px) }
     .reset:hover { background:#253d28c9 }
     @keyframes breathe { 50% { transform:scale(1.012,.994) } }
+    @media(min-width:1600px) {
+      .workbench { width:min(68vw,1120px) }
+    }
     @keyframes snitch-flight { 0% { transform:translate(-190px,50px) scale(.62) rotate(-15deg) } 12% { transform:translate(80px,25px) scale(.92) rotate(16deg) } 23% { transform:translate(155px,190px) scale(1.18) rotate(-12deg) } 35% { transform:translate(-65px,125px) scale(.52) rotate(19deg) } 46% { transform:translate(-185px,230px) scale(.85) rotate(-16deg) } 58% { transform:translate(55px,270px) scale(1.27) rotate(11deg) } 70% { transform:translate(185px,95px) scale(.58) rotate(-20deg) } 83% { transform:translate(-90px,40px) scale(1.08) rotate(15deg) } 93% { transform:translate(115px,175px) scale(.7) rotate(-9deg) } 100% { transform:translate(-35px,105px) scale(.55) rotate(8deg) } }
     @keyframes float { 0% { opacity:0;transform:scale(.2) } 30% { opacity:.9 } 100% { opacity:0;transform:translate(var(--dx),-85px) scale(1.6) } }
     @media(max-width:700px) {
