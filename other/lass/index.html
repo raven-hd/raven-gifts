@@ -1,36 +1,101 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Слизнежиж — Пищеблок</title><meta name="description" content="Лесная магия и приключения Слизнежижа">
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600;800;900&display=swap');
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% 40%,#365842,#192d23 65%,#111c17);color:#f6f3de;min-height:100svh;font-family:Nunito,sans-serif}.app{max-width:1120px;margin:auto;padding:25px;min-height:100svh;display:flex;flex-direction:column}.head{display:flex;justify-content:space-between;color:#c9e0b3;font-size:11px;font-weight:900;letter-spacing:.12em}.tag{border:1px solid #7a917b;border-radius:40px;padding:8px 14px}h1{text-align:center;font-size:clamp(38px,6vw,68px);line-height:1;margin:34px 0 10px;letter-spacing:-.05em}h1 span{color:#c7e88f}.hint{text-align:center;color:#b5cab1;min-height:25px;margin:0}.game{display:grid;grid-template-columns:170px minmax(0,1fr) 170px;align-items:center;gap:10px;flex:1;min-height:530px}.shelf{display:flex;flex-direction:column;align-items:center;gap:25px;z-index:3}.item{touch-action:none;cursor:grab;border:1px solid #66836a;border-radius:25px;width:154px;height:155px;background:linear-gradient(135deg,#334d3b,#21382b);box-shadow:0 14px 24px #0003;color:#f7f2df;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;font:900 13px Nunito,sans-serif;transition:transform .2s,border-color .2s}.item:hover:not(:disabled){transform:translateY(-3px);border-color:#dcf19b}.item img{display:block;width:95%;height:111px;object-fit:contain;pointer-events:none;filter:drop-shadow(0 6px 6px #0005)}.item:disabled{opacity:.42;cursor:default}.item.selected{border-color:#ffe6a0;box-shadow:0 0 25px #ffe09c75}.wand-shape{height:105px;font-size:90px;line-height:1;transform:rotate(-27deg);filter:drop-shadow(0 5px 6px #0008)}.placeholder{border:1px dashed #607763;border-radius:24px;width:154px;height:155px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px;color:#97ad99;font-size:12px;text-align:center}.placeholder b{font-size:42px}.stage{position:relative;height:520px;min-width:0;display:flex;align-items:center;justify-content:center;isolation:isolate}.stage:before{content:'';position:absolute;z-index:-1;bottom:60px;width:80%;height:65px;background:#0009;border-radius:50%;filter:blur(27px)}.subject{position:relative;height:100%;width:min(490px,100%);display:flex;justify-content:center;align-items:center}.subject .base{width:100%;height:100%;object-fit:contain;animation:breathe 3.5s ease-in-out infinite;filter:drop-shadow(0 14px 13px #0007)}.subject.bucket .base{width:83%;height:91%;cursor:pointer}.subject.castable{filter:drop-shadow(0 0 18px #eedb9c)}.subject .glasses-overlay{position:absolute;width:52%;height:auto;left:25%;top:15%;transform:rotate(-2deg);filter:drop-shadow(0 4px 4px #0009);pointer-events:none}.subject .glasses-overlay[hidden]{display:none}.subject.boing .base{animation:boing .6s}.stage.target{outline:3px dashed #bfe59c;border-radius:45%;outline-offset:-8px}.notice{position:absolute;top:1%;left:50%;transform:translateX(-50%);z-index:7;background:#f9f0d8;color:#3e573c;padding:12px 20px;border-radius:26px;font-weight:900;min-width:190px;text-align:center;box-shadow:0 7px 24px #0006;opacity:0;transition:opacity .2s;pointer-events:none}.notice.show{opacity:1}.smoke{position:absolute;inset:0;z-index:5;visibility:hidden;pointer-events:none;overflow:hidden}.smoke.on{visibility:visible}.puff{position:absolute;left:var(--x);top:var(--y);width:var(--s);height:var(--s);border-radius:50%;background:radial-gradient(circle,#edf4eaf5,#bad8c8d9 38%,#8bb6a288 60%,transparent 74%);filter:blur(12px);opacity:0;animation:float 1.2s ease-out both;animation-delay:var(--delay)}.smoke:not(.on) .puff{animation:none}.spark{position:absolute;left:var(--x);top:var(--y);color:#ffe6a0;font-size:29px;text-shadow:0 0 14px gold;animation:twinkle 1.1s ease-out both;animation-delay:var(--delay)}.smoke:not(.on) .spark{animation:none}.footer{display:flex;justify-content:center;align-items:center;gap:25px;color:#a9beaa;font-size:12px;flex-wrap:wrap}.reset{border:1px solid #7b957d;background:transparent;color:#e2efce;padding:11px 18px;border-radius:45px;font:800 13px Nunito,sans-serif;cursor:pointer}.ghost{position:fixed;z-index:20;pointer-events:none;width:115px;height:115px;object-fit:contain;transform:translate(-50%,-50%);filter:drop-shadow(0 10px 9px #0009)}@keyframes breathe{50%{transform:scale(1.018,.992)}}@keyframes boing{32%{transform:scale(1.07,.9)}70%{transform:scale(.96,1.05)}}@keyframes float{0%{opacity:0;transform:scale(.1)}28%{opacity:.9}58%{opacity:1}100%{opacity:0;transform:translate(var(--dx),-90px) scale(1.5)}}@keyframes twinkle{0%{opacity:0;transform:scale(.2)}40%{opacity:1}100%{opacity:0;transform:translate(var(--dx),-100px) scale(1.5)}}
-@media(max-width:750px){.app{padding:17px 12px}.head{font-size:9px}h1{margin:25px 0 8px}.hint{font-size:13px}.game{display:flex;flex-direction:column;min-height:0;gap:10px}.stage{height:min(49vh,410px);width:100%}.shelf{width:100%;flex-direction:row;justify-content:center;gap:12px}.shelf.left{order:1}.shelf.right{order:2}.item,.placeholder{width:44%;max-width:170px;height:115px;border-radius:19px}.item img{height:81px}.item .wand-shape{height:75px;font-size:65px}.placeholder b{font-size:27px}.footer{margin-top:25px;gap:12px}}@media(prefers-reduced-motion:reduce){.base{animation:none!important}.puff,.spark{animation-duration:.01ms}}
-body{background:#19251c url('background.png') center center/cover fixed no-repeat;color:#fff4df}
-body:before{content:'';position:fixed;inset:0;background:linear-gradient(180deg,#0b160ab8,#14200d68 32%,#0b1308a3 100%);pointer-events:none}
-.app{position:relative;z-index:1;max-width:1180px}
-.head{color:#f6ddb1;text-shadow:0 2px 8px #000b}
-.tag{background:#17271999;border-color:#cfb48b77}
-h1{font-family:Georgia,serif;letter-spacing:-.045em;text-shadow:0 5px 20px #000b;margin-top:25px}
-h1 span{color:#e3bc6d}
-.hint{color:#f6e4c7;text-shadow:0 2px 8px #000;font-weight:800}
-.game{grid-template-columns:160px minmax(0,1fr) 160px}
-.item{width:150px;height:150px;background:linear-gradient(145deg,#283a28d9,#182719e8);border:1px solid #d7b8797c;box-shadow:0 10px 27px #0009;backdrop-filter:blur(9px);color:#fff4df}
-.item.selected{border-color:#f5d68c;box-shadow:0 0 30px #eac77a87}
-.item:hover:not(:disabled){border-color:#f5d68c}
-.item img{height:113px;width:98%;filter:drop-shadow(0 7px 8px #0007)}
-.subject .base{animation:breathe 3.5s ease-in-out infinite;filter:drop-shadow(0 17px 20px #0009)}
-.subject.bucket .base{width:83%;height:91%}
-.subject .glasses-overlay{inset:0;width:100%;height:100%;object-fit:contain;transform:none;filter:none}
-.stage:before{bottom:26px;background:#000b}
-.footer{color:#f9e3bc;text-shadow:0 2px 8px #000}
-.reset{background:#1d2e20c9;border-color:#d4b77e;color:#fbe7c7}
-.notice{background:#fff1ce;color:#35412b}
-@media(max-width:750px){body{background-position:center center}.app{padding:15px 12px}.game{gap:2px}.stage{height:min(46vh,390px)}.item{width:44%;height:114px}.item img{height:79px}.head{font-size:9px}h1{font-size:clamp(36px,9vw,56px)}.footer{margin-top:14px}}
-</style></head><body><main class="app"><header class="head"><span>✦ ЛАГЕРЬ «ТАЖИН ЗАПЕКАНОНИК»</span><span class="tag">ПИЩЕБЛОК · ОТРЯД № 1</span></header><h1>Слизне<span>жиж</span></h1><p class="hint" id="hint">Возьми волшебную палочку и коснись ведра</p><section class="game"><div class="shelf left"><button class="item" id="wand" aria-label="Взять волшебную палочку" aria-pressed="false"><img src="wand.png" alt=""><span>Палочка</span></button><button class="item" id="tomato" data-effect="tomato" disabled aria-label="Перетащить помидор из корзины"><img src="basket.png" alt=""><span>Помидорка</span></button></div><div class="stage" id="stage"><div class="notice" id="notice" role="status" aria-live="polite"></div><div class="subject bucket" id="subject" role="button" tabindex="0" aria-label="Ведро на 1019 литров"><img class="base" id="base" src="bucket.png" alt="Зеленое ведро на 1019 литров"><img class="glasses-overlay" id="glasses-layer" src="glasses.png" alt="" hidden></div><div class="smoke" id="smoke" aria-hidden="true"></div></div><div class="shelf right"><button class="item" id="glasses" data-effect="glasses" disabled aria-label="Перетащить очки на слизня"><img src="glasses.png" alt=""><span>Очки крутости</span></button><button class="item" id="snitch" data-effect="snitch" disabled aria-label="Перетащить снитч на слизня"><img src="snitch.png" alt=""><span>Золотой снитч</span></button></div></section><footer class="footer"><span>Собственность отряда № 1</span><button class="reset" id="reset">↺ Начать заново</button><span>Слизень не пострадал. Почти.</span></footer></main>
-<script>
-const subject=document.getElementById('subject'),base=document.getElementById('base'),stage=document.getElementById('stage'),smoke=document.getElementById('smoke'),hint=document.getElementById('hint'),notice=document.getElementById('notice'),wand=document.getElementById('wand'),tomato=document.getElementById('tomato'),glasses=document.getElementById('glasses'),snitch=document.getElementById('snitch'),layer=document.getElementById('glasses-layer');const state={born:false,color:'green',glasses:false,wand:false,busy:false};let drag=null,ghost=null,timer;const wait=t=>new Promise(r=>setTimeout(r,t));
-function say(s){notice.textContent=s;notice.classList.add('show');clearTimeout(timer);timer=setTimeout(()=>notice.classList.remove('show'),2200)}
-function fog(){smoke.replaceChildren();for(let i=0;i<18;i++){const p=document.createElement('i');p.className='puff';p.style.setProperty('--x',(17+Math.random()*64)+'%');p.style.setProperty('--y',(18+Math.random()*58)+'%');p.style.setProperty('--s',(100+Math.random()*160)+'px');p.style.setProperty('--delay',(Math.random()*.25)+'s');p.style.setProperty('--dx',((Math.random()-.5)*180)+'px');smoke.append(p)}for(let i=0;i<14;i++){const s=document.createElement('b');s.className='spark';s.textContent=i%2?'✦':'✧';s.style.setProperty('--x',(16+Math.random()*65)+'%');s.style.setProperty('--y',(20+Math.random()*62)+'%');s.style.setProperty('--delay',(Math.random()*.3)+'s');s.style.setProperty('--dx',((Math.random()-.5)*170)+'px');smoke.append(s)}}
-async function transform(type){if(state.busy||type==='birth'&&state.born||type==='return'&&!state.born||!['birth','return'].includes(type)&&!state.born||type==='glasses'&&state.glasses)return;state.busy=true;fog();smoke.classList.add('on');await wait(470);if(type==='birth'){state.born=true;state.color='green';subject.className='subject';base.src='green-slime.png';base.alt='Зеленый желейный слизень';tomato.disabled=glasses.disabled=snitch.disabled=false;hint.textContent='Угости его помидором, покажи снитч или примерь очки';say('Бульк! Он ожил! 💚')}if(type==='tomato'){state.color='red';base.src='red-slime.png';base.alt='Томатный слизень';say('Помидорное настроение! 🍅')}if(type==='snitch'){state.color='gold';base.src='gold-slime.png';base.alt='Золотой светящийся слизень';say('Поймал удачу за крылья! ✨')}if(type==='glasses'){state.glasses=true;layer.hidden=false;say('Теперь он крут! 😎')}if(type==='return'){state.born=false;state.color='green';state.glasses=false;base.src='bucket.png';base.alt='Ведро на 1019 литров';subject.className='subject bucket';layer.hidden=true;tomato.disabled=glasses.disabled=snitch.disabled=true;hint.textContent='Отбой окончен? Снова возьми палочку';say('Отбой, Слизнежиж! 🪣')}state.wand=false;wand.classList.remove('selected');wand.setAttribute('aria-pressed','false');subject.classList.remove('castable');await wait(800);smoke.classList.remove('on');subject.classList.add('boing');state.busy=false}
-wand.addEventListener('click',()=>{if(state.busy)return;state.wand=!state.wand;wand.classList.toggle('selected',state.wand);wand.setAttribute('aria-pressed',String(state.wand));subject.classList.toggle('castable',state.wand);hint.textContent=state.wand?(state.born?'Теперь коснись слизня палочкой':'Теперь коснись ведра палочкой'):(state.born?'Выбирай угощение или снова возьми палочку':'Возьми волшебную палочку и коснись ведра')});function cast(){if(state.busy)return;if(state.wand)transform(state.born?'return':'birth');else say('Сначала возьми палочку!')}subject.addEventListener('click',cast);subject.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();cast()}});
-function move(e){if(!ghost)return;ghost.style.left=e.clientX+'px';ghost.style.top=e.clientY+'px';const r=subject.getBoundingClientRect();stage.classList.toggle('target',e.clientX>=r.left&&e.clientX<=r.right&&e.clientY>=r.top&&e.clientY<=r.bottom)}function end(){ghost?.remove();ghost=null;drag=null;stage.classList.remove('target')}for(const el of [tomato,glasses,snitch]){el.addEventListener('pointerdown',e=>{if(el.disabled||state.busy||e.button!==0)return;drag={id:e.pointerId,type:el.dataset.effect,x:e.clientX,y:e.clientY};el.setPointerCapture(e.pointerId);ghost=document.createElement('img');ghost.className='ghost';ghost.src=drag.type==='tomato'?'tomato.png':drag.type==='snitch'?'snitch.png':'glasses.png';document.body.append(ghost);move(e);e.preventDefault()});el.addEventListener('pointermove',e=>{if(drag&&e.pointerId===drag.id)move(e)});el.addEventListener('pointerup',e=>{if(!drag||e.pointerId!==drag.id)return;const r=subject.getBoundingClientRect();const hit=e.clientX>=r.left&&e.clientX<=r.right&&e.clientY>=r.top&&e.clientY<=r.bottom;const clicked=Math.hypot(e.clientX-drag.x,e.clientY-drag.y)<10;const type=drag.type;end();if(hit||clicked)transform(type)});el.addEventListener('pointercancel',end);el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();transform(el.dataset.effect)}})}
-document.getElementById('reset').addEventListener('click',()=>{if(state.busy)return;Object.assign(state,{born:false,color:'green',glasses:false,wand:false,busy:false});base.src='bucket.png';base.alt='Ведро на 1019 литров';subject.className='subject bucket';layer.hidden=true;tomato.disabled=glasses.disabled=snitch.disabled=true;wand.classList.remove('selected');wand.setAttribute('aria-pressed','false');hint.textContent='Возьми волшебную палочку и коснись ведра';say('Начнем сначала!')});
-</script></body></html>
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#172419">
+  <title>Слизнежиж</title>
+  <style>
+    * { box-sizing:border-box }
+    html,body { margin:0; width:100%; min-height:100%; overflow:hidden }
+    body { font-family:system-ui,sans-serif; background:#172419; user-select:none; -webkit-user-select:none }
+    button { -webkit-tap-highlight-color:transparent }
+    .scene { position:fixed; inset:0; overflow:hidden; isolation:isolate }
+    .scene::before { content:"";position:absolute;inset:-35px;background:url('background.png?v=2') center bottom/cover no-repeat;filter:blur(19px) brightness(.58);z-index:-2 }
+    .scene::after { content:"";position:absolute;inset:0;background:url('background.png?v=2') center bottom/auto 100% no-repeat;z-index:-1;pointer-events:none }
+    .shade { position:absolute;inset:0;background:linear-gradient(90deg,#0b180e5e,transparent 27%,transparent 73%,#0b180e5e);pointer-events:none }
+    .actor { position:absolute;left:50%;bottom:9%;width:min(39vw,520px);height:min(54vh,510px);transform:translateX(-50%);display:flex;align-items:flex-end;justify-content:center;z-index:3;cursor:default }
+    .actor .base,.actor .glasses { display:block;width:100%;height:100%;object-fit:contain;object-position:center bottom;pointer-events:none }
+    .actor .base { filter:drop-shadow(0 14px 14px #070e0ab0);animation:breathe 3.2s ease-in-out infinite }
+    .actor.bucket .base { width:80% }
+    .actor .glasses { position:absolute;inset:0;transform:translate(6%,-19%);filter:drop-shadow(0 2px 3px #0009) }
+    .actor .glasses[hidden] { display:none }
+    .actor.armed { filter:drop-shadow(0 0 14px #f8d58c) }
+    .item { appearance:none;position:absolute;z-index:5;background:none;border:0;padding:0;cursor:grab;touch-action:none;transition:filter .2s,transform .2s;filter:drop-shadow(0 7px 8px #0009) }
+    .item img { display:block;width:100%;height:100%;object-fit:contain;pointer-events:none }
+    .item:hover:not(:disabled),.item.armed { filter:drop-shadow(0 0 14px #ffdc90);transform:scale(1.07) }
+    .item:disabled { opacity:.68;cursor:default }
+    .wand { width:clamp(125px,14vw,235px);height:clamp(85px,13vh,160px);left:5%;top:52% }
+    .tomato { width:clamp(115px,13vw,190px);height:clamp(100px,16vh,170px);left:10%;top:72% }
+    .glasses-item { width:clamp(135px,15vw,225px);height:clamp(85px,13vh,150px);right:8%;top:53% }
+    .snitch { width:clamp(145px,16vw,240px);height:clamp(80px,14vh,150px);right:5%;top:72% }
+    .ghost { position:fixed;z-index:30;width:140px;height:140px;object-fit:contain;pointer-events:none;transform:translate(-50%,-50%);filter:drop-shadow(0 8px 10px #0009) }
+    .smoke { position:absolute;inset:0;z-index:10;pointer-events:none;overflow:hidden;visibility:hidden }
+    .smoke.on { visibility:visible }
+    .puff { position:absolute;left:var(--x);top:var(--y);width:var(--s);height:var(--s);border-radius:50%;background:radial-gradient(circle,#fff9dfec,#c6cbb4d0 40%,#c5cfb488 60%,transparent 74%);filter:blur(11px);animation:float 1.1s ease-out both;animation-delay:var(--delay) }
+    .spark { position:absolute;left:var(--x);top:var(--y);color:#ffe6a0;text-shadow:0 0 12px #ffc34a;font-size:28px;animation:float 1.1s ease-out both;animation-delay:var(--delay) }
+    .reset { position:absolute;right:16px;bottom:16px;z-index:8;width:40px;height:40px;border:1px solid #ffffff63;border-radius:50%;background:#14241978;color:#fff6df;cursor:pointer;font-size:25px;line-height:1;backdrop-filter:blur(4px) }
+    .reset:hover { background:#253d28c9 }
+    @keyframes breathe { 50% { transform:scale(1.012,.994) } }
+    @keyframes float { 0% { opacity:0;transform:scale(.2) } 30% { opacity:.9 } 100% { opacity:0;transform:translate(var(--dx),-85px) scale(1.6) } }
+    @media(max-width:700px) {
+      .scene::after { background-size:auto 100%; }
+      .actor { bottom:15%;width:75vw;height:48vh }
+      .wand { width:30vw;height:13vh;left:2%;top:25% }
+      .tomato { width:29vw;height:14vh;left:1%;top:61% }
+      .glasses-item { width:32vw;height:11vh;right:1%;top:25% }
+      .snitch { width:32vw;height:12vh;right:1%;top:62% }
+    }
+    @media(prefers-reduced-motion:reduce) { .actor .base,.puff,.spark { animation:none } }
+  </style>
+</head>
+<body>
+  <main class="scene" aria-label="Слизнежиж у лагерного пищеблока">
+    <div class="shade" aria-hidden="true"></div>
+    <button class="item wand" id="wand" aria-label="Волшебная палочка" aria-pressed="false"><img src="wand.png?v=2" alt=""></button>
+    <button class="item tomato" id="tomato" disabled aria-label="Помидоры"><img src="basket.png?v=2" alt=""></button>
+    <div class="actor bucket" id="actor" role="button" tabindex="0" aria-label="Ведро или слизень">
+      <img class="base" id="base" src="bucket.png?v=2" alt="Ведро на 1019 литров">
+      <img class="glasses" id="glasses-layer" src="glasses.png?v=2" alt="" hidden>
+    </div>
+    <button class="item glasses-item" id="glasses" disabled aria-label="Очки"><img src="glasses.png?v=2" alt=""></button>
+    <button class="item snitch" id="snitch" disabled aria-label="Золотой снитч"><img src="snitch.png?v=2" alt=""></button>
+    <div class="smoke" id="smoke" aria-hidden="true"></div>
+    <button class="reset" id="reset" aria-label="Начать заново" title="Начать заново">↺</button>
+  </main>
+  <script>
+  const actor=document.getElementById('actor'),base=document.getElementById('base'),layer=document.getElementById('glasses-layer'),smoke=document.getElementById('smoke');
+  const wand=document.getElementById('wand'),tomato=document.getElementById('tomato'),glasses=document.getElementById('glasses'),snitch=document.getElementById('snitch');
+  const state={born:false,glasses:false,color:'green',armed:false,busy:false};
+  const versions={green:'green-slime.png?v=2',red:'red-slime.png?v=2',gold:'gold-slime.png?v=2'};
+  const wait=t=>new Promise(resolve=>setTimeout(resolve,t));
+  let dragging=null,ghost=null;
+  function arm(value){state.armed=value;wand.classList.toggle('armed',value);actor.classList.toggle('armed',value);wand.setAttribute('aria-pressed',String(value))}
+  function setEnabled(value){tomato.disabled=glasses.disabled=snitch.disabled=!value}
+  function reset(){if(state.busy)return;state.born=false;state.color='green';state.glasses=false;base.src='bucket.png?v=2';base.alt='Ведро';actor.classList.add('bucket');layer.hidden=true;setEnabled(false);arm(false)}
+  function mist(){smoke.replaceChildren();const r=actor.getBoundingClientRect();for(let i=0;i<19;i++){const p=document.createElement('i');p.className=i%4===0?'spark':'puff';if(i%4===0)p.textContent='✦';p.style.setProperty('--x',(r.left+r.width*(.12+Math.random()*.75))+'px');p.style.setProperty('--y',(r.top+r.height*(.12+Math.random()*.7))+'px');p.style.setProperty('--s',(65+Math.random()*135)+'px');p.style.setProperty('--delay',(Math.random()*.24)+'s');p.style.setProperty('--dx',((Math.random()-.5)*165)+'px');smoke.append(p)}}
+  async function action(type){if(state.busy)return;if(type==='wand')type=state.born?'return':'birth';if(type!=='birth'&&type!=='return'&&!state.born)return;if(type==='glasses'&&state.glasses)return;state.busy=true;arm(false);mist();smoke.classList.add('on');await wait(460);
+    if(type==='birth'){state.born=true;state.color='green';actor.classList.remove('bucket');base.src=versions.green;base.alt='Зеленый слизень';setEnabled(true)}
+    if(type==='return'){state.born=false;state.glasses=false;state.color='green';actor.classList.add('bucket');base.src='bucket.png?v=2';base.alt='Ведро';layer.hidden=true;setEnabled(false)}
+    if(type==='tomato'){state.color='red';base.src=versions.red;base.alt='Томатный слизень'}
+    if(type==='snitch'){state.color='gold';base.src=versions.gold;base.alt='Золотой слизень'}
+    if(type==='glasses'){state.glasses=true;layer.hidden=false}
+    await wait(700);smoke.classList.remove('on');state.busy=false;
+  }
+  function hit(x,y){const r=actor.getBoundingClientRect();return x>=r.left&&x<=r.right&&y>=r.top&&y<=r.bottom}
+  function move(e){if(!dragging)return;ghost.style.left=e.clientX+'px';ghost.style.top=e.clientY+'px'}
+  function finish(){ghost?.remove();ghost=null;dragging=null}
+  for(const [element,type] of [[wand,'wand'],[tomato,'tomato'],[glasses,'glasses'],[snitch,'snitch']]){
+    element.addEventListener('pointerdown',e=>{if(element.disabled||state.busy||e.button!==0)return;dragging={id:e.pointerId,x:e.clientX,y:e.clientY,type};element.setPointerCapture(e.pointerId);ghost=document.createElement('img');ghost.className='ghost';ghost.src=type==='tomato'?'tomato.png?v=2':type==='wand'?'wand.png?v=2':type==='snitch'?'snitch.png?v=2':'glasses.png?v=2';document.body.append(ghost);move(e);e.preventDefault()});
+    element.addEventListener('pointermove',e=>{if(dragging?.id===e.pointerId)move(e)});
+    element.addEventListener('pointerup',e=>{if(!dragging||dragging.id!==e.pointerId)return;const wasTap=Math.hypot(e.clientX-dragging.x,e.clientY-dragging.y)<12;const targetHit=hit(e.clientX,e.clientY);finish();if(targetHit)action(type);else if(wasTap){if(type==='wand')arm(!state.armed);else action(type)}});
+    element.addEventListener('pointercancel',finish);
+    element.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();if(type==='wand')arm(!state.armed);else action(type)}});
+  }
+  function cast(){if(state.armed)action('wand')}
+  actor.addEventListener('click',cast);
+  actor.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();cast()}});
+  document.getElementById('reset').addEventListener('click',reset);
+  </script>
+</body>
+</html>
