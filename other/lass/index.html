@@ -11,10 +11,10 @@
     body { font-family:system-ui,sans-serif; background:#172419; user-select:none; -webkit-user-select:none }
     button { -webkit-tap-highlight-color:transparent }
     .scene { position:fixed; inset:0; overflow:hidden; isolation:isolate }
-    .scene::before { content:"";position:absolute;inset:-35px;background:url('background.png?v=2') center bottom/cover no-repeat;filter:blur(19px) brightness(.58);z-index:-2 }
-    .scene::after { content:"";position:absolute;inset:0;background:url('background.png?v=2') center bottom/auto 115% no-repeat;z-index:-1;pointer-events:none }
+    .scene::before { content:"";position:absolute;inset:-35px;background:url('background.webp?v=2') center bottom/cover no-repeat;filter:blur(19px) brightness(.58);z-index:-2 }
+    .scene::after { content:"";position:absolute;inset:0;background:url('background.webp?v=2') center bottom/auto 115% no-repeat;z-index:-1;pointer-events:none }
     .shade { position:absolute;inset:0;background:linear-gradient(90deg,#0b180e5e,transparent 27%,transparent 73%,#0b180e5e);pointer-events:none }
-    /* background.png is 2:3 and is drawn at 115% of the viewport height. */
+    /* background.webp is 2:3 and is drawn at 115% of the viewport height. */
     .stage { position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:min(100%,76.6667vh);height:100%;container-type:inline-size }
     .actor { position:absolute;left:50%;bottom:22cqw;width:47%;height:47cqw;transform:translateX(-50%);display:flex;align-items:flex-end;justify-content:center;z-index:3;cursor:default }
     .actor .base,.actor .glasses { display:block;width:100%;height:100%;object-fit:contain;object-position:center bottom;pointer-events:none }
@@ -24,7 +24,7 @@
     .actor .glasses { position:absolute;inset:0;transform:translate(0,0);filter:drop-shadow(0 2px 3px #0009) }
     .actor .glasses[hidden] { display:none }
     .actor.armed { filter:drop-shadow(0 0 14px #f8d58c) }
-    .workbench { position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:100%;height:20cqw;z-index:4;pointer-events:none;background:url('wood-panel.png?v=1') center top/100% auto no-repeat;filter:drop-shadow(0 -5px 12px #0008) }
+    .workbench { position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:100%;height:20cqw;z-index:4;pointer-events:none;background:url('wood-panel.webp?v=1') center top/100% auto no-repeat;filter:drop-shadow(0 -5px 12px #0008) }
     .item { appearance:none;position:absolute;z-index:5;background:none;border:0;padding:0;cursor:grab;touch-action:none;transition:filter .2s,transform .2s;filter:drop-shadow(0 7px 8px #0009) }
     .item img { display:block;width:100%;height:100%;object-fit:contain;pointer-events:none }
     .item:hover:not(:disabled),.item.armed { filter:drop-shadow(0 0 14px #ffdc90);transform:scale(1.07) }
@@ -63,15 +63,15 @@
     <div class="shade" aria-hidden="true"></div>
     <div class="stage">
       <div class="workbench" aria-hidden="true"></div>
-      <button class="item wand" id="wand" aria-label="Волшебная палочка" aria-pressed="false"><img src="wand.png?v=2" alt=""></button>
-      <button class="item tomato" id="tomato" disabled aria-label="Помидоры"><img src="basket.png?v=2" alt=""></button>
-      <button class="item casserole" id="casserole" disabled aria-label="Запеканка"><img src="casserole.png?v=1" alt=""></button>
+      <button class="item wand" id="wand" aria-label="Волшебная палочка" aria-pressed="false"><img src="wand.webp?v=2" alt=""></button>
+      <button class="item tomato" id="tomato" disabled aria-label="Помидоры"><img src="basket.webp?v=2" alt=""></button>
+      <button class="item casserole" id="casserole" disabled aria-label="Запеканка"><img src="casserole.webp?v=1" alt=""></button>
       <div class="actor bucket" id="actor" role="button" tabindex="0" aria-label="Ведро или слизень">
-        <img class="base" id="base" src="bucket.png?v=2" alt="Ведро на 1019 литров">
-        <img class="glasses" id="glasses-layer" src="glasses.png?v=2" alt="" hidden>
+        <img class="base" id="base" src="bucket.webp?v=2" alt="Ведро на 1019 литров">
+        <img class="glasses" id="glasses-layer" src="glasses.webp?v=2" alt="" hidden>
       </div>
-      <button class="item glasses-item" id="glasses" disabled aria-label="Очки"><img src="glasses.png?v=2" alt=""></button>
-      <button class="item snitch" id="snitch" disabled hidden aria-label="Поймать золотой снитч"><img src="snitch.png?v=2" alt=""></button>
+      <button class="item glasses-item" id="glasses" disabled aria-label="Очки"><img src="glasses.webp?v=2" alt=""></button>
+      <button class="item snitch" id="snitch" disabled hidden aria-label="Поймать золотой снитч"><img src="snitch.webp?v=2" alt=""></button>
     </div>
     <div class="smoke" id="smoke" aria-hidden="true"></div>
     <button class="reset" id="reset" aria-label="Начать заново" title="Начать заново">↺</button>
@@ -80,24 +80,24 @@
   const actor=document.getElementById('actor'),base=document.getElementById('base'),layer=document.getElementById('glasses-layer'),smoke=document.getElementById('smoke');
   const wand=document.getElementById('wand'),tomato=document.getElementById('tomato'),casserole=document.getElementById('casserole'),glasses=document.getElementById('glasses'),snitch=document.getElementById('snitch');
   const state={born:false,glasses:false,color:'green',armed:false,busy:false,snitchCaught:false};
-  const versions={green:'green-slime.png?v=2',red:'red-slime.png?v=2',gold:'gold-slime.png?v=2'};
+  const versions={green:'green-slime.webp?v=2',red:'red-slime.webp?v=2',gold:'gold-slime.webp?v=2'};
   const wait=t=>new Promise(resolve=>setTimeout(resolve,t));
   const imageReady=new Map();
   function preload(src){if(!imageReady.has(src)){const image=new Image();image.src=src;imageReady.set(src,image.decode().catch(()=>new Promise(resolve=>{if(image.complete)resolve();else{image.onload=resolve;image.onerror=resolve}})))}return imageReady.get(src)}
-  for(const src of ['bucket.png?v=2',...Object.values(versions),'glasses.png?v=2','snitch.png?v=2'])preload(src);
+  for(const src of ['bucket.webp?v=2',...Object.values(versions),'glasses.webp?v=2','snitch.webp?v=2'])preload(src);
   let dragging=null,ghost=null;
   function arm(value){state.armed=value;wand.classList.toggle('armed',value);actor.classList.toggle('armed',value);wand.setAttribute('aria-pressed',String(value))}
   function showSnitch(){snitch.disabled=false;snitch.hidden=false;snitch.classList.remove('caught');snitch.setAttribute('aria-label','Поймать золотой снитч');state.snitchCaught=false;snitch.style.animation='none';void snitch.offsetWidth;snitch.style.animation=''}
   function setEnabled(value){tomato.disabled=casserole.disabled=glasses.disabled=!value;if(value)showSnitch();else{snitch.disabled=true;snitch.hidden=true;snitch.classList.remove('caught');state.snitchCaught=false}}
-  function reset(){if(state.busy)return;state.born=false;state.color='green';state.glasses=false;base.src='bucket.png?v=2';base.alt='Ведро';actor.classList.add('bucket');layer.hidden=true;setEnabled(false);arm(false)}
+  function reset(){if(state.busy)return;state.born=false;state.color='green';state.glasses=false;base.src='bucket.webp?v=2';base.alt='Ведро';actor.classList.add('bucket');layer.hidden=true;setEnabled(false);arm(false)}
   function catchSnitch(){if(!state.born||state.busy)return;state.snitchCaught=true;snitch.classList.add('caught');snitch.setAttribute('aria-label','Скормить пойманный снитч')}
   function mist(){smoke.replaceChildren();const r=actor.getBoundingClientRect();for(let i=0;i<19;i++){const p=document.createElement('i');p.className=i%4===0?'spark':'puff';if(i%4===0)p.textContent='✦';p.style.setProperty('--x',(r.left+r.width*(.12+Math.random()*.75))+'px');p.style.setProperty('--y',(r.top+r.height*(.12+Math.random()*.7))+'px');p.style.setProperty('--s',(65+Math.random()*135)+'px');p.style.setProperty('--delay',(Math.random()*.24)+'s');p.style.setProperty('--dx',((Math.random()-.5)*165)+'px');smoke.append(p)}}
   async function action(type){if(state.busy)return;if(type==='wand')type=state.born?'return':'birth';if(type!=='birth'&&type!=='return'&&!state.born)return;if(type==='snitch'&&!state.snitchCaught){catchSnitch();return}state.busy=true;arm(false);
-    const target=type==='birth'||type==='casserole'?versions.green:type==='tomato'?versions.red:type==='snitch'?versions.gold:type==='return'?'bucket.png?v=2':null;
+    const target=type==='birth'||type==='casserole'?versions.green:type==='tomato'?versions.red:type==='snitch'?versions.gold:type==='return'?'bucket.webp?v=2':null;
     const ready=target?preload(target):Promise.resolve();
     mist();smoke.classList.add('on');await Promise.all([wait(460),ready]);
     if(type==='birth'){state.born=true;state.color='green';base.src=versions.green;base.alt='Зеленый слизень';actor.classList.remove('bucket');setEnabled(true)}
-    if(type==='return'){state.born=false;state.glasses=false;state.color='green';base.src='bucket.png?v=2';base.alt='Ведро';actor.classList.add('bucket');layer.hidden=true;setEnabled(false)}
+    if(type==='return'){state.born=false;state.glasses=false;state.color='green';base.src='bucket.webp?v=2';base.alt='Ведро';actor.classList.add('bucket');layer.hidden=true;setEnabled(false)}
     if(type==='tomato'){const wasGold=state.color==='gold';state.color='red';base.src=versions.red;base.alt='Томатный слизень';if(wasGold)showSnitch()}
     if(type==='casserole'){const wasGold=state.color==='gold';state.color='green';base.src=versions.green;base.alt='Зеленый слизень';if(wasGold)showSnitch()}
     if(type==='snitch'){state.color='gold';base.src=versions.gold;base.alt='Золотой слизень';state.snitchCaught=false;snitch.classList.remove('caught');snitch.hidden=true}
@@ -108,7 +108,7 @@
   function move(e){if(!dragging)return;ghost.style.left=e.clientX+'px';ghost.style.top=e.clientY+'px'}
   function finish(){ghost?.remove();ghost=null;dragging=null}
   for(const [element,type] of [[wand,'wand'],[tomato,'tomato'],[casserole,'casserole'],[glasses,'glasses'],[snitch,'snitch']]){
-    element.addEventListener('pointerdown',e=>{if(element.disabled||state.busy||e.button!==0)return;dragging={id:e.pointerId,x:e.clientX,y:e.clientY,type};element.setPointerCapture(e.pointerId);ghost=document.createElement('img');ghost.className='ghost';ghost.src=type==='tomato'?'tomato.png?v=2':type==='wand'?'wand.png?v=2':type==='snitch'?'snitch.png?v=2':type==='casserole'?'casserole.png?v=1':'glasses.png?v=2';document.body.append(ghost);move(e);e.preventDefault()});
+    element.addEventListener('pointerdown',e=>{if(element.disabled||state.busy||e.button!==0)return;dragging={id:e.pointerId,x:e.clientX,y:e.clientY,type};element.setPointerCapture(e.pointerId);ghost=document.createElement('img');ghost.className='ghost';ghost.src=type==='tomato'?'tomato.webp?v=2':type==='wand'?'wand.webp?v=2':type==='snitch'?'snitch.webp?v=2':type==='casserole'?'casserole.webp?v=1':'glasses.webp?v=2';document.body.append(ghost);move(e);e.preventDefault()});
     element.addEventListener('pointermove',e=>{if(dragging?.id===e.pointerId)move(e)});
     element.addEventListener('pointerup',e=>{if(!dragging||dragging.id!==e.pointerId)return;const wasTap=Math.hypot(e.clientX-dragging.x,e.clientY-dragging.y)<12;const targetHit=hit(e.clientX,e.clientY);finish();if(type==='snitch'&&!state.snitchCaught){catchSnitch();if(targetHit)action('snitch');return}if(targetHit)action(type);else if(wasTap){if(type==='wand')arm(!state.armed);else action(type)}});
     element.addEventListener('pointercancel',finish);
