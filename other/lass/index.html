@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#172419">
-  <title>Жиииижжиик</title>
+  <title>Слизнежиж</title>
   <style>
     * { box-sizing:border-box }
     html,body { margin:0; width:100%; min-height:100%; overflow:hidden }
@@ -35,7 +35,7 @@
     .casserole { width:25%;height:20cqw;left:50%;bottom:1.5cqw }
     .glasses-item { width:18%;height:14cqw;left:80%;bottom:2cqw }
     .glasses-item img { transform:scale(2.3) }
-    .snitch { width:13%;height:9cqw;left:50%;top:calc(100% - 80cqw);animation:snitch-flight 6.5s ease-in-out infinite alternate;filter:drop-shadow(0 0 8px #ffe9a875) }
+    .snitch { width:13%;height:9cqw;left:50%;top:calc(100% - 80cqw);animation:snitch-flight 6.5s ease-in-out infinite alternate;filter:drop-shadow(0 0 8px #ffe9a875);will-change:transform }
     .snitch[hidden] { display:none }
     .snitch.caught { animation-play-state:paused;filter:drop-shadow(0 0 18px #ffe68c) }
     .ghost { position:fixed;z-index:30;width:140px;height:140px;object-fit:contain;pointer-events:none;transform:translate(-50%,-50%);filter:drop-shadow(0 8px 10px #0009) }
@@ -47,15 +47,28 @@
     .reset:hover { background:#253d28c9 }
     @keyframes breathe { 50% { transform:scale(1.012,.994) } }
     @keyframes snitch-flight { 0% { transform:translate(-22.35cqw,5.88cqw) scale(.62) rotate(-15deg) } 12% { transform:translate(9.41cqw,2.94cqw) scale(.92) rotate(16deg) } 23% { transform:translate(18.24cqw,22.35cqw) scale(1.18) rotate(-12deg) } 35% { transform:translate(-7.65cqw,14.71cqw) scale(.52) rotate(19deg) } 46% { transform:translate(-21.76cqw,27.06cqw) scale(.85) rotate(-16deg) } 58% { transform:translate(6.47cqw,31.76cqw) scale(1.27) rotate(11deg) } 70% { transform:translate(21.76cqw,11.18cqw) scale(.58) rotate(-20deg) } 83% { transform:translate(-10.59cqw,4.71cqw) scale(1.08) rotate(15deg) } 93% { transform:translate(13.53cqw,20.59cqw) scale(.7) rotate(-9deg) } 100% { transform:translate(-4.12cqw,12.35cqw) scale(.55) rotate(8deg) } }
+    @keyframes snitch-flight-mobile { 0% { transform:translate(-31vw,3vh) scale(.55) rotate(-12deg) } 17% { transform:translate(28vw,6vh) scale(.95) rotate(13deg) } 32% { transform:translate(-7vw,24vh) scale(1.2) rotate(-14deg) } 48% { transform:translate(-30vw,15vh) scale(.63) rotate(18deg) } 65% { transform:translate(24vw,29vh) scale(1.13) rotate(-10deg) } 82% { transform:translate(6vw,3vh) scale(.5) rotate(12deg) } 100% { transform:translate(-22vw,24vh) scale(.78) rotate(-8deg) } }
+    @keyframes snitch-flight-calm { 0% { transform:translate(-12vw,4vh) scale(.82) } 50% { transform:translate(12vw,11vh) scale(.94) } 100% { transform:translate(-8vw,16vh) scale(.76) } }
     @keyframes float { 0% { opacity:0;transform:scale(.2) } 30% { opacity:.9 } 100% { opacity:0;transform:translate(var(--dx),-85px) scale(1.6) } }
     @media(max-width:700px) {
+      .scene::before { display:none }
       .scene::after { background-size:auto 105%; }
       .stage { width:min(100%,70vh) }
       .actor { bottom:22cqw;width:63%;height:58cqw }
       .actor.bucket { bottom:19cqw;width:56%;height:50cqw }
-      .reset { right:16px;top:16px }
+      .actor .base { animation:none;filter:drop-shadow(0 7px 7px #070e0a8a) }
+      .workbench { filter:none }
+      .item { transition:none;filter:drop-shadow(0 3px 4px #0007) }
+      .item:hover:not(:disabled) { transform:none;filter:drop-shadow(0 3px 4px #0007) }
+      .snitch { width:18vw;height:8vh;left:50%;top:28%;animation-name:snitch-flight-mobile;filter:none }
+      .puff { filter:none }
+      .spark { text-shadow:0 0 5px #ffc34a }
+      .reset { right:16px;top:16px;backdrop-filter:none }
     }
-    @media(prefers-reduced-motion:reduce) { .actor .base,.puff,.spark,.snitch { animation:none } }
+    @media(prefers-reduced-motion:reduce) {
+      .actor .base,.puff,.spark { animation:none }
+      .snitch { animation-name:snitch-flight-calm;animation-duration:9s;animation-timing-function:linear }
+    }
   </style>
 </head>
 <body>
@@ -63,15 +76,15 @@
     <div class="shade" aria-hidden="true"></div>
     <div class="stage">
       <div class="workbench" aria-hidden="true"></div>
-      <button class="item wand" id="wand" aria-label="Волшебная палочка" aria-pressed="false"><img src="wand.webp?v=2" alt=""></button>
-      <button class="item tomato" id="tomato" disabled aria-label="Помидоры"><img src="basket.webp?v=2" alt=""></button>
-      <button class="item casserole" id="casserole" disabled aria-label="Запеканка"><img src="casserole.webp?v=1" alt=""></button>
+      <button class="item wand" id="wand" aria-label="Волшебная палочка" aria-pressed="false"><img src="wand.webp?v=2" alt="" decoding="async"></button>
+      <button class="item tomato" id="tomato" disabled aria-label="Помидоры"><img src="basket.webp?v=2" alt="" decoding="async"></button>
+      <button class="item casserole" id="casserole" disabled aria-label="Запеканка"><img src="casserole.webp?v=1" alt="" decoding="async"></button>
       <div class="actor bucket" id="actor" role="button" tabindex="0" aria-label="Ведро или слизень">
-        <img class="base" id="base" src="bucket.webp?v=2" alt="Ведро на 1019 литров">
-        <img class="glasses" id="glasses-layer" src="glasses.webp?v=2" alt="" hidden>
+        <img class="base" id="base" src="bucket.webp?v=2" alt="Ведро на 1019 литров" decoding="async">
+        <img class="glasses" id="glasses-layer" src="glasses.webp?v=2" alt="" decoding="async" hidden>
       </div>
-      <button class="item glasses-item" id="glasses" disabled aria-label="Очки"><img src="glasses.webp?v=2" alt=""></button>
-      <button class="item snitch" id="snitch" disabled hidden aria-label="Поймать золотой снитч"><img src="snitch.webp?v=2" alt=""></button>
+      <button class="item glasses-item" id="glasses" disabled aria-label="Очки"><img src="glasses.webp?v=2" alt="" decoding="async"></button>
+      <button class="item snitch" id="snitch" disabled hidden aria-label="Поймать золотой снитч"><img src="snitch.webp?v=2" alt="" decoding="async"></button>
     </div>
     <div class="smoke" id="smoke" aria-hidden="true"></div>
     <button class="reset" id="reset" aria-label="Начать заново" title="Начать заново">↺</button>
@@ -82,16 +95,19 @@
   const state={born:false,glasses:false,color:'green',armed:false,busy:false,snitchCaught:false};
   const versions={green:'green-slime.webp?v=2',red:'red-slime.webp?v=2',gold:'gold-slime.webp?v=2'};
   const wait=t=>new Promise(resolve=>setTimeout(resolve,t));
+  const mobileMode=matchMedia('(max-width:700px), (pointer:coarse)').matches;
   const imageReady=new Map();
   function preload(src){if(!imageReady.has(src)){const image=new Image();image.src=src;imageReady.set(src,image.decode().catch(()=>new Promise(resolve=>{if(image.complete)resolve();else{image.onload=resolve;image.onerror=resolve}})))}return imageReady.get(src)}
-  for(const src of ['bucket.webp?v=2',...Object.values(versions),'glasses.webp?v=2','snitch.webp?v=2'])preload(src);
+  preload(versions.green);
+  const warmImages=()=>[versions.red,versions.gold].forEach(preload);
+  if('requestIdleCallback' in window)requestIdleCallback(warmImages,{timeout:2500});else setTimeout(warmImages,1400);
   let dragging=null,ghost=null;
   function arm(value){state.armed=value;wand.classList.toggle('armed',value);actor.classList.toggle('armed',value);wand.setAttribute('aria-pressed',String(value))}
-  function showSnitch(){snitch.disabled=false;snitch.hidden=false;snitch.classList.remove('caught');snitch.setAttribute('aria-label','Поймать золотой снитч');state.snitchCaught=false;snitch.style.animation='none';void snitch.offsetWidth;snitch.style.animation=''}
+  function showSnitch(){snitch.disabled=false;snitch.hidden=false;snitch.classList.remove('caught');snitch.setAttribute('aria-label','Поймать золотой снитч');state.snitchCaught=false;snitch.style.animation='none';void snitch.offsetWidth;snitch.style.removeProperty('animation')}
   function setEnabled(value){tomato.disabled=casserole.disabled=glasses.disabled=!value;if(value)showSnitch();else{snitch.disabled=true;snitch.hidden=true;snitch.classList.remove('caught');state.snitchCaught=false}}
   function reset(){if(state.busy)return;state.born=false;state.color='green';state.glasses=false;base.src='bucket.webp?v=2';base.alt='Ведро';actor.classList.add('bucket');layer.hidden=true;setEnabled(false);arm(false)}
   function catchSnitch(){if(!state.born||state.busy)return;state.snitchCaught=true;snitch.classList.add('caught');snitch.setAttribute('aria-label','Скормить пойманный снитч')}
-  function mist(){smoke.replaceChildren();const r=actor.getBoundingClientRect();for(let i=0;i<19;i++){const p=document.createElement('i');p.className=i%4===0?'spark':'puff';if(i%4===0)p.textContent='✦';p.style.setProperty('--x',(r.left+r.width*(.12+Math.random()*.75))+'px');p.style.setProperty('--y',(r.top+r.height*(.12+Math.random()*.7))+'px');p.style.setProperty('--s',(65+Math.random()*135)+'px');p.style.setProperty('--delay',(Math.random()*.24)+'s');p.style.setProperty('--dx',((Math.random()-.5)*165)+'px');smoke.append(p)}}
+  function mist(){smoke.replaceChildren();const r=actor.getBoundingClientRect(),count=mobileMode?8:19;for(let i=0;i<count;i++){const p=document.createElement('i');p.className=i%4===0?'spark':'puff';if(i%4===0)p.textContent='✦';p.style.setProperty('--x',(r.left+r.width*(.12+Math.random()*.75))+'px');p.style.setProperty('--y',(r.top+r.height*(.12+Math.random()*.7))+'px');p.style.setProperty('--s',((mobileMode?45:65)+Math.random()*(mobileMode?75:135))+'px');p.style.setProperty('--delay',(Math.random()*.24)+'s');p.style.setProperty('--dx',((Math.random()-.5)*(mobileMode?100:165))+'px');smoke.append(p)}}
   async function action(type){if(state.busy)return;if(type==='wand')type=state.born?'return':'birth';if(type!=='birth'&&type!=='return'&&!state.born)return;if(type==='snitch'&&!state.snitchCaught){catchSnitch();return}state.busy=true;arm(false);
     const target=type==='birth'||type==='casserole'?versions.green:type==='tomato'?versions.red:type==='snitch'?versions.gold:type==='return'?'bucket.webp?v=2':null;
     const ready=target?preload(target):Promise.resolve();
@@ -102,7 +118,7 @@
     if(type==='casserole'){const wasGold=state.color==='gold';state.color='green';base.src=versions.green;base.alt='Зеленый слизень';if(wasGold)showSnitch()}
     if(type==='snitch'){state.color='gold';base.src=versions.gold;base.alt='Золотой слизень';state.snitchCaught=false;snitch.classList.remove('caught');snitch.hidden=true}
     if(type==='glasses'){state.glasses=!state.glasses;layer.hidden=!state.glasses}
-    await wait(700);smoke.classList.remove('on');state.busy=false;
+    await wait(700);smoke.classList.remove('on');smoke.replaceChildren();state.busy=false;
   }
   function hit(x,y){const r=actor.getBoundingClientRect();return x>=r.left&&x<=r.right&&y>=r.top&&y<=r.bottom}
   function move(e){if(!dragging)return;ghost.style.left=e.clientX+'px';ghost.style.top=e.clientY+'px'}
