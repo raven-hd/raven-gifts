@@ -25,32 +25,38 @@
     .item { appearance:none;position:absolute;z-index:5;background:none;border:0;padding:0;cursor:grab;touch-action:none;transition:filter .2s,transform .2s;filter:drop-shadow(0 7px 8px #0009) }
     .item img { display:block;width:100%;height:100%;object-fit:contain;pointer-events:none }
     .item:hover:not(:disabled),.item.armed { filter:drop-shadow(0 0 14px #ffdc90);transform:scale(1.07) }
-    .item:disabled { opacity:.68;cursor:default }
-    .wand { width:clamp(100px,10vw,150px);height:clamp(80px,12vh,115px);left:29%;bottom:2% }
-    .tomato { width:clamp(95px,9vw,135px);height:clamp(85px,13vh,120px);left:40%;bottom:1% }
-    .glasses-item { width:clamp(100px,10vw,145px);height:clamp(80px,12vh,115px);right:39%;bottom:2% }
-    .glasses-item img { transform:scale(2.35) }
-    .snitch { width:clamp(105px,11vw,155px);height:clamp(80px,12vh,115px);right:28%;bottom:2% }
+    .item:disabled { opacity:1;cursor:default }
+    .wand { width:clamp(105px,11vw,155px);height:clamp(80px,12vh,115px);left:27%;bottom:2% }
+    .tomato { width:clamp(125px,12vw,175px);height:clamp(105px,16vh,150px);left:38%;bottom:2.7% }
+    .casserole { width:clamp(125px,12vw,165px);height:clamp(90px,13vh,135px);right:37%;bottom:2.7% }
+    .glasses-item { width:clamp(110px,11vw,155px);height:clamp(80px,12vh,115px);right:26%;bottom:2% }
+    .glasses-item img { transform:scale(2.65) }
+    .snitch { width:clamp(75px,8vw,110px);height:clamp(50px,8vh,80px);left:50%;top:27%;animation:snitch-flight 6.5s ease-in-out infinite alternate;filter:drop-shadow(0 0 8px #ffe9a875) }
+    .snitch[hidden] { display:none }
+    .snitch.caught { animation-play-state:paused;filter:drop-shadow(0 0 18px #ffe68c) }
     .ghost { position:fixed;z-index:30;width:140px;height:140px;object-fit:contain;pointer-events:none;transform:translate(-50%,-50%);filter:drop-shadow(0 8px 10px #0009) }
     .smoke { position:absolute;inset:0;z-index:10;pointer-events:none;overflow:hidden;visibility:hidden }
     .smoke.on { visibility:visible }
     .puff { position:absolute;left:var(--x);top:var(--y);width:var(--s);height:var(--s);border-radius:50%;background:radial-gradient(circle,#fff9dfec,#c6cbb4d0 40%,#c5cfb488 60%,transparent 74%);filter:blur(11px);animation:float 1.1s ease-out both;animation-delay:var(--delay) }
     .spark { position:absolute;left:var(--x);top:var(--y);color:#ffe6a0;text-shadow:0 0 12px #ffc34a;font-size:28px;animation:float 1.1s ease-out both;animation-delay:var(--delay) }
-    .reset { position:absolute;right:max(18px,calc(24vw + 12px));top:20px;z-index:8;width:40px;height:40px;border:1px solid #ffffff63;border-radius:50%;background:#14241978;color:#fff6df;cursor:pointer;font-size:25px;line-height:1;backdrop-filter:blur(4px) }
+    .reset { position:absolute;right:max(18px,calc((100vw - 76.7vh)/2 + 16px));top:20px;z-index:8;width:40px;height:40px;border:1px solid #ffffff63;border-radius:50%;background:#14241978;color:#fff6df;cursor:pointer;font-size:25px;line-height:1;backdrop-filter:blur(4px) }
     .reset:hover { background:#253d28c9 }
     @keyframes breathe { 50% { transform:scale(1.012,.994) } }
+    @keyframes snitch-flight { 0% { transform:translate(-215px,35px) rotate(-12deg) } 25% { transform:translate(105px,155px) rotate(13deg) } 55% { transform:translate(-110px,230px) rotate(-8deg) } 75% { transform:translate(170px,50px) rotate(14deg) } 100% { transform:translate(-35px,110px) rotate(-5deg) } }
     @keyframes float { 0% { opacity:0;transform:scale(.2) } 30% { opacity:.9 } 100% { opacity:0;transform:translate(var(--dx),-85px) scale(1.6) } }
     @media(max-width:700px) {
       .scene::after { background-size:auto 105%; }
       .actor { bottom:20%;width:63vw;height:43vh }
       .workbench { width:100%;height:17% }
-      .wand { width:24vw;height:12vh;left:1%;bottom:3% }
-      .tomato { width:24vw;height:12vh;left:25%;bottom:3% }
-      .glasses-item { width:24vw;height:12vh;right:25%;bottom:3% }
-      .snitch { width:24vw;height:12vh;right:1%;bottom:3% }
+      .wand { width:24vw;height:12vh;left:0;bottom:3% }
+      .tomato { width:25vw;height:14vh;left:24%;bottom:3% }
+      .casserole { width:25vw;height:12vh;right:24%;bottom:3% }
+      .glasses-item { width:24vw;height:12vh;right:0;bottom:3% }
+      .snitch { width:18vw;height:8vh;left:50%;top:28%;animation-name:snitch-flight-mobile }
       .reset { right:16px;top:16px }
     }
-    @media(prefers-reduced-motion:reduce) { .actor .base,.puff,.spark { animation:none } }
+    @keyframes snitch-flight-mobile { 0% { transform:translate(-35vw,0) } 50% { transform:translate(20vw,16vh) } 100% { transform:translate(-20vw,28vh) } }
+    @media(prefers-reduced-motion:reduce) { .actor .base,.puff,.spark,.snitch { animation:none } }
   </style>
 </head>
 <body>
@@ -59,45 +65,48 @@
     <div class="workbench" aria-hidden="true"></div>
     <button class="item wand" id="wand" aria-label="Волшебная палочка" aria-pressed="false"><img src="wand.png?v=2" alt=""></button>
     <button class="item tomato" id="tomato" disabled aria-label="Помидоры"><img src="basket.png?v=2" alt=""></button>
+    <button class="item casserole" id="casserole" disabled aria-label="Запеканка"><img src="casserole.png?v=1" alt=""></button>
     <div class="actor bucket" id="actor" role="button" tabindex="0" aria-label="Ведро или слизень">
       <img class="base" id="base" src="bucket.png?v=2" alt="Ведро на 1019 литров">
       <img class="glasses" id="glasses-layer" src="glasses.png?v=2" alt="" hidden>
     </div>
     <button class="item glasses-item" id="glasses" disabled aria-label="Очки"><img src="glasses.png?v=2" alt=""></button>
-    <button class="item snitch" id="snitch" disabled aria-label="Золотой снитч"><img src="snitch.png?v=2" alt=""></button>
+    <button class="item snitch" id="snitch" disabled hidden aria-label="Поймать золотой снитч"><img src="snitch.png?v=2" alt=""></button>
     <div class="smoke" id="smoke" aria-hidden="true"></div>
     <button class="reset" id="reset" aria-label="Начать заново" title="Начать заново">↺</button>
   </main>
   <script>
   const actor=document.getElementById('actor'),base=document.getElementById('base'),layer=document.getElementById('glasses-layer'),smoke=document.getElementById('smoke');
-  const wand=document.getElementById('wand'),tomato=document.getElementById('tomato'),glasses=document.getElementById('glasses'),snitch=document.getElementById('snitch');
-  const state={born:false,glasses:false,color:'green',armed:false,busy:false};
+  const wand=document.getElementById('wand'),tomato=document.getElementById('tomato'),casserole=document.getElementById('casserole'),glasses=document.getElementById('glasses'),snitch=document.getElementById('snitch');
+  const state={born:false,glasses:false,color:'green',armed:false,busy:false,snitchCaught:false};
   const versions={green:'green-slime.png?v=2',red:'red-slime.png?v=2',gold:'gold-slime.png?v=2'};
   const wait=t=>new Promise(resolve=>setTimeout(resolve,t));
   let dragging=null,ghost=null;
   function arm(value){state.armed=value;wand.classList.toggle('armed',value);actor.classList.toggle('armed',value);wand.setAttribute('aria-pressed',String(value))}
-  function setEnabled(value){tomato.disabled=glasses.disabled=snitch.disabled=!value}
+  function setEnabled(value){tomato.disabled=casserole.disabled=glasses.disabled=snitch.disabled=!value;snitch.hidden=!value;snitch.classList.remove('caught');state.snitchCaught=false}
   function reset(){if(state.busy)return;state.born=false;state.color='green';state.glasses=false;base.src='bucket.png?v=2';base.alt='Ведро';actor.classList.add('bucket');layer.hidden=true;setEnabled(false);arm(false)}
+  function catchSnitch(){if(!state.born||state.busy)return;state.snitchCaught=true;snitch.classList.add('caught');snitch.setAttribute('aria-label','Скормить пойманный снитч')}
   function mist(){smoke.replaceChildren();const r=actor.getBoundingClientRect();for(let i=0;i<19;i++){const p=document.createElement('i');p.className=i%4===0?'spark':'puff';if(i%4===0)p.textContent='✦';p.style.setProperty('--x',(r.left+r.width*(.12+Math.random()*.75))+'px');p.style.setProperty('--y',(r.top+r.height*(.12+Math.random()*.7))+'px');p.style.setProperty('--s',(65+Math.random()*135)+'px');p.style.setProperty('--delay',(Math.random()*.24)+'s');p.style.setProperty('--dx',((Math.random()-.5)*165)+'px');smoke.append(p)}}
-  async function action(type){if(state.busy)return;if(type==='wand')type=state.born?'return':'birth';if(type!=='birth'&&type!=='return'&&!state.born)return;if(type==='glasses'&&state.glasses)return;state.busy=true;arm(false);mist();smoke.classList.add('on');await wait(460);
+  async function action(type){if(state.busy)return;if(type==='wand')type=state.born?'return':'birth';if(type!=='birth'&&type!=='return'&&!state.born)return;if(type==='snitch'&&!state.snitchCaught){catchSnitch();return}state.busy=true;arm(false);mist();smoke.classList.add('on');await wait(460);
     if(type==='birth'){state.born=true;state.color='green';actor.classList.remove('bucket');base.src=versions.green;base.alt='Зеленый слизень';setEnabled(true)}
     if(type==='return'){state.born=false;state.glasses=false;state.color='green';actor.classList.add('bucket');base.src='bucket.png?v=2';base.alt='Ведро';layer.hidden=true;setEnabled(false)}
     if(type==='tomato'){state.color='red';base.src=versions.red;base.alt='Томатный слизень'}
-    if(type==='snitch'){state.color='gold';base.src=versions.gold;base.alt='Золотой слизень'}
-    if(type==='glasses'){state.glasses=true;layer.hidden=false}
+    if(type==='casserole'){state.color='green';base.src=versions.green;base.alt='Зеленый слизень'}
+    if(type==='snitch'){state.color='gold';base.src=versions.gold;base.alt='Золотой слизень';state.snitchCaught=false;snitch.classList.remove('caught');snitch.hidden=true}
+    if(type==='glasses'){state.glasses=!state.glasses;layer.hidden=!state.glasses}
     await wait(700);smoke.classList.remove('on');state.busy=false;
   }
   function hit(x,y){const r=actor.getBoundingClientRect();return x>=r.left&&x<=r.right&&y>=r.top&&y<=r.bottom}
   function move(e){if(!dragging)return;ghost.style.left=e.clientX+'px';ghost.style.top=e.clientY+'px'}
   function finish(){ghost?.remove();ghost=null;dragging=null}
-  for(const [element,type] of [[wand,'wand'],[tomato,'tomato'],[glasses,'glasses'],[snitch,'snitch']]){
-    element.addEventListener('pointerdown',e=>{if(element.disabled||state.busy||e.button!==0)return;dragging={id:e.pointerId,x:e.clientX,y:e.clientY,type};element.setPointerCapture(e.pointerId);ghost=document.createElement('img');ghost.className='ghost';ghost.src=type==='tomato'?'tomato.png?v=2':type==='wand'?'wand.png?v=2':type==='snitch'?'snitch.png?v=2':'glasses.png?v=2';document.body.append(ghost);move(e);e.preventDefault()});
+  for(const [element,type] of [[wand,'wand'],[tomato,'tomato'],[casserole,'casserole'],[glasses,'glasses'],[snitch,'snitch']]){
+    element.addEventListener('pointerdown',e=>{if(element.disabled||state.busy||e.button!==0)return;dragging={id:e.pointerId,x:e.clientX,y:e.clientY,type};element.setPointerCapture(e.pointerId);ghost=document.createElement('img');ghost.className='ghost';ghost.src=type==='tomato'?'tomato.png?v=2':type==='wand'?'wand.png?v=2':type==='snitch'?'snitch.png?v=2':type==='casserole'?'casserole.png?v=1':'glasses.png?v=2';document.body.append(ghost);move(e);e.preventDefault()});
     element.addEventListener('pointermove',e=>{if(dragging?.id===e.pointerId)move(e)});
-    element.addEventListener('pointerup',e=>{if(!dragging||dragging.id!==e.pointerId)return;const wasTap=Math.hypot(e.clientX-dragging.x,e.clientY-dragging.y)<12;const targetHit=hit(e.clientX,e.clientY);finish();if(targetHit)action(type);else if(wasTap){if(type==='wand')arm(!state.armed);else action(type)}});
+    element.addEventListener('pointerup',e=>{if(!dragging||dragging.id!==e.pointerId)return;const wasTap=Math.hypot(e.clientX-dragging.x,e.clientY-dragging.y)<12;const targetHit=hit(e.clientX,e.clientY);finish();if(type==='snitch'&&!state.snitchCaught){catchSnitch();if(targetHit)action('snitch');return}if(targetHit)action(type);else if(wasTap){if(type==='wand')arm(!state.armed);else action(type)}});
     element.addEventListener('pointercancel',finish);
     element.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();if(type==='wand')arm(!state.armed);else action(type)}});
   }
-  function cast(){if(state.armed)action('wand')}
+  function cast(){if(state.armed)action('wand');else if(state.snitchCaught)action('snitch')}
   actor.addEventListener('click',cast);
   actor.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();cast()}});
   document.getElementById('reset').addEventListener('click',reset);
