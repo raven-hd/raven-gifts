@@ -18,6 +18,7 @@
     .actor .base,.actor .glasses { display:block;width:100%;height:100%;object-fit:contain;object-position:center bottom;pointer-events:none }
     .actor .base { filter:drop-shadow(0 14px 14px #070e0ab0);animation:breathe 3.2s ease-in-out infinite }
     .actor.bucket .base { width:80% }
+    .actor.bucket { bottom:16.5%;width:min(27vw,350px);height:min(37vh,355px) }
     .actor .glasses { position:absolute;inset:0;transform:translate(0,0);filter:drop-shadow(0 2px 3px #0009) }
     .actor .glasses[hidden] { display:none }
     .actor.armed { filter:drop-shadow(0 0 14px #f8d58c) }
@@ -26,11 +27,11 @@
     .item img { display:block;width:100%;height:100%;object-fit:contain;pointer-events:none }
     .item:hover:not(:disabled),.item.armed { filter:drop-shadow(0 0 14px #ffdc90);transform:scale(1.07) }
     .item:disabled { opacity:1;cursor:default }
-    .wand { width:clamp(105px,11vw,155px);height:clamp(80px,12vh,115px);left:27%;bottom:2% }
-    .tomato { width:clamp(125px,12vw,175px);height:clamp(105px,16vh,150px);left:38%;bottom:2.7% }
-    .casserole { width:clamp(125px,12vw,165px);height:clamp(90px,13vh,135px);right:37%;bottom:2.7% }
-    .glasses-item { width:clamp(110px,11vw,155px);height:clamp(80px,12vh,115px);right:26%;bottom:2% }
-    .glasses-item img { transform:scale(2.65) }
+    .wand { width:clamp(95px,10vw,145px);height:clamp(80px,12vh,115px);left:calc(50% - min(24vw,340px));bottom:2% }
+    .tomato { width:clamp(125px,12vw,175px);height:clamp(105px,16vh,150px);left:calc(50% - min(15vw,210px));bottom:3.2% }
+    .casserole { width:clamp(125px,12vw,165px);height:clamp(90px,13vh,135px);left:calc(50% + min(3vw,40px));bottom:2.7% }
+    .glasses-item { width:clamp(110px,11vw,155px);height:clamp(80px,12vh,115px);left:calc(50% + min(17vw,235px));bottom:2% }
+    .glasses-item img { transform:scale(2.3) }
     .snitch { width:clamp(75px,8vw,110px);height:clamp(50px,8vh,80px);left:50%;top:27%;animation:snitch-flight 6.5s ease-in-out infinite alternate;filter:drop-shadow(0 0 8px #ffe9a875) }
     .snitch[hidden] { display:none }
     .snitch.caught { animation-play-state:paused;filter:drop-shadow(0 0 18px #ffe68c) }
@@ -42,20 +43,21 @@
     .reset { position:absolute;right:max(18px,calc((100vw - 76.7vh)/2 + 16px));top:20px;z-index:8;width:40px;height:40px;border:1px solid #ffffff63;border-radius:50%;background:#14241978;color:#fff6df;cursor:pointer;font-size:25px;line-height:1;backdrop-filter:blur(4px) }
     .reset:hover { background:#253d28c9 }
     @keyframes breathe { 50% { transform:scale(1.012,.994) } }
-    @keyframes snitch-flight { 0% { transform:translate(-215px,35px) rotate(-12deg) } 25% { transform:translate(105px,155px) rotate(13deg) } 55% { transform:translate(-110px,230px) rotate(-8deg) } 75% { transform:translate(170px,50px) rotate(14deg) } 100% { transform:translate(-35px,110px) rotate(-5deg) } }
+    @keyframes snitch-flight { 0% { transform:translate(-215px,35px) scale(.55) rotate(-12deg) } 25% { transform:translate(105px,155px) scale(1.1) rotate(13deg) } 55% { transform:translate(-110px,230px) scale(.7) rotate(-8deg) } 75% { transform:translate(170px,50px) scale(1.22) rotate(14deg) } 100% { transform:translate(-35px,110px) scale(.6) rotate(-5deg) } }
     @keyframes float { 0% { opacity:0;transform:scale(.2) } 30% { opacity:.9 } 100% { opacity:0;transform:translate(var(--dx),-85px) scale(1.6) } }
     @media(max-width:700px) {
       .scene::after { background-size:auto 105%; }
       .actor { bottom:20%;width:63vw;height:43vh }
+      .actor.bucket { bottom:17%;width:56vw;height:36vh }
       .workbench { width:100%;height:17% }
-      .wand { width:24vw;height:12vh;left:0;bottom:3% }
-      .tomato { width:25vw;height:14vh;left:24%;bottom:3% }
-      .casserole { width:25vw;height:12vh;right:24%;bottom:3% }
-      .glasses-item { width:24vw;height:12vh;right:0;bottom:3% }
+      .wand { width:22vw;height:12vh;left:3%;bottom:3% }
+      .tomato { width:25vw;height:14vh;left:25%;bottom:3% }
+      .casserole { width:25vw;height:12vh;left:49%;bottom:3% }
+      .glasses-item { width:22vw;height:12vh;left:73%;bottom:3% }
       .snitch { width:18vw;height:8vh;left:50%;top:28%;animation-name:snitch-flight-mobile }
       .reset { right:16px;top:16px }
     }
-    @keyframes snitch-flight-mobile { 0% { transform:translate(-35vw,0) } 50% { transform:translate(20vw,16vh) } 100% { transform:translate(-20vw,28vh) } }
+    @keyframes snitch-flight-mobile { 0% { transform:translate(-35vw,0) scale(.55) } 50% { transform:translate(20vw,16vh) scale(1.15) } 100% { transform:translate(-20vw,28vh) scale(.65) } }
     @media(prefers-reduced-motion:reduce) { .actor .base,.puff,.spark,.snitch { animation:none } }
   </style>
 </head>
