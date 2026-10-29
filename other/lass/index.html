@@ -14,8 +14,8 @@
     .scene::before { content:"";position:absolute;inset:-35px;background:url('background.png?v=2') center bottom/cover no-repeat;filter:blur(19px) brightness(.58);z-index:-2 }
     .scene::after { content:"";position:absolute;inset:0;background:url('background.png?v=2') center bottom/auto 115% no-repeat;z-index:-1;pointer-events:none }
     .shade { position:absolute;inset:0;background:linear-gradient(90deg,#0b180e5e,transparent 27%,transparent 73%,#0b180e5e);pointer-events:none }
-    /* The foreground shares one width, so browser zoom cannot resize the table independently. */
-    .stage { position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:min(100%,95vh);height:100%;container-type:inline-size }
+    /* background.png is 2:3 and is drawn at 115% of the viewport height. */
+    .stage { position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:min(100%,76.6667vh);height:100%;container-type:inline-size }
     .actor { position:absolute;left:50%;bottom:22cqw;width:47%;height:47cqw;transform:translateX(-50%);display:flex;align-items:flex-end;justify-content:center;z-index:3;cursor:default }
     .actor .base,.actor .glasses { display:block;width:100%;height:100%;object-fit:contain;object-position:center bottom;pointer-events:none }
     .actor .base { filter:drop-shadow(0 14px 14px #070e0ab0);animation:breathe 3.2s ease-in-out infinite }
@@ -50,6 +50,7 @@
     @keyframes float { 0% { opacity:0;transform:scale(.2) } 30% { opacity:.9 } 100% { opacity:0;transform:translate(var(--dx),-85px) scale(1.6) } }
     @media(max-width:700px) {
       .scene::after { background-size:auto 105%; }
+      .stage { width:min(100%,70vh) }
       .actor { bottom:22cqw;width:63%;height:58cqw }
       .actor.bucket { bottom:19cqw;width:56%;height:50cqw }
       .reset { right:16px;top:16px }
