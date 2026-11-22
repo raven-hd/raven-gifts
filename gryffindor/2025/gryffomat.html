@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ГРИФФОМАТ - День Гриффиндора 2025</title>
+  <link rel="icon" type="image/x-icon" href="favicon-gr.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Unicase:wght@300;400;500;600;700&family=Yanone+Kaffeesatz:wght@200..700&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Cormorant Unicase', serif;
+      background: linear-gradient(135deg, #d0cac0 0%, #c5beb4 100%);
+      color: #4D3B2F;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 1rem 2rem;
+      text-align: center;
+      background-color: #5c4942;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #d0cac0;
+    }
+
+    header h1 {
+      text-align: right;
+      width: 100%;
+      max-width: 800px;
+      color: #d0cac0;
+      margin: 0;
+      font-size: 2.5rem;
+      font-family: "Oswald", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    header p {
+      text-align: right;
+      width: 100%;
+      max-width: 800px;
+      color: #d0cac0;
+      margin: 0.5rem 0 0;
+      font-family: 'Yanone Kaffeesatz', sans-serif;
+      font-size: 1.2rem;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1.5rem 0 1rem; 
+      width: 100%;
+    }
+    
+    main {
+      margin-top: 0.5rem;
+      padding-top: 1rem;
+      z-index: 1;
+      flex: 1;
+    }
+
+    nav a {
+      color: #5c4942;
+      text-decoration: none;
+      font-weight: 500;
+      font-family: 'Yanone Kaffeesatz', sans-serif;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: background-color 0.2s;
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    nav a:hover {
+      text-decoration: underline;
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 1rem;
+      background-color: #5c4942;
+      color: #d0cac0;
+      font-family: "Oswald", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    /* Стили для игры */
+    .game-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+      position: relative;
+    }
+
+    .game-content {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 2rem;
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    .right-panel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 120px;
+    }
+
+    .center-panel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      max-width: 960px;
+    }
+
+    .result-message {
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      font-family: 'Yanone Kaffeesatz', sans-serif;
+      font-size: 1.8rem;
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.7);
+      border-radius: 8px;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #5c4942;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .attempts-counter {
+      font-family: 'Yanone Kaffeesatz', sans-serif;
+      font-size: 1.2rem;
+      color: #5c4942;
+      background-color: rgba(255, 255, 255, 0.5);
+      padding: 0.3rem 0.8rem;
+      border-radius: 4px;
+    }
+
+    .slot-machine {
+      position: relative;
+      width: 960px;
+      height: 720px;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .machine-bg {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .slot-container {
+      position: absolute;
+      width: 123px;
+      height: auto;
+      overflow: hidden;
+      border-radius: 8px;
+      background: #1F1913;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #d0cac0;
+      font-family: 'Yanone Kaffeesatz', sans-serif;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      aspect-ratio: 123/188;
+    }
+
+    .slot-cover {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #1F1913;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #d0cac0;
+      font-family: 'Yanone Kaffeesatz', sans-serif;
+      font-size: 1.2rem;
+      z-index: 2;
+      border-radius: 8px;
+      transition: transform 0.6s ease;
+    }
+
+    .slot-cover.hidden {
+      transform: translateY(-100%);
+    }
+
+    .stamp-image {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #201A13;
+      position: absolute;
+      top: 100%;
+      transition: top 0.6s ease;
+      z-index: 1;
+    }
+
+    .stamp-image.revealed {
+      top: 0;
+    }
+
+    .stamp-image img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+    }
+
+    /* ФИНАЛЬНЫЕ КООРДИНАТЫ */
+    #slot1 {
+      left: 271px;
+      top: 280px;
+    }
+
+    #slot2 {
+      left: 411px;
+      top: 280px;
+    }
+
+    #slot3 {
+      left: 553px;
+      top: 280px;
+    }
+
+    .play-button {
+      padding: 0;
+      font-family: 'Yanone Kaffeesatz', sans-serif;
+      font-size: 1.5rem;
+      background-color: #5c4942;
+      color: #d0cac0;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      width: 100px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .play-button:hover {
+      background-color: #4a3a34;
+    }
+
+    .play-button:disabled {
+      background-color: #8a7a74;
+      cursor: not-allowed;
+    }
+
+    /* Новая кнопка Выпить Felix */
+    .felix-button {
+      padding: 0.8rem 1.5rem;
+      font-family: 'Yanone Kaffeesatz', sans-serif;
+      font-size: 1.3rem;
+      background-color: #6F342D;
+      color: #d0cac0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-top: 1rem;
+      display: none;
+    }
+
+    .felix-button:hover {
+      background-color: #8a4a42;
+    }
+
+    /* Стили для секции правил */
+    .rules-section {
+      max-width: 800px;
+      margin: 3rem auto;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      color: #4D3B2F;
+    }
+
+    .rules-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2rem;
+      color: #5c4942;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid #5c4942;
+      padding-bottom: 0.5rem;
+    }
+
+    .rules-content {
+      font-family: 'Yanone Kaffeesatz', sans-serif;
+      font-size: 1.2rem;
+      line-height: 1.5;
+    }
+
+    .rules-section h3 {
+      font-family: 'Oswald', sans-serif;
+      color: #5c4942;
+      margin-top: 1.2rem;
+      margin-bottom: 0.5rem;
+      font-size: 1.4rem;
+    }
+
+    .rules-section ul, .rules-section ol {
+      padding-left: 1.2rem;
+    }
+
+    .rules-section li {
+      margin-bottom: 0.5rem;
+    }
+
+    .rules-note {
+      background: rgba(92, 73, 66, 0.1);
+      padding: 1.2rem;
+      border-radius: 8px;
+      margin-top: 1.5rem;
+      border-left: 4px solid #5c4942;
+    }
+
+    .ps-note {
+      font-style: italic;
+      margin-top: 1.2rem;
+      padding: 0.8rem;
+      background: rgba(208, 202, 192, 0.5);
+      border-radius: 6px;
+      font-size: 1.1rem;
+    }
+
+    /* Адаптивная версия */
+    @media (max-width: 1024px) {
+      .game-content {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .right-panel {
+        margin-top: 0;
+        order: 3;
+        flex-direction: column-reverse;
+        gap: 0.5rem;
+      }
+      
+      .center-panel {
+        order: 1;
+      }
+      
+      .slot-machine {
+        width: 768px;
+        height: 576px;
+      }
+      
+      .slot-container {
+        width: 98px;
+        border-radius: 6px;
+      }
+      
+      .slot-cover {
+        border-radius: 6px;
+      }
+      
+      #slot1 {
+        left: 217px;
+        top: 224px;
+      }
+
+      #slot2 {
+        left: 329px;
+        top: 224px;
+      }
+
+      #slot3 {
+        left: 442px;
+        top: 224px;
+      }
+      
+      .play-button {
+        width: auto;
+        height: auto;
+        border-radius: 4px;
+        padding: 0.8rem 2rem;
+        margin-top: 1rem;
+      }
+
+      .felix-button {
+        padding: 0.7rem 1.3rem;
+        font-size: 1.2rem;
+      }
+
+      .rules-section {
+        margin: 2rem 1rem;
+        padding: 1.5rem;
+        max-width: calc(100% - 2rem);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .slot-machine {
+        width: 576px;
+        height: 432px;
+      }
+      
+      .slot-container {
+        width: 74px;
+        border-radius: 4px;
+      }
+      
+      .slot-cover {
+        border-radius: 4px;
+      }
+      
+      #slot1 {
+        left: 163px;
+        top: 168px;
+      }
+
+      #slot2 {
+        left: 247px;
+        top: 168px;
+      }
+
+      #slot3 {
+        left: 332px;
+        top: 168px;
+      }
+
+      .felix-button {
+        padding: 0.6rem 1.2rem;
+        font-size: 1.1rem;
+      }
+
+      .rules-title {
+        font-size: 1.6rem;
+      }
+
+      .rules-content {
+        font-size: 1.1rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .slot-machine {
+        width: 480px;
+        height: 360px;
+      }
+      
+      .slot-container {
+        width: 62px;
+        border-radius: 4px;
+      }
+      
+      .slot-cover {
+        border-radius: 4px;
+      }
+      
+      #slot1 {
+        left: 136px;
+        top: 140px;
+      }
+
+      #slot2 {
+        left: 206px;
+        top: 140px;
+      }
+
+      #slot3 {
+        left: 277px;
+        top: 140px;
+      }
+
+      nav {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      nav a {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+      }
+
+      .felix-button {
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+      }
+
+      .rules-title {
+        font-size: 1.4rem;
+      }
+
+      .rules-content {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .slot-machine {
+        width: 360px;
+        height: 270px;
+      }
+      
+      .slot-container {
+        width: 47px;
+        border-radius: 3px;
+      }
+      
+      .slot-cover {
+        border-radius: 3px;
+      }
+      
+      #slot1 {
+        left: 102px;
+        top: 105px;
+      }
+
+      #slot2 {
+        left: 155px;
+        top: 105px;
+      }
+
+      #slot3 {
+        left: 207px;
+        top: 105px;
+      }
+
+      .rules-section {
+        margin: 1rem 0.5rem;
+        padding: 1rem;
+        max-width: calc(100% - 1rem);
+      }
+
+      .rules-title {
+        font-size: 1.3rem;
+      }
+
+      .rules-content {
+        font-size: 0.95rem;
+      }
+
+      header h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Первый почтовый развлекательный автомат!</h1>
+    <p>День Гриффиндора 2025</p>
+  </header>
+
+  <main>
+    <nav>
+      <a href="index.html">Главная</a>
+      <a href="stamps.html">Коллекция марок</a>
+      <a href="#rules">Правила</a>
+      <a href="awards.html">Победители?</a>
+    </nav>
+    
+    <div class="game-container">
+      <div class="game-content">
+        <div class="center-panel">
+          <div class="result-message" id="result-message"></div>
+          <div class="slot-machine">
+            <img src="images/ui/gryffomat.webp" alt="Slot Machine" class="machine-bg">
+            
+            <div class="slot-container" id="slot1">
+              <div class="slot-cover">Gryffomat</div>
+              <div class="stamp-image" id="stamp1"></div>
+            </div>
+            
+            <div class="slot-container" id="slot2">
+              <div class="slot-cover">Gryffomat</div>
+              <div class="stamp-image" id="stamp2"></div>
+            </div>
+            
+            <div class="slot-container" id="slot3">
+              <div class="slot-cover">Gryffomat</div>
+              <div class="stamp-image" id="stamp3"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="right-panel">
+          <button class="play-button" id="play-button">Играть</button>
+          <div class="attempts-counter">Попытки: <span id="attempts-count">0</span></div>
+          <button class="felix-button" id="felix-button">Выпить "Felix"</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Секция с правилами -->
+    <section id="rules" class="rules-section">
+      <h2 class="rules-title">Правила пользования ГРИФФОМАТОМ</h2>
+      
+      <div class="rules-content">
+        <p>1. Участвовать могут абсолютно все. Количество попыток ограничено лишь вашей степенью терпения</p>
+        
+        <p>2. Перед вами ГРИФФОМАТ, в котором, при нажатии на кнопку "Играть" выпадает комбинация из трех марок. 
+           Попытайтесь собрать выигрышную комбинацию и пусть удача будет всегда на вашей стороне. 
+           Предложение ограничено</p>
+        
+        <h3>3. Условия выигрыша:</h3>
+        <ul>
+          <li>3 марки с разными деканами - рябиновая марка "Административный стул"</li>
+          <li>3 любые одинаковые марки - рябиновая марка "Джентельмен удачи"</li>
+          <li>Комбинация марок Келли Келли, Лита Нильсон и Леон Морелло - рябиновая марка "Криминальный авторитет"</li>
+          <li>3 любые марки с Сэром Шушем - рябиновая марка "Звёзная личнась"</li>
+          <li>3 любые марки со шторами - рябиновая марка "Портье"</li>
+        </ul>
+        
+        <p>4. Нажмите "Играть" для новой попытки и не грустите, пожалуйста</p>
+        
+        <div class="rules-note">
+          <h3>О наградах:</h3>
+          <p>Итак, вы победили в игре против ГРИФФОМАТА, что дальше?</p>
+          
+          <ol>
+            <li>Сделайте скриншот, на котором будет четко виден ваш результат</li>
+            <li>Скорее опубликуйте его в теме с подарком или просто пришлите Блейк Эллингтон любым удобным вам способом</li>
+            <li>Ждите заслуженную награду, она очень скоро появится на доске победителей, ведь вы не только азартны, но и прекрасны</li>
+          </ol>
+        </div>
+        
+        <div class="ps-note">
+          P.S. Несмотря на все приложенные усилия, есть вероятность, что коварные беклы(да, именно они) все-таки помешают вам получить приз. 
+          Поэтому, если вам кажется, что вы победили, однако вы не увидели сообщения с поздравлением, смело пишите нам! 
+          Мы не вернем вам ни деньги, ни время, но поможем получить заслуженный приз.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © Подарок ко Дню Гриффиндора 2025. С любовью от Когтеврана
+  </footer>
+
+  <script>
+    // Элементы DOM
+    const playButton = document.getElementById('play-button');
+    const attemptsCount = document.getElementById('attempts-count');
+    const resultMessage = document.getElementById('result-message');
+    const slotCovers = document.querySelectorAll('.slot-cover');
+    const stampImages = document.querySelectorAll('.stamp-image');
+    const felixButton = document.getElementById('felix-button');
+
+    // Переменные игры
+    let attempts = 0;
+    let isPlaying = false;
+    let failedAttempts = 0;
+
+    // Массив изображений
+    const images = [
+      { src: "images/stamps/12.webp", caption: "Декан факультета Лита Нильсон, выпускник(зима 2024-205)" },
+      { src: "images/stamps/08.webp", caption: "Староста факультета Ариадна Фрост, 5 курс" },
+      { src: "images/stamps/06.webp", caption: "Староста факультета Леон Морелло, 4 курс" },
+      { src: "images/stamps/07.webp", caption: "Староста факультета Dina Lee, 4 курс" },
+      { src: "images/stamps/11.webp", caption: "Профессор Мириам Шефер, выпускник(весна 2016) " },
+      { src: "images/stamps/50.webp", caption: "Профессор Ласс Ранйяр, выпускник(веснв 2013) " },
+      { src: "images/stamps/05.webp", caption: "Мари Раймон, Архитектор замка, выпускник(осень 2008) " },
+      { src: "images/stamps/04.webp", caption: "Хаттори Райто, Директор Школы, выпускник(осень 2012) " },
+      { src: "images/stamps/01.webp", caption: "Джулия Джонсон-Стиверсон, выпускник(осень 2021) " },
+      { src: "images/stamps/03.webp", caption: "Милисанна Дюран, выпускник(весна 20023) " },
+      { src: "images/stamps/02.webp", caption: "Melania Lirovska, выпускник(зима 2023-2024) " },
+      { src: "images/stamps/09.webp", caption: "Абсент Нахтвайн, 4 курс" },
+      { src: "images/stamps/10.webp", caption: "Эмилия Дефо, 4 курс" },
+      { src: "images/stamps/13.webp", caption: "Кассия Дэверо, 1 курс" },
+      { src: "images/stamps/14.webp", caption: "Феликс Морган, 1 курс" },
+      { src: "images/stamps/15.webp", caption: "Theodore Summers, 1 курс" },
+      { src: "images/stamps/16.webp", caption: "Вероника Блэк, 1 курс" },
+      { src: "images/stamps/17.webp", caption: "Элис Грей, 1 курс" },
+      { src: "images/stamps/18.webp", caption: "Ханна Тёрнер, 1 курс" },
+      { src: "images/stamps/19.webp", caption: "Итас Варни, 1 курс" },
+      { src: "images/stamps/20.webp", caption: "Терри Николс, 1 курс" },
+      { src: "images/stamps/21.webp", caption: "Кевин Хоукинс, 3 курс" },
+      { src: "images/stamps/22.webp", caption: "Агата Тейлор, 2 курс" },
+      { src: "images/stamps/23.webp", caption: "Zarina Orvar, 2 курс" },
+      { src: "images/stamps/24.webp", caption: "Алесия Лотвея, 2 курс" },
+      { src: "images/stamps/25.webp", caption: "Мак Маффин, 1 курс" },
+      { src: "images/stamps/26.webp", caption: "Фелисити Ферромор, 1 курс" },
+      { src: "images/stamps/27.webp", caption: "Ким Прув, 1 курс" },
+      { src: "images/stamps/28.webp", caption: "Эрвин Хилл, 1 курс" },
+      { src: "images/stamps/29.webp", caption: "Джоана Оттис, 1 курс" },
+      { src: "images/stamps/30.webp", caption: "Савитар Ферро, 5 курс" },
+      { src: "images/stamps/31.webp", caption: "Selena Graves, 1 курс" },
+      { src: "images/stamps/32.webp", caption: "Лили Хардман, 1 курс" },
+      { src: "images/stamps/33.webp", caption: "Вивьен Джонс, 2 курс" },
+      { src: "images/stamps/34.webp", caption: "Аларик Каслбрук, 1 курс" },
+      { src: "images/stamps/35.webp", caption: "Kelly Kelly, 4 курс" },
+      { src: "images/stamps/36.webp", caption: "Доротея Эсперанса, 2 курс" },
+      { src: "images/stamps/37.webp", caption: "Аннет Гексакота, 1 курс" },
+      { src: "images/stamps/38.webp", caption: "Клайра Рейнольдс, 1 курс" },
+      { src: "images/stamps/39.webp", caption: "Анви Бойленс, 2 курс" },
+      { src: "images/stamps/40.webp", caption: "Дази Кинг, 1 курс" },
+      { src: "images/stamps/41.webp", caption: "Симона Дюваль, 1 курс" },
+      { src: "images/stamps/42.webp", caption: "Ливия Грейсон, 1 курс" },
+      { src: "images/stamps/43.webp", caption: "Finn Silmane, 6 курс" },
+      { src: "images/stamps/44.webp", caption: "Маргарет Санни, 1 курс" },
+      { src: "images/stamps/45.webp", caption: "Артемио Сантерс, 1 курс" },
+      { src: "images/stamps/46.webp", caption: "Лео Кариус, 1 курс" },
+      { src: "images/stamps/47.webp", caption: "Камелия Ванберст, 1 курс" },
+      { src: "images/stamps/48.webp", caption: "San Hope, 1 курс" },
+      { src: "images/stamps/49.webp", caption: "Мэри Джейн Джонсон, 1 курс" },
+      { src: "images/stamps/51.webp", caption: "Алария Харлоу, 1 курс" },
+      { src: "images/stamps/52.webp", caption: "Клара Элион, 1 курс" },
+      { src: "images/stamps/53.webp", caption: "Элис Браун, 1 курс" },
+      // Новые марки
+      { src: "images/stamps/54.webp", caption: "Сэр Шуш Смелый мозг" },
+      { src: "images/stamps/58.webp", caption: "Сэр Шуш Виликалепный" },
+      { src: "images/stamps/59.webp", caption: "Сэр Шуш Абваражитильный" },
+      { src: "images/stamps/55.webp", caption: "Штора обыкновенная" },
+      { src: "images/stamps/56.webp", caption: "Штора особенная" },
+      { src: "images/stamps/57.webp", caption: "Штора изысканная" }
+    ];
+
+    // Функция для получения случайной марки
+    function getRandomStamp() {
+      const randomIndex = Math.floor(Math.random() * images.length);
+      return images[randomIndex];
+    }
+
+    // Функция для проверки выигрышной комбинации
+    function checkWin(stamps) {
+      const captions = stamps.map(stamp => stamp.caption);
+      
+      // Набор "Звездная личность"
+      const starPersonalitySet = [
+        "Сэр Шуш Смелый мозг",
+        "Сэр Шуш Виликалепный", 
+        "Сэр Шуш Абваражитильный"
+      ];
+      
+      // Проверка на Звездную личность (допускаются повторы)
+      const starStamps = stamps.filter(stamp => 
+        starPersonalitySet.includes(stamp.caption)
+      );
+      
+      if (starStamps.length === 3) {
+        return "Поздравляем! Вы собрали сет 'Звездная личность'!";
+      }
+      
+      // Набор "Портье"
+      const porterSet = [
+        "Штора обыкновенная",
+        "Штора особенная",
+        "Штора изысканная"
+      ];
+      
+      // Проверка на Портье (допускаются повторы)
+      const porterStamps = stamps.filter(stamp => 
+        porterSet.includes(stamp.caption)
+      );
+      
+      if (porterStamps.length === 3) {
+        return "Поздравляем! Вы собрали сет 'Портье'!";
+      }
+      
+      // Административный стул
+      const adminStoolSet = [
+        "Мари Раймон, Архитектор замка, выпускник(осень 2008) ",
+        "Профессор Ласс Ранйяр, выпускник(веснв 2013) ",
+        "Джулия Джонсон-Стиверсон, выпускник(осень 2021) ",
+        "Хаттори Райто, Директор Школы, выпускник(осень 2012) ",
+        "Декан факультета Лита Нильсон, выпускник(зима 2024-205)"
+      ];
+      
+      // Проверка на Административный стул
+      const adminStamps = stamps.filter(stamp => 
+        adminStoolSet.includes(stamp.caption)
+      );
+      
+      if (adminStamps.length === 3) {
+        const uniqueCaptions = [...new Set(adminStamps.map(stamp => stamp.caption))];
+        if (uniqueCaptions.length === 3) {
+          return "Поздравляем! Вы собрали сет 'Административный стул'!";
+        }
+      }
+      
+      // Криминальный авторитет
+      const criminalSet = [
+        "Декан факультета Лита Нильсон, выпускник(зима 2024-205)",
+        "Kelly Kelly, 4 курс",
+        "Староста факультета Леон Морелло, 4 курс"
+      ];
+      
+      const criminalStamps = stamps.filter(stamp => 
+        criminalSet.includes(stamp.caption)
+      );
+      
+      if (criminalStamps.length === 3) {
+        const uniqueCaptions = [...new Set(criminalStamps.map(stamp => stamp.caption))];
+        if (uniqueCaptions.length === 3) {
+          return "Поздравляем! За вами уже выехали! Вы собрали сет 'Криминальный авторитет'!";
+        }
+      }
+      
+      // Проверка на три одинаковые марки (только если не из наборов звезд и портье)
+      if (captions[0] === captions[1] && captions[1] === captions[2]) {
+        // Проверяем, что это не марки из наборов звезд и портье
+        const isFromSpecialSets = stamps.some(stamp => 
+          starPersonalitySet.includes(stamp.caption) || 
+          porterSet.includes(stamp.caption)
+        );
+        
+        if (!isFromSpecialSets) {
+          return "Джентельмен удачи! Поздравляем вы собрали сет из трех одинаковых марок!";
+        }
+      }
+      
+      return "Попробуйте еще раз! Всего один разок!";
+    }
+
+    // Функция для запуска игры
+    function playGame() {
+      if (isPlaying) return;
+      
+      isPlaying = true;
+      playButton.disabled = true;
+      resultMessage.textContent = "";
+      
+      // Сбрасываем состояние марок
+      slotCovers.forEach(cover => {
+        cover.classList.remove('hidden');
+      });
+      
+      stampImages.forEach(stamp => {
+        stamp.classList.remove('revealed');
+        stamp.innerHTML = '';
+      });
+      
+      // Выбираем случайные марки
+      const selectedStamps = [
+        getRandomStamp(),
+        getRandomStamp(),
+        getRandomStamp()
+      ];
+      
+      // Устанавливаем изображения на марки
+      stampImages.forEach((stamp, index) => {
+        const img = document.createElement('img');
+        img.src = selectedStamps[index].src;
+        img.alt = selectedStamps[index].caption;
+        // Добавляем обработчик ошибок загрузки изображения
+        img.onerror = function() {
+          console.error('Ошибка загрузки изображения:', selectedStamps[index].src);
+          // Заглушка при ошибке загрузки
+          this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzIwMUExMyIvPjx0ZXh0IHg9IjUwIiB5PSI1MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjZDBjYWMwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+0J3QtdGCIOKAlCDQv9GA0L7QstC10YDQutCwPC90ZXh0Pjwvc3ZnPg==';
+        };
+        stamp.appendChild(img);
+      });
+      
+      // Запускаем анимацию открытия марок с задержкой
+      setTimeout(() => {
+        slotCovers[0].classList.add('hidden');
+        stampImages[0].classList.add('revealed');
+      }, 300);
+      
+      setTimeout(() => {
+        slotCovers[1].classList.add('hidden');
+        stampImages[1].classList.add('revealed');
+      }, 600);
+      
+      setTimeout(() => {
+        slotCovers[2].classList.add('hidden');
+        stampImages[2].classList.add('revealed');
+        
+        // Увеличиваем счетчик попыток
+        attempts++;
+        attemptsCount.textContent = attempts;
+        
+        // Проверяем результат
+        const result = checkWin(selectedStamps);
+        resultMessage.textContent = result;
+        
+        // Проверяем, была ли попытка неудачной
+        if (!result.includes("Поздравляем")) {
+          failedAttempts++;
+          
+          // Показываем кнопку после 20 неудачных попыток
+          if (failedAttempts >= 20) {
+            felixButton.style.display = 'block';
+          }
+        } else {
+          // Сбрасываем счетчик неудачных попыток при выигрыше
+          failedAttempts = 0;
+          felixButton.style.display = 'none';
+        }
+        
+        // Разблокируем кнопку
+        isPlaying = false;
+        playButton.disabled = false;
+      }, 900);
+    }
+
+    // Обработчик события для кнопки "Играть"
+    playButton.addEventListener('click', playGame);
+
+    // Обработчик события для кнопки "Выпить Felix"
+    felixButton.addEventListener('click', function() {
+      // Перенаправляем на страницу с облегченной версией игры
+      window.location.href = 'felix.html';
+    });
+  </script>
+</body>
+</html>

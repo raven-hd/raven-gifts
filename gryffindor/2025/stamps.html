@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>День Гриффиндора 2025</title>
+  <link rel="icon" type="image/x-icon" href="favicon-gr.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Unicase:wght@300;400;500;600;700&family=Yanone+Kaffeesatz:wght@200..700&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Cormorant Unicase', serif;
+      background: linear-gradient(135deg, #d0cac0 0%, #c5beb4 100%);
+      color: #4D3B2F;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 1rem 2rem;
+      text-align: center;
+      background-color: #5c4942;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #d0cac0;
+    }
+
+    header h1 {
+      text-align: right;
+      width: 100%;
+      max-width: 800px;
+      color: #d0cac0;
+      margin: 0;
+      font-size: 2.5rem;
+      font-family: "Oswald", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    header p {
+      text-align: right;
+      width: 100%;
+      max-width: 800px;
+      color: #d0cac0;
+      margin: 0.5rem 0 0;
+      font-family: 'Yanone Kaffeesatz', sans-serif;
+      font-size: 1.2rem;
+    }
+
+	nav {
+	  display: flex;
+	  justify-content: center;
+	  gap: 1rem;
+	  margin: 1.5rem 0 1rem; 
+	  width: 100%; 
+	}
+    
+    main {
+      margin-top: 0.5rem;
+      padding-top: 1rem;
+      z-index: 1;
+      flex: 1;
+    }
+
+    .gallery {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+      overflow: hidden;
+    }
+
+    .row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      flex-shrink: 0;
+      position: relative;
+      animation-duration: 25s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+      animation-direction: alternate;
+    }
+
+    .row:nth-child(odd) {
+      animation-name: moveRowOdd;
+    }
+
+    .row:nth-child(even) {
+      animation-name: moveRowEven;
+    }
+
+    @keyframes moveRowOdd {
+      0% { transform: translateX(-30px); }
+      100% { transform: translateX(30px); }
+    }
+
+    @keyframes moveRowEven {
+      0% { transform: translateX(30px); }
+      100% { transform: translateX(-30px); }
+    }
+
+    .stamp {
+      height: auto;
+      width: auto;
+      max-height: 220px;
+      max-width: 160px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      image-rendering: auto;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+      object-fit: contain;
+      margin: 0.5rem;
+    }
+
+    .stamp:hover {
+      transform: scale(1.08);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      flex-direction: column;
+    }
+
+    .modal img {
+      max-width: 90%;
+      max-height: 80%;
+      filter: none;
+      background: none;
+      box-shadow: none;
+      border: none;
+    }
+
+    .caption {
+      color: #d0cac0;
+      font-size: 1.4rem;
+      text-align: center;
+      background-color: #5c4942;
+      padding: 1rem 1.5rem;
+      border-radius: 6px;
+      margin-top: 1rem;
+    }
+
+    nav a {
+      color: #5c4942;
+      text-decoration: none;
+      font-weight: 500;
+      font-family: 'Yanone Kaffeesatz', sans-serif;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: background-color 0.2s;
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    nav a:hover {
+      text-decoration: underline;
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 1rem;
+      background-color: #5c4942;
+      color: #d0cac0;
+      font-family: "Oswald", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    @media (max-width: 1200px) {
+      .stamp {
+        max-height: 200px;
+        max-width: 140px;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .stamp {
+        max-height: 180px;
+        max-width: 120px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .stamp {
+        max-height: 160px;
+        max-width: 100px;
+      }
+      
+      nav {
+        flex-wrap: wrap;
+        margin-top: 0.5rem;
+        padding-top: 0.5rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .stamp {
+        max-height: 140px;
+        max-width: 80px;
+      }
+      
+      .row {
+        gap: 0.8rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .stamp {
+        max-height: 120px;
+        max-width: 70px;
+      }
+      
+      .row {
+        gap: 0.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Коллекция почтовых марок</h1>
+    <p>День Гриффиндора 2025</p>
+  </header>
+
+  <main>
+    <nav>
+      <a href="index.html">Главная</a>
+      <a href="stamps.html">Коллекция марок</a>
+      <a href="gryffomat.html">ГРИФФОМАТ</a>
+    </nav>
+    <div class="gallery" id="main-gallery"></div>
+  </main>
+
+  <footer>
+    © Подарок ко Дню Гриффиндора 2025. С любовью от Когтеврана
+  </footer>
+
+  <div class="modal" id="modal">
+    <img id="modal-img" src="" alt="Stamp enlarged">
+    <div class="caption" id="modal-caption"></div>
+  </div>
+
+  <script>
+    const images = [
+	  { src: "images/stamps/12.webp", caption: "Декан факультета Лита Нильсон, выпускник(зима 2024-205)" },
+	  { src: "images/stamps/08.webp", caption: "Староста факультета Ариадна Фрост, 5 курс" },
+	  { src: "images/stamps/06.webp", caption: "Староста факультета Леон Морелло, 4 курс" },
+	  { src: "images/stamps/07.webp", caption: "Староста факультета Dina Lee, 4 курс" },
+	  { src: "images/stamps/11.webp", caption: "Профессор Мириам Шефер, выпускник(весна 2016) " },
+	  { src: "images/stamps/50.webp", caption: "Профессор Ласс Ранйяр, выпускник(веснв 2013) " },
+	  { src: "images/stamps/05.webp", caption: "Мари Раймон, Архитектор замка, выпускник(осень 2008) " },
+	  { src: "images/stamps/04.webp", caption: "Хаттори Райто, Директор Школы, выпускник(осень 2012) " },
+	  { src: "images/stamps/01.webp", caption: "Джулия Джонсон-Стиверсон, выпускник(осень 2021) " },
+	  { src: "images/stamps/03.webp", caption: "Милисанна Дюран, выпускник(весна 20023) " },
+	  { src: "images/stamps/02.webp", caption: "Melania Lirovska, выпускник(зима 2023-2024) " },
+	  { src: "images/stamps/09.webp", caption: "Абсент Нахтвайн, 4 курс" },
+	  { src: "images/stamps/10.webp", caption: "Эмилия Дефо, 4 курс" },
+	  { src: "images/stamps/13.webp", caption: "Кассия Дэверо, 1 курс" },
+	  { src: "images/stamps/14.webp", caption: "Феликс Морган, 1 курс" },
+	  { src: "images/stamps/15.webp", caption: "Theodore Summers, 1 курс" },
+	  { src: "images/stamps/16.webp", caption: "Вероника Блэк, 1 курс" },
+	  { src: "images/stamps/17.webp", caption: "Элис Грей, 1 курс" },
+	  { src: "images/stamps/18.webp", caption: "Ханна Тёрнер, 1 курс" },
+	  { src: "images/stamps/19.webp", caption: "Итас Варни, 1 курс" },
+	  { src: "images/stamps/20.webp", caption: "Терри Николс, 1 курс" },
+	  { src: "images/stamps/21.webp", caption: "Кевин Хоукинс, 3 курс" },
+	  { src: "images/stamps/22.webp", caption: "	Агата Тейлор, 2 курс" },
+	  { src: "images/stamps/23.webp", caption: "Zarina Orvar, 2 курс" },
+	  { src: "images/stamps/24.webp", caption: "Алесия Лотвея, 2 курс" },
+	  { src: "images/stamps/25.webp", caption: "Мак Маффин, 1 курс" },
+	  { src: "images/stamps/26.webp", caption: "Фелисити Ферромор, 1 курс" },
+	  { src: "images/stamps/27.webp", caption: "Ким Прув, 1 курс" },
+	  { src: "images/stamps/28.webp", caption: "Эрвин Хилл, 1 курс" },
+	  { src: "images/stamps/29.webp", caption: "Джоана Оттис, 1 курс" },
+	  { src: "images/stamps/30.webp", caption: "Савитар Ферро, 5 курс" },
+	  { src: "images/stamps/31.webp", caption: "Selena Graves, 1 курс" },
+	  { src: "images/stamps/32.webp", caption: "Лили Хардман, 1 курс" },
+	  { src: "images/stamps/33.webp", caption: "Вивьен Джонс, 2 курс" },
+	  { src: "images/stamps/34.webp", caption: "Аларик Каслбрук, 1 курс" },
+	  { src: "images/stamps/35.webp", caption: "Kelly Kelly, 4 курс" },
+	  { src: "images/stamps/36.webp", caption: "Доротея Эсперанса, 2 курс" },
+	  { src: "images/stamps/37.webp", caption: "Аннет Гексакота, 1 курс" },
+	  { src: "images/stamps/38.webp", caption: "Клайра Рейнольдс, 1 курс" },
+	  { src: "images/stamps/39.webp", caption: "Анви Бойленс, 2 курс" },
+	  { src: "images/stamps/40.webp", caption: "Дази Кинг, 1 курс" },
+	  { src: "images/stamps/41.webp", caption: "Симона Дюваль, 1 курс" },
+	  { src: "images/stamps/42.webp", caption: "Ливия Грейсон, 1 курс" },
+	  { src: "images/stamps/43.webp", caption: "Finn Silmane, 6 курс" },
+	  { src: "images/stamps/44.webp", caption: "Маргарет Санни, 1 курс" },
+	  { src: "images/stamps/45.webp", caption: "Артемио Сантерс, 1 курс" },
+	  { src: "images/stamps/46.webp", caption: "Лео Кариус, 1 курс" },
+	  { src: "images/stamps/47.webp", caption: "Камелия Ванберст, 1 курс" },
+	  { src: "images/stamps/48.webp", caption: "San Hope, 1 курс" },
+	  { src: "images/stamps/49.webp", caption: "Мэри Джейн Джонсон, 1 курс" },
+	  { src: "images/stamps/51.webp", caption: "Алария Харлоу, 1 курс" },
+	  { src: "images/stamps/52.webp", caption: "Клара Элион, 1 курс" },
+	  { src: "images/stamps/53.webp", caption: "Элис Браун, 1 курс" },
+	  { src: "_", caption: "Сэр Шуш" },
+	  { src: "_", caption: "Штора" }
+    ];
+
+    // Изменил паттерн рядов для отображения всех 55 марок (53 + 2 плейсхолдера)
+    const rowPattern = [6, 6, 6, 6, 6, 6, 6, 6, 6, 1];
+    const mainGallery = document.getElementById('main-gallery');
+
+    function renderGallery() {
+      mainGallery.innerHTML = '';
+      let imageIndex = 0;
+
+      for (let i = 0; i < rowPattern.length; i++) {
+        const row = document.createElement('div');
+        row.className = 'row';
+        row.style.animationDelay = `${i * 0.5}s`;
+
+        for (let j = 0; j < rowPattern[i]; j++) {
+          if (imageIndex >= images.length) break;
+          
+          const imgData = images[imageIndex];
+
+          const img = document.createElement('img');
+          img.className = 'stamp';
+          img.src = imgData.src;
+          img.setAttribute('data-caption', imgData.caption);
+
+          // Скрываем марки с плейсхолдерами
+          if (imgData.src === "_") {
+            img.style.display = "none";
+          }
+
+          row.appendChild(img);
+          imageIndex++;
+        }
+        mainGallery.appendChild(row);
+      }
+    }
+
+    renderGallery();
+    window.addEventListener('resize', renderGallery);
+
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modal-img');
+    const modalCaption = document.getElementById('modal-caption');
+
+    document.addEventListener('click', function (e) {
+      if (e.target.classList.contains('stamp')) {
+        modal.style.display = 'flex';
+        modalImg.src = e.target.src;
+        modalCaption.textContent = e.target.getAttribute('data-caption') || '';
+      } else if (e.target === modal) {
+        modal.style.display = 'none';
+        modalImg.src = '';
+        modalCaption.textContent = '';
+      }
+    });
+  </script>
+</body>
+</html>

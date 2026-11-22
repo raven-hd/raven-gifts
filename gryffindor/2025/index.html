@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>День Гриффиндора 2025</title>
+  <link rel="icon" type="image/x-icon" href="favicon-gr.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Unicase:wght@300;400;500;600;700&family=Yanone+Kaffeesatz:wght@200..700&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Cormorant Unicase', serif;
+      background: linear-gradient(135deg, #d0cac0 0%, #c5beb4 100%);
+      color: #4D3B2F;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 1rem 2rem;
+      text-align: center;
+      background-color: #5c4942;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      color: #d0cac0;
+    }
+
+    header h1 {
+      text-align: right;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 2.5rem;
+      font-family: "Oswald", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    header p {
+      text-align: right;
+      width: 100%;
+      max-width: 800px;
+      margin: 0.5rem auto 0;
+      font-family: 'Yanone Kaffeesatz', sans-serif;
+      font-size: 1.2rem;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1.5rem 0 1rem;
+      width: 100%;
+    }
+
+    .intro-section {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      flex: 1;
+    }
+
+    /* Десктопная версия */
+    .desktop-layout {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 2rem;
+    }
+
+    .collage {
+      width: 360px;
+      height: 360px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .collage img {
+      object-fit: contain;
+      border-radius: 4px;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+      transition: transform 0.3s ease;
+      width: 100%;
+      height: 100%;
+    }
+
+    .collage img:hover {
+      transform: scale(1.03);
+    }
+
+    /* Большая марка - занимает 2 строки */
+    .collage img:nth-child(1) {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+    }
+
+    /* Первая средняя марка */
+    .collage img:nth-child(2) {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    /* Вторая средняя марка */
+    .collage img:nth-child(3) {
+      grid-column: 2;
+      grid-row: 2;
+    }
+
+    /* Три маленькие марки - занимают всю нижнюю строку */
+    .collage {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .collage img:nth-child(4) {
+      grid-column: 1;
+      grid-row: 3;
+    }
+
+    .collage img:nth-child(5) {
+      grid-column: 2;
+      grid-row: 3;
+    }
+
+    .collage img:nth-child(6) {
+      grid-column: 3;
+      grid-row: 3;
+    }
+
+    /* Большая марка теперь занимает первые 2 колонки и 2 строки */
+    .collage img:nth-child(1) {
+      grid-column: 1 / span 2;
+      grid-row: 1 / span 2;
+    }
+
+    /* Средние марки теперь в третьей колонке */
+    .collage img:nth-child(2) {
+      grid-column: 3;
+      grid-row: 1;
+    }
+
+    .collage img:nth-child(3) {
+      grid-column: 3;
+      grid-row: 2;
+    }
+
+    .message-container {
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .message {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      text-align: justify;
+      font-family: "Oswald", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 300;
+      font-style: normal;
+    }
+
+    .message b {
+      font-weight: 400;
+    }
+
+    .open-button {
+      display: flex;
+      justify-content: center;
+      margin-top: auto;
+    }
+
+    .open-button a {
+      background-color: #5c4942;
+      color: #d0cac0;
+      padding: 1rem 2rem;
+      text-decoration: none;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease;
+      font-family: 'Yanone Kaffeesatz', sans-serif;
+    }
+
+    .open-button a:hover {
+      background-color: #4a3a34;
+    }
+
+    nav a {
+      color: #5c4942;
+      text-decoration: none;
+      font-weight: 500;
+      font-family: 'Yanone Kaffeesatz', sans-serif;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: background-color 0.2s;
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    nav a:hover {
+      text-decoration: underline;
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+	  
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 1rem;
+      background-color: #5c4942;
+      color: #d0cac0;
+      font-family: "Oswald", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 400;
+      font-style: normal;
+      flex-shrink: 0;
+    }
+
+    /* Мобильная версия - УПРОЩЕННАЯ СТРУКТУРА */
+    @media (max-width: 768px) {
+      .intro-section {
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        min-height: auto;
+      }
+      
+      .desktop-layout {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+      }
+      
+      /* ПРОСТОЙ ПОРЯДОК: текст -> кнопка -> коллаж */
+      .message-container {
+        order: 1;
+        max-width: 100%;
+        width: 100%;
+      }
+      
+      .open-button {
+        order: 2;
+        width: 100%;
+        margin: 1rem 0 2rem 0;
+      }
+      
+      .collage {
+        order: 3;
+        width: 100%;
+        max-width: 300px;
+        height: 300px;
+        margin: 0 auto 3rem auto; /* Большой отступ снизу */
+      }
+      
+      header {
+        padding: 1rem;
+      }
+      
+      header h1 {
+        font-size: 1.8rem;
+        text-align: center;
+      }
+      
+      header p {
+        text-align: center;
+        font-size: 1rem;
+      }
+      
+      .message {
+        font-size: 1rem;
+        padding: 0 0.5rem;
+      }
+    }
+
+    /* Очень маленькие экраны */
+    @media (max-width: 480px) {
+      .collage {
+        max-width: 280px;
+        height: 280px;
+        margin-bottom: 4rem; /* Еще больше отступ для очень маленьких экранов */
+      }
+      
+      .intro-section {
+        padding: 0.5rem;
+      }
+      
+      header h1 {
+        font-size: 1.6rem;
+      }
+      
+      .open-button {
+        margin: 1rem 0 2.5rem 0;
+      }
+    }
+
+    /* Гарантия отсутствия пересечения с футером */
+    @media (max-width: 768px) {
+      .intro-section {
+        padding-bottom: 4rem; /* Большой отступ снизу для всего раздела */
+      }
+      
+      body {
+        position: relative;
+      }
+      
+      footer {
+        position: relative;
+        z-index: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1>Горячим приветам - горячие марки!</h1>
+      <p>Всякое письмо запечатает ваши слова, сделав их вещественными. Почта и марки созданы, чтобы все ваши горячие порывы поделиться сокровенным нашли своих адресатов.</p>
+    </header>
+
+    <main>
+      <nav>
+        <a href="index.html">Главная</a>
+        <a href="stamps.html">Коллекция марок</a>
+        <a href="gryffomat.html">ГРИФФОМАТ</a>
+      </nav>
+    </main>
+	  
+    <section class="intro-section">
+      <div class="desktop-layout">
+        <div class="collage">
+          <img src="images/stamps/12.webp" alt="Декан факультета Лита Нильсон">
+          <img src="images/stamps/08.webp" alt="Староста факультета Ариадна Фрост">
+          <img src="images/stamps/06.webp" alt="Староста факультета Леон Морелло">
+          <img src="images/stamps/07.webp" alt="Староста факультета Dina Lee">
+          <img src="images/stamps/04.webp" alt="Хаттори Райто, Директор Школы, выпускник(осень 2012)">
+          <img src="images/stamps/50.webp" alt="Профессор Ласс Ранйяр">
+        </div>
+
+        <div class="message-container">
+          <div class="message">
+            <p><b>Дорогие гриффиндорцы!</b></p> <br>
+            <p>Все знают, что гриффиндорцы любят оставлять послания везде, где это только возможо. Вы оставляете записки на дверях своих спален, рисуете цветочки в домашках друг друга, клеите листочки друг другу на спины и даже шторы не обходятся без вашего внимания. Но подписи это ведь не так креативно, как просто прикрепить марку с лицом отправителя! Встречайте, лимитированная коллекция марок, посвященная Львиному факультету.</p>
+           <br>
+			  <p>Все марки  имеют томный аромат горячего гриффолада, добавляют +100 к смелости и просто радуют имидж. Украшайте марками свои послания и отважно отправляйте их адресатам.</p>
+          </div>
+          <div class="open-button">
+            <a href="stamps.html">Открыть коллекцию</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    © Подарок ко Дню Гриффиндора 2025. С любовью от Когтеврана
+  </footer>
+</body>
+</html>
