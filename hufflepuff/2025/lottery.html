@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pufftery Game</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Unicase:wght@300;400;500;600;700&family=Yanone+Kaffeesatz:wght@200..700&display=swap" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Cormorant Unicase', serif;
+      background-color: #F6F2E6;
+      color: #4D3B2F;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 2rem;
+      text-align: center;
+      background-color: #E8D9B6;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header h1, header p {
+      text-align: right;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    header p {
+      margin: 0.5rem 0 0;
+      font-family: 'Yanone Kaffeesatz', sans-serif;
+      font-size: 1.2rem;
+    }
+
+    main {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem 3rem;
+      max-width: 900px;
+      width: 100%;
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+    
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      width: 100%;
+    }
+    
+    .cards-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      width: 100%;
+    }
+    
+    .card {
+      position: relative;
+      width: 100px;
+      height: 140px;
+      background-color: #a37c3a;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(63,47,31,0.3);
+      cursor: pointer;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      pointer-events: none;
+    }
+    
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background-color: #a37c3a;
+      transition: opacity 0.4s ease;
+    }
+    
+    .card.revealed .overlay {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    button {
+      background-color: #D2B48C;
+      color: #fff;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: 'Cormorant Unicase', sans-serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease;
+      margin-top: 0.5rem;
+    }
+    
+    button:hover {
+      background-color: #b4956c;
+    }
+    
+    #message {
+      font-size: 1.5rem;
+      margin-top: 2rem 0;
+      min-height: 2em;
+      font-weight: 600;
+      text-align: center;
+      width: 100%;
+      padding: 0.5rem 0; 
+    }
+    
+    nav a {
+      color: #3f2f1f;
+      text-decoration: none;
+      font-weight: 500;
+      font-family: 'Yanone Kaffeesatz', sans-serif;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: background-color 0.2s;
+    }
+    
+    nav a:hover {
+      text-decoration: underline;
+      background-color: rgba(122, 96, 60, 0.1);
+    }
+
+.rules {
+  background-color: rgba(210, 180, 140, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  font-size: 1.2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.rules h3 {
+  margin-top: 0;
+  text-align: center;
+  font-family: 'Cormorant Unicase', serif;
+}
+
+.rules ol, .rules ul {
+  margin: 0.5rem 0;
+}
+
+.rules li {
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 480px) {
+  .rules {
+    font-size: 1rem;
+    padding: 0.8rem;
+  }
+}
+
+.award {
+  background-color: rgba(210, 180, 140, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  font-size: 1.2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.award h3 {
+  margin-top: 0;
+  text-align: center;
+  font-family: 'Cormorant Unicase', serif;
+}
+
+.award ol, .award ul {
+  margin: 0.5rem 0;
+}
+
+.award li {
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 480px) {
+  .award {
+    font-size: 1rem;
+    padding: 0.8rem;
+  }
+}
+
+.stamps-collage {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  max-width: 900px;
+  margin: 30px auto;
+}
+
+.stamp-item {
+  position: relative;
+  transition: all 0.5s ease;
+  transform: 
+    rotate(var(--rotation)) 
+    translateY(var(--offset-y));
+  flex: 0 0 auto;
+}
+
+.stamp-item img {
+  width: 100%;
+  max-width: 160px;
+  height: auto;
+  aspect-ratio: 5/7;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stamp-item:hover {
+  z-index: 10;
+}
+
+.stamp-item:hover img {
+  transform: scale(1.05);
+  box-shadow: none;
+}
+
+@media (max-width: 768px) {
+  .stamp-item img {
+    max-width: 130px;
+  }
+}
+
+@media (max-width: 480px) {
+  .stamp-item img {
+    max-width: 100px;
+  }
+}
+
+.game-counter {
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  font-size: 1.2rem;
+  color: #4D3B2F;
+  text-align: center;
+  margin: 15px 0;
+  padding: 8px;
+  background-color: rgba(210, 180, 140, 0.2);
+  border-radius: 8px;
+  display: inline-block;
+}
+
+#gameCount {
+  font-weight: 700;
+  color: #8A5A44;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 1rem;
+      background-color: #E8D9B6;
+      color: #4D3B2F;
+      font-family: 'Cormorant Unicase', serif;
+    }
+
+    @media (max-width: 768px) {
+      .card {
+        width: 80px;
+        height: 112px;
+      }
+      
+      header h1 {
+        font-size: 2rem;
+      }
+      
+      #message {
+        font-size: 1.3rem;
+        margin: 1.8rem 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        width: 70px;
+        height: 98px;
+      }
+      
+      header {
+        padding: 1.5rem 1rem;
+      }
+      
+      header h1 {
+        font-size: 1.7rem;
+      }
+      
+      header p {
+        font-size: 1rem;
+      }
+      
+      nav {
+        flex-wrap: wrap;
+      }
+      
+      #message {
+        font-size: 1.1rem;
+        margin: 1.5rem 0;
+        padding: 0.4rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Pufftery Game</h1>
+    <p>Почтовая, почти беспроигрышная лотерея. Рискни! Поймай удачу за хвост!</p>
+  </header>
+
+  <main>
+    <nav>
+      <a href="index.html">Главная</a>
+      <a href="stamps.html">Коллекция марок</a>
+      <a href="award.html">Победители P.G.</a>
+    </nav>
+    
+    <div class="game-counter">
+        Вы бросали вызов фортуне <span id="gameCount">0</span> раз(а)
+    </div>
+
+    <div class="cards-row" id="cardsRow"></div>
+    <button id="resetBtn">Начать заново</button>
+    <div id="message"></div>
+    
+    <div class="rules">
+  <h3>Правила лотереи Pufftery Game:</h3>
+  <ol>
+    <li>Участвовать могут абсолютно все. Количество попыток ограничено лишь вашей степенью терпения</li>
+    <li>Перед вами 6 закрытых марок - откройте их все</li>
+    <li>Условия выигрыша:
+      <ul>
+        <li>3+ <strong>одинаковые</strong> любые марки - золотая марка "Счастливчик"</li>
+        <li>3+ <strong>любые</strong> марки с выпускниками факультета Пуффендуй - золотая марка "Знаток истории"</li>
+        <li>3+ <strong>одинаковые</strong> марки "Пуффендуйские плюшки" - золотая марка "Сладкая булочка"</li>
+        <li>3+ <strong>любые</strong> марки из категории "Символы факультета" - золотая марка "Ценитель традиций"</li>
+      </ul>
+    </li>
+    <li>Невероятная удача:
+      <ul>
+        <li>Собраны два или более сета одновременно - золотая марка "Жидкая удача"</li>
+      </ul>
+    </li>
+    <li>Нажмите "Начать заново" для новой попытки</li>
+  </ol>
+</div>
+
+<div class="award">
+  <h3>О наградах:</h3>
+  <ol> Итак, вы победили в лотерее <strong>Pufftery Game</strong>, что дальше?
+  <br><br>
+    <li>Сделайте скриншот, на котором будет четко виден ваш результат</li>
+    <li>Скорее опубликуйте его в теме с подарком или просто пришлите Блейк Эллингтон любым удобным вам способом
+    <li>Ждите заслуженную награду, она очень скоро появится <a href="award.html">на доске победителей</a>, ведь вы не только азартны, но и прекрасны
+      <br><br>
+     P.S. Несмотря на все приложенные усилия, есть вероятность, что коварные беклы(да, именно они) все-таки помешают вам получить приз. 
+     Поэтому, если вам кажется, что ваш лотерейный билет был выигрышным, однако вы не увидели сообщения с поздравлением, смело пишите нам!
+Мы не вернем вам деньги, ведь лотерея бесплатная, но поможем получить заслуженный приз.  
+  </ol> 
+   
+<div class="stamps-collage">
+  <div class="stamp-item" style="--rotation: -3deg; --offset-y: -15px;">
+    <img src="images/lottery/38.webp" alt="Знаток истории">
+  </div>
+  <div class="stamp-item" style="--rotation: 2deg; --offset-y: 10px;">
+    <img src="images/lottery/39.webp" alt="Сладкая булочка">
+  </div>
+  <div class="stamp-item" style="--rotation: -1deg; --offset-y: -20px;">
+    <img src="images/lottery/40.webp" alt="Ценитель традиций">
+  </div>
+  <div class="stamp-item" style="--rotation: 3deg; --offset-y: 5px;">
+    <img src="images/lottery/41.webp" alt="Жидкая удача">
+  </div>
+</div>
+  
+</div>
+    
+  </main>
+
+  <script>
+    // Исправленный массив с марками
+    const stamps = [
+"images/stamps/01.webp",
+"images/stamps/07.webp",
+"images/stamps/08.webp",
+"images/stamps/30.webp",
+"images/stamps/19.webp",
+"images/stamps/02.webp",
+"images/stamps/09.webp",
+"images/stamps/31.webp",
+"images/stamps/10.webp",
+"images/stamps/29.webp",
+"images/stamps/20.webp",
+"images/stamps/03.webp",
+"images/stamps/11.webp",
+"images/stamps/12.webp",
+"images/stamps/27.webp",
+"images/stamps/32.webp",
+"images/stamps/21.webp", 
+"images/stamps/33.webp", 
+"images/stamps/04.webp", 
+"images/stamps/13.webp", 
+"images/stamps/14.webp", 
+"images/stamps/22.webp", 
+"images/stamps/05.webp", 
+"images/stamps/15.webp",
+"images/stamps/16.webp", 
+"images/stamps/34.webp",
+"images/stamps/23.webp", 
+"images/stamps/06.webp",
+"images/stamps/17.webp",
+"images/stamps/18.webp",
+"images/stamps/24.webp",
+"images/stamps/35.webp",
+"images/stamps/25.webp",
+"images/stamps/36.webp",
+"images/stamps/26.webp",
+"images/stamps/28.webp",
+"images/stamps/37.webp",
+    ];
+
+    // Константы для особых категорий
+    const выпускники = [
+      "images/stamps/01.webp",
+      "images/stamps/02.webp",
+      "images/stamps/03.webp",
+      "images/stamps/04.webp", 
+      "images/stamps/05.webp", 
+      "images/stamps/06.webp",
+    ];
+
+    const кухня = "images/stamps/32.webp";
+
+    const традиции = [
+        "images/stamps/30.webp",
+        "images/stamps/31.webp",
+        "images/stamps/32.webp",
+        "images/stamps/33.webp", 
+        "images/stamps/34.webp",
+        "images/stamps/35.webp",
+        "images/stamps/36.webp",
+        "images/stamps/37.webp",
+    ];
+
+    const cardsRow = document.getElementById('cardsRow');
+    const resetBtn = document.getElementById('resetBtn');
+    const message = document.getElementById('message');
+
+    let chosenCards = [];
+    let revealedCount = 0;
+
+    // Функция: выбираем count карт со случайными повторениями
+    function getRandomCardsWithRepeats(count) {
+      const result = [];
+      for (let i = 0; i < count; i++) {
+        const randomIndex = Math.floor(Math.random() * stamps.length);
+        result.push(stamps[randomIndex]);
+      }
+      return result;
+    }
+
+    // Инициализация игры
+    function initGame() {
+      chosenCards = getRandomCardsWithRepeats(6);
+      revealedCount = 0;
+      message.textContent = '';
+      cardsRow.innerHTML = '';
+
+      chosenCards.forEach((url, i) => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.dataset.index = i;
+
+        // Картинка марки
+        const img = document.createElement('img');
+        img.src = url;
+        img.alt = 'Марка';
+        card.appendChild(img);
+
+        // Накрывающий слой — покрытие
+        const overlay = document.createElement('div');
+        overlay.classList.add('overlay');
+        card.appendChild(overlay);
+
+        // Клик — открыть карту (стереть покрытие)
+        card.addEventListener('click', () => {
+          if (card.classList.contains('revealed')) return; // Уже открыт
+          card.classList.add('revealed');
+          revealedCount++;
+
+          if (revealedCount === chosenCards.length) {
+            checkForDuplicates();
+          }
+        });
+
+        cardsRow.appendChild(card);
+      });
+    }
+
+function checkForDuplicates() {
+    // Подсчет показателей
+    const graduateCount = chosenCards.filter(card => выпускники.includes(card)).length;
+    const traditionsCount = chosenCards.filter(card => традиции.includes(card)).length;
+    const kitchenCount = chosenCards.filter(card => card === кухня).length;
+    
+    // Подсчет одинаковых карт
+    const counts = {};
+    chosenCards.forEach(card => counts[card] = (counts[card] || 0) + 1);
+    const maxCount = Object.values(counts).length > 0 ? Math.max(...Object.values(counts)) : 0;
+    
+    // Проверка НЕВЕРОЯТНОЙ УДАЧИ
+    const setCount = (graduateCount >= 3 ? 1 : 0) + 
+                    (traditionsCount >= 3 ? 1 : 0) + 
+                    (kitchenCount >= 3 ? 1 : 0);
+    
+    const hasMultipleSets = setCount >= 2;
+    
+    // Проверка на 3+ одинаковые карты только для выпускников и традиций
+    const hasThreeIdenticalSpecial = Object.keys(counts).some(card => {
+        return counts[card] >= 3 && 
+               (выпускники.includes(card) || традиции.includes(card));
+    });
+
+    if (hasMultipleSets || hasThreeIdenticalSpecial) {
+        message.textContent = 'Ваша удача не знает границ! Использование зелья "Феликс Фелицис" при участии в лотерее строго запрещено!';
+        return;
+    }
+
+    // Проверка ОСОБЫХ УСЛОВИЙ
+    if (graduateCount >= 3) {
+        message.textContent = "Вы собрали сет выпускников и получаете особую награду!";
+        return;
+    }
+
+    if (kitchenCount >= 3) {
+        message.textContent = "Вы настоящий ценитель пуффендуйской кухни и получаете особую награду!";
+        return;
+    }
+
+    if (traditionsCount >= 3) {
+        message.textContent = "Вы настоящий ценитель пуффендуйских традиций и получаете особую награду!";
+        return;
+    }
+
+    // СТАНДАРТНАЯ ПРОВЕРКА
+    if (maxCount >= 3) {
+        message.textContent = 'Вы поймали удачу за хвост! Поздравляем с выигрышем!';
+    } else if (maxCount >= 2) {
+        message.textContent = 'Почти получилось! Победа была совсем близка!';
+    } else {
+        message.textContent = 'Повторов не оказалось. Попробуйте ещё раз!';
+    }
+}
+
+    resetBtn.addEventListener('click', initGame);
+
+    // Запускаем игру при загрузке
+    initGame();
+    
+    // Инициализация счётчика
+    let gameCount = localStorage.getItem('puffteryGameCount') || 0;
+    document.getElementById('gameCount').textContent = gameCount;
+
+    // Обновление счётчика при клике на "Начать заново"
+    resetBtn.addEventListener('click', () => {
+      gameCount++;
+      localStorage.setItem('puffteryGameCount', gameCount);
+      document.getElementById('gameCount').textContent = gameCount;
+      initGame();
+    });
+
+    // В функции initGame() уберите вызов из последней строки
+    // и вызывайте его только при загрузке страницы:
+    window.addEventListener('DOMContentLoaded', initGame);
+    
+  </script>
+
+  <footer>
+    © Подарок ко Дню Пуффендуя 2025. С любовью от Когтеврана
+  </footer>
+ 
+  
+</body>
+</html>

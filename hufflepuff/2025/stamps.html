@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>День Пуффендуя 2025</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Unicase:wght@300;400;500;600;700&family=Yanone+Kaffeesatz:wght@200..700&display=swap" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Cormorant Unicase', serif;
+      background-color: #F6F2E6;
+      color: #4D3B2F;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 1rem 2rem;
+      text-align: center;
+      background-color: #E8D9B6;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header h1, header p {
+      text-align: right;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    header p {
+      margin: 0.5rem 0 0;
+      font-family: 'Yanone Kaffeesatz', sans-serif;
+      font-size: 1.2rem;
+    }
+
+	nav {
+	  display: flex;
+	  justify-content: center;
+	  gap: 1rem;
+	  margin: 0.5rem 0 1rem; 
+	  width: 100%;
+	  
+	}
+    
+    main {
+      margin-top: 0.5rem;
+      padding-top: 1rem;
+      z-index: 1;
+      flex: 1;
+    }
+
+    .gallery {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    .row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      flex-shrink: 0;
+    }
+
+    .stamp {
+      height: auto;
+      width: auto;
+      max-height: 200px;
+      max-width: 100%;
+      aspect-ratio: 3 / 4;
+      transform: rotate(var(--angle)) scale(var(--scale));
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      image-rendering: auto;
+      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+      object-fit: cover;
+    }
+
+    .stamp:hover {
+      transform: scale(calc(var(--scale) * 1.05)) rotate(var(--angle));
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      flex-direction: column;
+    }
+
+    .modal img {
+      max-width: 90%;
+      max-height: 80%;
+      filter: none;
+      background: none;
+      box-shadow: none;
+      border: none;
+    }
+
+    .caption {
+      color: #F6F2E6;
+      font-size: 1.2rem;
+      text-align: center;
+      background-color: transparent;
+      padding: 0.5rem 1rem;
+    }
+
+    	    nav a {
+      color: #3f2f1f;
+      text-decoration: none;
+      font-weight: 500;
+      font-family: 'Yanone Kaffeesatz', sans-serif;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: background-color 0.2s;
+    }
+    
+    nav a:hover {
+      text-decoration: underline;
+      background-color: rgba(122, 96, 60, 0.1);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 1rem;
+      background-color: #E8D9B6;
+      color: #4D3B2F;
+      font-family: 'Cormorant Unicase', serif;
+    }
+
+    @media (max-width: 1024px) {
+      .stamp {
+        max-height: 160px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .stamp {
+        max-height: 120px;
+      }
+      	        nav {
+        flex-wrap: wrap;
+		margin-top: 0.5rem;
+		padding-top: 0.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .stamp {
+        max-height: 100px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Коллекция почтовых марок</h1>
+    <p>День Пуффендуя 2025</p>
+  </header>
+
+  <main>
+    <nav>
+	<a href="index.html">Главная</a>
+	<a href="stamps.html">Коллекция марок</a>
+	<a href="lottery.html">Pufftery Game</a>
+    </nav>
+    <div class="gallery" id="main-gallery"></div>
+  </main>
+
+  <footer>
+    © Подарок ко Дню Пуффендуя 2025. С любовью от Когтеврана
+  </footer>
+
+  <div class="modal" id="modal">
+    <img id="modal-img" src="" alt="Stamp enlarged">
+    <div class="caption" id="modal-caption"></div>
+  </div>
+
+  <script>
+    const images = [
+      { src: "images/stamps/01.webp", caption: "Декан факультета Энни Мур, выпускник(весна 2024)" },
+      { src: "images/stamps/07.webp", caption: "Староста факультета ГрэйсГрейлэнд, 4 курс" },
+      { src: "images/stamps/08.webp", caption: "Староста факультета Evylin McFie, 5 курс" },
+      { src: "images/stamps/30.webp", caption: "Толстый Монах, призрак факультета" },
+      { src: "images/stamps/19.webp", caption: "Хирсин Вандерер, 2 курс" },
+      { src: "images/stamps/02.webp", caption: "Профессор Джаред Крин, выпускник(весна 2011)" },
+      { src: "images/stamps/09.webp", caption: "William Jefferson, 5 курс" },
+      { src: "images/stamps/31.webp", caption: "Гражданин Пифагорян, призрак факультета" },
+      { src: "images/stamps/10.webp", caption: "Анна Анил, 6 курс" },
+      { src: "images/stamps/29.webp", caption: "Anne Erekson, 1 курс" },
+      { src: "images/stamps/20.webp", caption: "Leonard McFee, 2 курс" },
+      { src: "images/stamps/03.webp", caption: "Профессор Алиса Индиго, выпускник(зима 2024-2025)" },
+      { src: "images/stamps/11.webp", caption: "Туральф Эустадг, 5 курс" },
+      { src: "images/stamps/12.webp", caption: "Эмиль Розье, 4 курс" },
+      { src: "images/stamps/27.webp", caption: "Кромберг Киль, 1 курс" },
+      { src: "images/stamps/32.webp", caption: "Пуффендуйские плюшки, традиционное лакомство" },
+      { src: "images/stamps/21.webp", caption: "Марселин Вудхарт, 2 курс" },
+      { src: "images/stamps/33.webp", caption: "Гномы Хаффле и Паффле" },
+      { src: "images/stamps/04.webp", caption: "Профессор Серафина Лейн" },
+      { src: "images/stamps/13.webp", caption: "Хью Смелс, 4 курс" },
+      { src: "images/stamps/14.webp", caption: "Naniel Esper, 4 курс" },
+      { src: "images/stamps/22.webp", caption: "Икимира Саерс, 1 курс" },
+      { src: "images/stamps/05.webp", caption: "Профессор Лива Унсет, выпускник(Зима 2022-2023)" },
+      { src: "images/stamps/15.webp", caption: "Аудун Деллингхейм, 4 курс" },
+      { src: "images/stamps/16.webp", caption: "Келли Пейтон, 3 курс" },  
+      { src: "images/stamps/34.webp", caption: "Барсук Хаффи" },
+      { src: "images/stamps/23.webp", caption: "Valle Byun, 1 курс" },
+      { src: "images/stamps/06.webp", caption: "Профессор Альборек Мортимер, выпускник(весна 2022)" },
+      { src: "images/stamps/17.webp", caption: "Миранда Кэмбелл, 3 курс" },
+      { src: "images/stamps/18.webp", caption: "Томас Роуз, 2 курс" },
+      { src: "images/stamps/24.webp", caption: "Эвелин Одри, 1 курс" },
+      { src: "images/stamps/35.webp", caption: "Кактусовая Девочка" },
+      { src: "images/stamps/25.webp", caption: "Магдалена Эдинбург, 1 курс" },
+      { src: "images/stamps/36.webp", caption: "Чаша Пенелопы Пуффендуй, реликвия основательницы факультета" },
+      { src: "images/stamps/26.webp", caption: "Даниэль Харт, 1 курс" },
+      { src: "images/stamps/28.webp", caption: "Чарли Грэй, 1 курс" },
+      { src: "images/stamps/37.webp", caption: "Сборная команда по квиддичу Карамель" },
+    ];
+
+    const rowPattern = [6, 5, 6, 5, 6, 5, 4];
+    const mainGallery = document.getElementById('main-gallery');
+
+    function renderGallery() {
+      mainGallery.innerHTML = '';
+      let imageIndex = 0;
+
+      for (let i = 0; i < rowPattern.length; i++) {
+        const row = document.createElement('div');
+        row.className = 'row';
+
+        for (let j = 0; j < rowPattern[i]; j++) {
+          const imgData = images[imageIndex % images.length];
+          const angle = (Math.random() * 6 - 3).toFixed(2) + 'deg';
+          const scale = (Math.random() * 0.4 + 0.8).toFixed(2);
+
+          const img = document.createElement('img');
+          img.className = 'stamp';
+          img.src = imgData.src;
+          img.setAttribute('style', `--angle: ${angle}; --scale: ${scale};`);
+          img.setAttribute('data-caption', imgData.caption);
+
+          row.appendChild(img);
+          imageIndex++;
+        }
+        mainGallery.appendChild(row);
+      }
+    }
+
+    renderGallery();
+    window.addEventListener('resize', renderGallery);
+
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modal-img');
+    const modalCaption = document.getElementById('modal-caption');
+
+    document.addEventListener('click', function (e) {
+      if (e.target.classList.contains('stamp')) {
+        modal.style.display = 'flex';
+        modalImg.src = e.target.src;
+        modalCaption.textContent = e.target.getAttribute('data-caption') || '';
+      } else if (e.target === modal) {
+        modal.style.display = 'none';
+        modalImg.src = '';
+        modalCaption.textContent = '';
+      }
+    });
+  </script>
+</body>
+</html>
