@@ -1,0 +1,1 @@
+v4.5: fa-copy button added to each stamp. Copies BBCode with two leading newlines and the public GitHub Pages URL.
