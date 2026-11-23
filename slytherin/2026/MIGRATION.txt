@@ -1,0 +1,21 @@
+SLYTHERIN 2026 — перенос в raven-gifts
+
+Папка: slytherin/2026/
+Страницы: index.html, stamps.html, stamps2.html, game.html
+Марки: 58 WebP
+PNG до оптимизации: 32.5 MB
+WebP после оптимизации: 18.1 MB
+Экономия: 44.2%
+
+Добавлено:
+- единый favicon S;
+- локальные пути к маркам;
+- кнопки копирования BBCode на stamps.html и stamps2.html;
+- публичные ссылки для BBCode: https://raven-hd.github.io/raven-gifts/slytherin/2026/images/stamps/
+- исправлены старые ссылки rav-gifts.github.io/sly/2026/;
+- исправлены ошибочные подписи 2025 -> 2026 в title/footer.
+
+Новый адрес после Push:
+https://raven-hd.github.io/raven-gifts/slytherin/2026/
+
+ВАЖНО: game.html сохранена полностью. Четыре ее декоративных изображения (сундук, замок, кальмар и рубашка карты) в исходном ZIP отсутствуют и уже были внешними ссылками Radikal. Эти четыре ссылки сохранены без изменений.

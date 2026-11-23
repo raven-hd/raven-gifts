@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Сундук — Слизерин 2026</title>
+<link rel="icon" type="image/x-icon" href="favicon-s.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --bg:    #324034;
+  --gold:  #ac9c6c;
+  --gold2: #d2c7a7;
+  --olive: #849474;
+  --parch: #9b8c5e;
+}
+
+html, body { height:100%; }
+
+body {
+  background: var(--bg);
+  color: var(--gold2);
+  font-family: 'Cormorant Garamond', serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  cursor: default;
+}
+
+body::before {
+  content:'';
+  position:fixed; inset:0; z-index:0;
+  background:
+    radial-gradient(ellipse 70% 50% at 20% 70%, rgba(92,103,78,0.25) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 80% 20%, rgba(60,76,60,0.20) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 50% at 50% 50%, rgba(36,52,36,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse 100% 40% at 50% 100%, rgba(8,13,12,0.5) 0%, transparent 50%);
+  animation: bgDrift 18s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+@keyframes bgDrift {
+  0%   { transform: scale(1) translate(0,0); }
+  100% { transform: scale(1.03) translate(-1%,1%); }
+}
+
+/* ── HEADER ── */
+header {
+  position: relative; z-index: 10;
+  padding: 2rem 2rem 1.4rem;
+  background: linear-gradient(to bottom, rgba(4,6,4,0.99) 0%, rgba(8,13,12,0.98) 100%);
+  text-align: right;
+}
+.header-inner { max-width: 860px; margin: 0 auto; }
+.header-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.6rem, 4vw, 2.8rem);
+  font-weight: 700; line-height: 1.15; color: var(--gold2);
+  text-shadow: 0 0 60px rgba(172,156,108,0.4), 0 0 120px rgba(172,156,108,0.15);
+  margin-bottom: 0.45rem;
+}
+.header-title em { font-style: normal; color: var(--gold); text-shadow: 0 0 35px rgba(172,156,108,0.6); }
+.header-sub { font-style: italic; font-size: 1.05rem; color: var(--parch); opacity: 0.85; }
+
+/* ── NAV ── */
+.nav-section {
+  position: relative; z-index: 10;
+  display: flex; justify-content: center;
+  padding: 1.2rem 1rem 0.8rem;
+  background: transparent;
+}
+.nav-buttons { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+.nav-btn {
+  font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.18em;
+  text-transform: uppercase; text-decoration: none; color: var(--parch);
+  padding: 0.5rem 1.2rem; border: 1px solid rgba(155,140,94,0.45); border-radius: 2px;
+  background: rgba(8,13,12,0.65); backdrop-filter: blur(4px);
+  transition: color 0.22s, border-color 0.22s, background 0.22s;
+}
+.nav-btn:hover { color: var(--gold2); border-color: rgba(172,156,108,0.7); background: rgba(8,13,12,0.85); }
+.nav-btn.active { color: var(--gold2); border-color: rgba(172,156,108,0.65); background: rgba(172,156,108,0.18); }
+
+/* ── MAIN ── */
+main {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; align-items: center;
+  padding: 2rem 1rem 5rem;
+  min-height: calc(100vh - 160px);
+}
+
+/* ── CHEST SCENE ── */
+#chest-scene {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 1.4rem;
+  transition: opacity 0.5s ease;
+}
+#chest-wrap {
+  position: relative;
+  width: 360px;
+  user-select: none;
+}
+#chest-img {
+  width: 100%; display: block;
+  filter: drop-shadow(0 16px 50px rgba(0,0,0,0.75));
+  transition: filter 0.4s;
+}
+#chest-img.glow {
+  filter: drop-shadow(0 16px 50px rgba(0,0,0,0.75)) drop-shadow(0 0 40px rgba(172,156,108,0.65));
+}
+#lock-img {
+  position: absolute; top: 0; left: 0;
+  width: 100%; display: block;
+  cursor: pointer;
+  filter: drop-shadow(0 3px 8px rgba(0,0,0,0.5));
+  transform-origin: center center;
+  transition: filter 0.25s;
+}
+#lock-img:hover {
+  filter: drop-shadow(0 3px 8px rgba(0,0,0,0.5)) drop-shadow(0 0 18px rgba(172,156,108,0.55));
+}
+#lock-img.spinning {
+  animation: lockSpin 1.15s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  pointer-events: none;
+}
+@keyframes lockSpin {
+  0%   { transform: rotate(0deg) scale(1); opacity: 1; }
+  55%  { transform: rotate(750deg) scale(1); opacity: 1; }
+  80%  { transform: rotate(720deg) scale(1.05); opacity: 0.7; }
+  100% { transform: rotate(720deg) scale(0); opacity: 0; }
+}
+
+#chest-hint {
+  font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.26em;
+  color: rgba(155,140,94,0.65); text-transform: uppercase;
+  animation: hintPulse 2.6s ease-in-out infinite;
+}
+@keyframes hintPulse {
+  0%,100% { opacity: 0.4; }
+  50%      { opacity: 1; }
+}
+
+/* ── GAME AREA ── */
+#game-area {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;  /* для абсолютного позиционирования кальмара */
+  opacity: 0;
+  transition: opacity 0.5s;
+  padding-top: 1rem;
+}
+
+/* ── ПУЗЫРЬ (теперь статичный, широкий, над картами) ── */
+#speech-bubble {
+  width: 100%;
+  max-width: 760px;          /* ширина примерно как у 5 карт + отступы */
+  margin: 0 auto 2rem auto;
+  background: rgba(10,16,10,0.98);
+  border: 1px solid rgba(172,156,108,0.55);
+  border-radius: 18px 18px 18px 18px;
+  padding: 0.9rem 1.2rem;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.6), 0 0 0 1px rgba(172,156,108,0.2);
+  font-style: italic;
+  font-size: 1.5rem;
+  line-height: 1.55;
+  color: var(--gold2);
+  text-align: center;
+  transition: box-shadow 0.3s, border-color 0.3s;
+  pointer-events: auto;
+  position: relative;
+  z-index: 5;
+}
+#speech-bubble.win {
+  border-color: rgba(172,156,108,0.95);
+  box-shadow: 0 0 36px rgba(172,156,108,0.45), 0 12px 32px rgba(0,0,0,0.6);
+  font-size: 1.5rem;
+}
+.bubble-text {
+  margin-bottom: 0.65rem;
+  font-weight: 400;
+}
+.bubble-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.7rem;
+}
+.bubble-btn {
+  font-family: 'Cinzel', serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold2);
+  padding: 0.45rem 0.9rem;
+  border: 1px solid rgba(172,156,108,0.5);
+  background: rgba(172,156,108,0.1);
+  cursor: pointer;
+  transition: all 0.25s;
+  border-radius: 2px;
+  text-align: center;
+}
+.bubble-btn:hover {
+  border-color: var(--gold);
+  background: rgba(172,156,108,0.25);
+  color: var(--gold);
+}
+
+/* ── КОНТЕЙНЕР СТОЛА (центрирован) ── */
+#table-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+}
+.area-label {
+  font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.28em;
+  text-transform: uppercase; color: rgba(155,140,94,0.45);
+}
+#table-area {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 14px;
+  flex-wrap: nowrap;
+}
+
+/* ── КАРТЫ НА СТОЛЕ (3D flip) ── */
+.table-card {
+  width: 130px;
+  height: 185px;
+  perspective: 700px;
+  flex-shrink: 0;
+  opacity: 0;
+  animation: cardFlyIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes cardFlyIn {
+  from { opacity: 0; transform: translateY(-70px) scale(0.4) rotate(var(--spin-from, 0deg)); }
+  to   { opacity: 1; transform: translateY(0)     scale(1)   rotate(0deg); }
+}
+
+.tc-inner {
+  width: 100%; height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  border-radius: 8px;
+}
+.table-card.open .tc-inner {
+  transform: rotateY(180deg);
+}
+
+.tc-back, .tc-front {
+  position: absolute; inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.tc-back {
+  background: linear-gradient(145deg, #141e14, #0a120a);
+  border: 2px solid rgba(172,156,108,0.42);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+.table-card.next-up .tc-back {
+  border-color: rgba(172,156,108,0.85);
+  box-shadow: 0 0 18px rgba(172,156,108,0.25), inset 0 0 10px rgba(172,156,108,0.05);
+  animation: nextGlow 1.8s ease-in-out infinite;
+}
+@keyframes nextGlow {
+  0%,100% { box-shadow: 0 0 12px rgba(172,156,108,0.2); }
+  50%      { box-shadow: 0 0 28px rgba(172,156,108,0.45); }
+}
+.tc-back:hover { border-color: rgba(172,156,108,0.7); }
+.tc-back-inner {
+  width: 82%; height: 82%;
+  border: 1px solid rgba(172,156,108,0.18);
+  display: flex; align-items: center; justify-content: center;
+  background:
+    repeating-linear-gradient(45deg, transparent, transparent 9px, rgba(172,156,108,0.035) 9px, rgba(172,156,108,0.035) 10px),
+    repeating-linear-gradient(-45deg, transparent, transparent 9px, rgba(172,156,108,0.035) 9px, rgba(172,156,108,0.035) 10px);
+  user-select: none;
+  overflow: hidden;
+}
+.tc-back-inner img {
+  width: 65%;
+  height: 65%;
+  object-fit: contain;
+  opacity: 0.35;
+}
+
+.tc-front {
+  transform: rotateY(180deg);
+  background: linear-gradient(165deg, #111a11, #0b140b);
+  border: 2px solid rgba(172,156,108,0.38);
+  display: flex; flex-direction: column;
+}
+.tc-front img {
+  flex: 1; width: 100%;
+  object-fit: contain;
+  padding: 7px 7px 3px;
+  display: block;
+  min-height: 0;
+}
+.tc-name {
+  padding: 3px 5px 5px;
+  font-family: 'Cinzel', serif; font-size: 0.4rem; letter-spacing: 0.06em;
+  color: var(--parch); text-align: center; line-height: 1.35;
+  background: rgba(0,0,0,0.5);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+/* ── РАЗДЕЛИТЕЛЬ ── */
+.table-hand-divider {
+  width: 60%; max-width: 400px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(172,156,108,0.2), transparent);
+  margin: 1.2rem auto 0.8rem;
+}
+
+/* ── РУКА ИГРОКА ── */
+#hand-section {
+  display: flex; flex-direction: column; align-items: center;
+  width: 100%; gap: 0.6rem;
+  margin-top: 0.2rem;
+}
+#hand-area {
+  position: relative;
+  width: 310px;
+  height: 230px;
+}
+.hand-card {
+  position: absolute;
+  width: 150px;
+  height: 213px;
+  bottom: 0;
+  border-radius: 7px;
+  overflow: hidden;
+  border: 2px solid rgba(172,156,108,0.38);
+  background: linear-gradient(165deg, #111a11, #0b140b);
+  display: flex; flex-direction: column;
+  opacity: 0;
+  animation: handFadeIn 0.6s ease forwards;
+}
+@keyframes handFadeIn {
+  from { opacity: 0; transform: translateY(30px) scale(0.85); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+.hand-card:nth-child(1) {
+  left: 18px;
+  transform-origin: bottom center;
+  transform: rotate(-14deg);
+  animation: handFadeIn1 0.6s ease forwards;
+  z-index: 1;
+}
+.hand-card:nth-child(2) {
+  left: 140px;
+  transform-origin: bottom center;
+  transform: rotate(10deg);
+  animation: handFadeIn2 0.65s ease forwards;
+  z-index: 2;
+}
+@keyframes handFadeIn1 {
+  from { opacity: 0; transform: rotate(-14deg) translateY(40px) scale(0.8); }
+  to   { opacity: 1; transform: rotate(-14deg) translateY(0)    scale(1); }
+}
+@keyframes handFadeIn2 {
+  from { opacity: 0; transform: rotate(10deg) translateY(40px) scale(0.8); }
+  to   { opacity: 1; transform: rotate(10deg) translateY(0)    scale(1); }
+}
+.hand-card img {
+  flex: 1; width: 100%;
+  object-fit: contain;
+  padding: 6px 6px 2px;
+  display: block;
+  min-height: 0;
+}
+.hand-card .hc-name {
+  padding: 2px 4px 4px;
+  font-family: 'Cinzel', serif; font-size: 0.38rem; letter-spacing: 0.05em;
+  color: var(--parch); text-align: center; line-height: 1.3;
+  background: rgba(0,0,0,0.5);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+/* ── КАЛЬМАР (абсолютно справа, за пределами центрированного поля) ── */
+#squid-wrap {
+  position: absolute;
+  right: -120px;           /* вылет за правый край */
+  top: -20px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  opacity: 0;
+  transition: opacity 0.5s;
+  width: auto;
+  z-index: 20;
+  pointer-events: none;    /* чтобы не мешать кликам по картам */
+}
+#squid-img {
+  width: 350px;
+  filter: drop-shadow(0 6px 24px rgba(0,0,0,0.7));
+  transition: transform 0.2s;
+  display: block;
+  pointer-events: auto;     /* картинку можно оставить кликабельной, но она не мешает */
+}
+/* небольшая анимация при наведении */
+#squid-img:hover {
+  transform: scale(1.02);
+}
+
+/* ── КНОПКА "Сыграть ещё" (пока не используется, но оставим) ── */
+#deal-btn {
+  display: none;
+}
+
+/* ── МОДАЛЬНОЕ ОКНО ПРАВИЛ ── */
+#rules-modal {
+  display: none; position: fixed; inset: 0; z-index: 200;
+  background: rgba(0,0,0,0.75); backdrop-filter: blur(4px);
+  align-items: center; justify-content: center;
+  padding: 1rem;
+}
+#rules-modal.open { display: flex; }
+#rules-box {
+  background: linear-gradient(165deg, #0e180e, #0a120a);
+  border: 1px solid rgba(172,156,108,0.45);
+  border-radius: 10px;
+  padding: 2rem 2.2rem;
+  max-width: 480px; width: 100%;
+  max-height: 80vh; overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+  position: relative;
+}
+#rules-box h2 {
+  font-family: 'Cinzel', serif; font-size: 1rem; letter-spacing: 0.2em;
+  color: var(--gold2); margin-bottom: 1.2rem; text-align: center;
+}
+#rules-box p, #rules-box li {
+  font-size: 0.9rem; line-height: 1.7; color: var(--gold2); opacity: 0.9;
+  margin-bottom: 0.6rem;
+}
+#rules-box ul { padding-left: 1.2rem; margin-bottom: 0.8rem; }
+#rules-box strong { color: var(--gold); font-style: normal; }
+#rules-close {
+  position: absolute; top: 0.8rem; right: 1rem;
+  background: none; border: none; color: var(--parch);
+  font-size: 1.3rem; cursor: pointer; opacity: 0.7;
+  transition: opacity 0.2s;
+}
+#rules-close:hover { opacity: 1; }
+
+/* ── FOOTER ── */
+footer {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+  text-align: center; padding: 1rem 1.8rem;
+  font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 0.3em;
+  color: rgba(155,140,94,0.45); border-top: 1px solid rgba(155,140,94,0.15);
+  background: linear-gradient(to top, rgba(4,6,4,0.97), rgba(8,13,12,0.92));
+  backdrop-filter: blur(6px);
+}
+
+/* ── РИПЛ ЭФФЕКТ ── */
+.ripple-ring {
+  position: fixed; border-radius: 50%; pointer-events: none; z-index: 9999;
+  transform: translate(-50%,-50%); width: 0; height: 0;
+  border: 1.5px solid transparent;
+  animation: waterRipple var(--dur,1.4s) cubic-bezier(0.15,0.5,0.4,1) var(--delay,0s) forwards;
+}
+@keyframes waterRipple {
+  0%   { width:4px; height:2px; opacity:0.8; border-width:1.5px; }
+  40%  { opacity:0.5; }
+  100% { width:var(--maxW,220px); height:var(--maxH,70px); opacity:0; border-width:0.5px; }
+}
+
+/* ── АДАПТИВ: на узких экранах кальмар возвращается в поток, чтобы не обрезался ── */
+@media (max-width: 1100px) {
+  #squid-wrap {
+    right: -60px;
+  }
+}
+@media (max-width: 900px) {
+  #squid-wrap {
+    position: static;           /* отключаем абсолют */
+    margin: 1rem auto 0;
+    order: 2;
+    width: auto;
+    pointer-events: auto;
+  }
+  #game-area {
+    padding-top: 0.5rem;
+  }
+  #speech-bubble {
+    margin-bottom: 1.2rem;
+    max-width: 95%;
+  }
+  /* перестраиваем порядок: стол, рука, кальмар */
+  #table-section {
+    order: 1;
+  }
+  #hand-section {
+    order: 2;
+  }
+  .table-hand-divider {
+    order: 3;
+  }
+  #squid-wrap {
+    order: 4;
+    margin-top: 1.2rem;
+  }
+  #squid-img {
+    width: 140px;
+  }
+}
+@media (max-width: 640px) {
+  #chest-wrap { width: 280px; }
+  .table-card { width: 90px; height: 128px; }
+  #table-area { gap: 8px; }
+  #hand-area  { width: 290px; height: 210px; }
+  .hand-card  { width: 130px; height: 185px; }
+  .hand-card:nth-child(1) { left: 16px; }
+  .hand-card:nth-child(2) { left: 136px; }
+  #squid-img  { width: 120px; }
+  #speech-bubble { font-size: 0.85rem; padding: 0.7rem 1rem; }
+}
+@media (max-width: 440px) {
+  #chest-wrap { width: 230px; }
+  .table-card { width: 64px; height: 91px; }
+  .tc-name { font-size: 0.35rem; }
+  #table-area { gap: 6px; }
+  .nav-btn { font-size: 0.55rem; padding: 0.35rem 0.75rem; }
+  #hand-area  { width: 250px; height: 185px; }
+  .hand-card  { width: 110px; height: 157px; }
+  .hand-card:nth-child(1) { left: 14px; }
+  .hand-card:nth-child(2) { left: 118px; }
+  #squid-img  { width: 100px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <h1 class="header-title">Игра гигантского кальмара</h1>
+    <p class="header-sub">День Слизерина 2026</p>
+  </div>
+</header>
+
+<div class="nav-section">
+  <div class="nav-buttons">
+    <a href="index.html" class="nav-btn">Главная</a>
+    <a href="stamps.html" class="nav-btn">Марки</a>
+	<a href="stamps2.html" class="nav-btn">Марки-символы</a>
+    <a href="game.html" class="nav-btn active">Игра кальмара</a>
+  </div>
+</div>
+
+<main>
+  <!-- СЦЕНА СУНДУКА -->
+  <div id="chest-scene">
+    <div id="chest-wrap">
+      <img id="chest-img" src="https://radika1.link/2026/04/07/SUNDUK-TENTR557aa965d9cf502a.png" alt="Сундук">
+      <img id="lock-img"  src="https://radika1.link/2026/04/07/ZAMOK_TENTR7a43609fd126eedf.png" alt="Замок">
+    </div>
+    <p id="chest-hint">Нажми на замок</p>
+  </div>
+
+  <!-- ИГРОВАЯ ЗОНА -->
+  <div id="game-area">
+    <!-- ОБЛАКО КАЛЬМАРА (широкое, статическое, над картами) -->
+    <div id="speech-bubble">
+      <div class="bubble-text" id="bubble-text"></div>
+      <div class="bubble-btns" id="bubble-btns"></div>
+    </div>
+
+    <!-- СТОЛ С КАРТАМИ -->
+    <div id="table-section">
+      <span class="area-label">На столе</span>
+      <div id="table-area"></div>
+    </div>
+
+    <div class="table-hand-divider"></div>
+
+    <!-- РУКА ИГРОКА -->
+    <div id="hand-section">
+      <span class="area-label">Твои карты</span>
+      <div id="hand-area"></div>
+    </div>
+
+    <!-- КАЛЬМАР (абсолютно справа, за границей поля) -->
+    <div id="squid-wrap">
+      <img id="squid-img" src="https://s1.radikal.cloud/2026/04/07/KALMAR-DVAd4d96b026cdb3d7c.png" alt="Кальмар">
+    </div>
+  </div>
+</main>
+
+<!-- МОДАЛЬНОЕ ОКНО ПРАВИЛ -->
+<div id="rules-modal">
+  <div id="rules-box">
+    <button id="rules-close">✕</button>
+    <h2>Правила игры</h2>
+    <p>Перед тобой <strong>5 карт рубашкой вверх</strong> и <strong>2 карты в руке</strong> — марки с персонажами Слизерина.</p>
+    <p>Открывай карты на столе <strong>по одной</strong>, строго по очереди слева направо.</p>
+    <p>Твоя цель — собрать <strong>выигрышную комбинацию</strong> из карт на столе и карт в руке:</p>
+    <ul>
+      <li><strong>Пара</strong> — два персонажа одного курса</li>
+      <li><strong>Две пары</strong> — две разных пары</li>
+      <li><strong>Тройка</strong> — три персонажа одного курса</li>
+      <li><strong>Стрит</strong> — пять курсов подряд (1–5 или 2–6 и т.д.)</li>
+      <li><strong>Флэш</strong> — все пять карт одного «масти» (выпускники / студенты / преподаватели)</li>
+      <li><strong>Фулл-хаус</strong> — тройка + пара</li>
+      <li><strong>Каре</strong> — четыре одного курса</li>
+      <li><strong>Покер</strong> — пять карт одного курса</li>
+    </ul>
+    <p>Комбинации будут официально объявлены Деканом после всех раздач. Пока кальмар просто называет карты.</p>
+  </div>
+</div>
+
+<footer>© Подарок ко Дню Слизерина 2026 · С любовью от Когтеврана</footer>
+
+<script>
+// ── ДАННЫЕ МАРОК ────────────────────────────────────────────────
+const BASE = "images/stamps/";
+const stamps = [
+  { src: BASE + "s_эблекфорд.webp",       name: "Элайза Блекфорд",       role: "3 курс" },
+  { src: BASE + "s_норен.webp",            name: "Улла Норен",             role: "5 курс" },
+  { src: BASE + "s_хольмгрен.webp",        name: "Рогнеда Хольмгрен",     role: "выпускник" },
+  { src: BASE + "s_raygan.webp",           name: "Mia Raygan",             role: "выпускник" },
+  { src: BASE + "s_рейвенхарт.webp",       name: "Теодор Рейвенхарт",     role: "1 курс" },
+  { src: BASE + "s_montfort.webp",         name: "Amory de Montfort",      role: "7 курс" },
+  { src: BASE + "s_wilson.webp",           name: "Adrian Wilson",          role: "1 курс" },
+  { src: BASE + "s_тотен-нахтшталь.webp",  name: "Х. Тотен-Нахтшталь",   role: "3 курс" },
+  { src: BASE + "s_брук.webp",             name: "Томас Брук",             role: "выпускник" },
+  { src: BASE + "s_альба.webp",            name: "Идрис Альба",            role: "7 курс" },
+  { src: BASE + "s_игараси.webp",          name: "Игараси Кайто",          role: "1 курс" },
+  { src: BASE + "s_бэлл.webp",             name: "Джейсон Бэлл",           role: "1 курс" },
+  { src: BASE + "s_сезанс.webp",           name: "Кори Сезанс",            role: "выпускник" },
+  { src: BASE + "s_розье.webp",            name: "Каталина Розье",         role: "1 курс" },
+  { src: BASE + "s_вульф.webp",            name: "Каталина Вульф",         role: "4 курс" },
+  { src: BASE + "s_валтер.webp",           name: "Каланта Валтер",         role: "выпускник" },
+  { src: BASE + "s_эйвери.webp",           name: "Аделин Эйвери",          role: "3 курс" },
+  { src: BASE + "s_дру.webp",              name: "Роки Дру",               role: "выпускник" },
+  { src: BASE + "s_дария.webp",            name: "Дария",                  role: "Декан" },
+  { src: BASE + "s_грин.webp",             name: "Владислава Грин",        role: "3 курс" },
+  { src: BASE + "s_коваль.webp",           name: "Ананель Коваль",         role: "4 курс" },
+  { src: BASE + "s_феникс.webp",           name: "Алиса Феникс",           role: "2 курс" },
+  { src: BASE + "s_дюрансе-дейл.webp",     name: "Тиффани Дюрансе-Дейл",  role: "выпускник" },
+  { src: BASE + "s_вестендорф.webp",       name: "Мерседес Вестендорф",    role: "3 курс" },
+  { src: BASE + "s_дельмар.webp",          name: "Мира Дельмар",           role: "1 курс" },
+  { src: BASE + "s_брэнсон.webp",          name: "Лекси Брэнсон",          role: "выпускник" },
+  { src: BASE + "s_блэквуд.webp",          name: "Лилит Блэквуд",          role: "1 курс" },
+  { src: BASE + "s_миллер.webp",           name: "Кэтрин Миллер",          role: "1 курс" },
+  { src: BASE + "s_купер.webp",            name: "Кэтрин Купер",           role: "2 курс" },
+  { src: BASE + "s_helwell.webp",          name: "Gugo Helwell",           role: "Главный лекарь" },
+  { src: BASE + "s_моргрэн.webp",          name: "Эмилия Моргрэн",         role: "1 курс" },
+  { src: BASE + "s_bloodstone.webp",       name: "Agatha Bloodstone",      role: "1 курс" },
+  { src: BASE + "s_duart.webp",            name: "Aisha Duart",            role: "1 курс" },
+  { src: BASE + "s_шейд.webp",             name: "Амарисса Шейд",          role: "1 курс" },
+  { src: BASE + "s_миньярд.webp",          name: "Даниэль Миньярд",        role: "1 курс" },
+  { src: BASE + "s_ардер.webp",            name: "Дарья Ардер",            role: "2 курс" },
+  { src: BASE + "s_дэй.webp",              name: "Дездемона Дэй",          role: "1 курс" },
+  { src: BASE + "s_блэкторн.webp",         name: "Кларенс Блэкторн",       role: "1 курс" },
+  { src: BASE + "s_майерс.webp",           name: "Марс Майерс",            role: "6 курс" },
+  { src: BASE + "s_ноксвуд.webp",          name: "Мирабель Ноксвуд",       role: "2 курс" },
+  { src: BASE + "s_грейсон.webp",          name: "Нуада Грейсон",          role: "3 курс" },
+  { src: BASE + "s_тока.webp",             name: "Рин Тока",               role: "1 курс" },
+  { src: BASE + "s_блэкстоун.webp",        name: "Эдриан Блэкстоун",       role: "2 курс" },
+  { src: BASE + "s_фатхи.webp",            name: "Яхья Фатхи",             role: "выпускник" },
+  { src: BASE + "s_лблекфорд.webp",        name: "Лукреция Блекфорд",      role: "3 курс" },
+  { src: BASE + "s_леонора.webp",          name: "Парселт Леонора",         role: "1 курс" },
+];
+
+// ── СОСТОЯНИЕ ИГРЫ ───────────────────────────────────────────────
+let tableCards  = [];
+let handCards   = [];
+let nextReveal  = 0;
+let gamePhase   = 'chest'; // 'chest' | 'playing' | 'done'
+let openedNames = [];
+
+function checkWin(allCards) {
+  const roles = allCards.map(c => c.role);
+  const counts = {};
+  roles.forEach(r => counts[r] = (counts[r]||0)+1);
+  const vals = Object.values(counts).sort((a,b)=>b-a);
+  if (vals[0] >= 5) return 'ПОКЕР 🎰';
+  if (vals[0] === 4) return 'КАРЕ ✨';
+  if (vals[0] === 3 && vals[1] === 2) return 'ФУЛЛ-ХАУС 🌟';
+  if (vals[0] === 3) return 'ТРОЙКА';
+  if (vals[0] === 2 && vals[1] === 2) return 'ДВЕ ПАРЫ';
+  if (vals[0] === 2) return 'ПАРА';
+  return null;
+}
+
+function deal() {
+  const shuffled = [...stamps].sort(() => Math.random() - 0.5);
+  tableCards = shuffled.slice(0, 5);
+  handCards  = shuffled.slice(5, 7);
+  nextReveal = 0;
+  openedNames = [];
+}
+
+function openChest() {
+  const lock  = document.getElementById('lock-img');
+  const chest = document.getElementById('chest-img');
+  const hint  = document.getElementById('chest-hint');
+  const scene = document.getElementById('chest-scene');
+
+  lock.classList.add('spinning');
+  hint.style.display = 'none';
+
+  setTimeout(() => {
+    chest.classList.add('glow');
+    setTimeout(() => {
+      scene.style.opacity = '0';
+      setTimeout(() => {
+        scene.style.display = 'none';
+        launchGame();
+      }, 500);
+    }, 350);
+  }, 1100);
+}
+
+function launchGame() {
+  deal();
+  renderTable();
+  renderHand();
+  updateNextCard();
+
+  const gameArea = document.getElementById('game-area');
+  gameArea.style.display = 'flex';
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => { gameArea.style.opacity = '1'; });
+  });
+
+  showSquidStart();
+  gamePhase = 'playing';
+}
+
+function renderTable() {
+  const area = document.getElementById('table-area');
+  area.innerHTML = '';
+  const spins = [-180, 90, -90, 180, -120];
+  tableCards.forEach((stamp, i) => {
+    const card = document.createElement('div');
+    card.className = 'table-card';
+    card.dataset.idx = i;
+    card.style.animationDelay = (i * 0.1) + 's';
+    card.style.setProperty('--spin-from', spins[i] + 'deg');
+    card.innerHTML = `
+      <div class="tc-inner">
+        <div class="tc-back">
+          <div class="tc-back-inner"><img src="https://s1.radikal.cloud/2026/04/07/OBLOZKA0f35d665468c61bf.png" alt=""></div>
+        </div>
+        <div class="tc-front">
+          <img src="${stamp.src}" alt="${stamp.name}" loading="lazy">
+          <div class="tc-name">${stamp.name}</div>
+        </div>
+      </div>
+    `;
+    card.querySelector('.tc-back').addEventListener('click', () => handleCardClick(i));
+    area.appendChild(card);
+  });
+}
+
+function renderHand() {
+  const area = document.getElementById('hand-area');
+  area.innerHTML = '';
+  handCards.forEach((stamp, i) => {
+    const card = document.createElement('div');
+    card.className = 'hand-card';
+    card.style.animationDelay = (0.55 + i * 0.08) + 's';
+    card.innerHTML = `
+      <img src="${stamp.src}" alt="${stamp.name}" loading="lazy">
+      <div class="hc-name">${stamp.name}</div>
+    `;
+    area.appendChild(card);
+  });
+}
+
+function updateNextCard() {
+  document.querySelectorAll('.table-card').forEach((card, i) => {
+    card.classList.toggle('next-up', i === nextReveal);
+  });
+}
+
+function handleCardClick(idx) {
+  if (gamePhase !== 'playing') return;
+  if (idx !== nextReveal) return;
+
+  const cards = document.querySelectorAll('.table-card');
+  cards[idx].classList.add('open');
+  cards[idx].classList.remove('next-up');
+  nextReveal++;
+
+  const stamp = tableCards[idx];
+  openedNames.push(stamp.name);
+  updateNextCard();
+
+  if (nextReveal === 5) {
+    gamePhase = 'done';
+    setTimeout(showResult, 800);
+  } else {
+    updateSquidMid(stamp);
+  }
+}
+
+function showSquidStart() {
+  const wrap = document.getElementById('squid-wrap');
+  setBubble(
+    'Буль-буль... Сундук открыт! Открывай карты на столе одну за другой — слева направо.',
+    [
+      { label: 'Узнать правила', id: 'btn-rules' }
+    ],
+    false
+  );
+  wrap.style.display = 'flex';
+  requestAnimationFrame(() => requestAnimationFrame(() => { wrap.style.opacity = '1'; }));
+
+  document.getElementById('btn-rules').addEventListener('click', openRules);
+}
+
+function updateSquidMid(stamp) {
+  let history = openedNames.length > 1
+    ? 'Уже открыты: ' + openedNames.slice(0,-1).join(', ') + '. '
+    : '';
+  const remaining = 5 - nextReveal;
+  const texts = [
+    `${history}Первая карта — <em>${stamp.name}</em> (${stamp.role}). Ещё ${remaining} скрытых!`,
+    `${history}Теперь видим <em>${stamp.name}</em> (${stamp.role}). Продолжай!`,
+    `${history}<em>${stamp.name}</em> (${stamp.role}) показывается из глубины. Почти!`,
+    `${history}Четвёртая карта — <em>${stamp.name}</em> (${stamp.role}). Последняя ждёт!`,
+  ];
+  const msg = texts[nextReveal - 1] || `${history}<em>${stamp.name}</em> (${stamp.role}).`;
+  setBubble(msg, [], false);
+}
+
+function showResult() {
+  const allCards = [...tableCards, ...handCards];
+  const win = checkWin(allCards);
+  const listed = tableCards.map((c,i) => `${i+1}. ${c.name}`).join(' · ');
+  let msg = `Все карты открыты! На столе: ${listed}. `;
+  let isWin = false;
+
+  if (win) {
+    msg += `Буль-БУЛЬ! У тебя <strong>${win}</strong>! Отличная раздача!`;
+    isWin = true;
+  } else {
+    msg += 'Комбинаций не видно... но тайны озера ещё не раскрыты. Итоги объявит Декан.';
+  }
+
+  setBubble(msg, [{ label: 'Сыграть ещё раз', id: 'btn-deal' }], isWin);
+  document.getElementById('btn-deal').addEventListener('click', newGame);
+}
+
+function setBubble(htmlText, buttons, win) {
+  const bubble = document.getElementById('speech-bubble');
+  const textEl = document.getElementById('bubble-text');
+  const btnsEl = document.getElementById('bubble-btns');
+
+  textEl.innerHTML = htmlText;
+  btnsEl.innerHTML = '';
+  buttons.forEach(b => {
+    const btn = document.createElement('button');
+    btn.className = 'bubble-btn';
+    btn.id = b.id;
+    btn.textContent = b.label;
+    btnsEl.appendChild(btn);
+  });
+
+  bubble.classList.toggle('win', !!win);
+}
+
+function openRules() {
+  document.getElementById('rules-modal').classList.add('open');
+}
+document.getElementById('rules-close').addEventListener('click', () => {
+  document.getElementById('rules-modal').classList.remove('open');
+});
+document.getElementById('rules-modal').addEventListener('click', e => {
+  if (e.target === document.getElementById('rules-modal'))
+    document.getElementById('rules-modal').classList.remove('open');
+});
+
+function newGame() {
+  deal();
+  renderTable();
+  renderHand();
+  updateNextCard();
+  showSquidStart();
+  gamePhase = 'playing';
+}
+
+document.getElementById('lock-img').addEventListener('click', () => {
+  if (gamePhase !== 'chest') return;
+  gamePhase = 'opening';
+  openChest();
+});
+
+// ── РИПЛЫ ────────────────────────────────────────────────────────
+document.addEventListener('click', e => {
+  for (let i = 0; i < 4; i++) {
+    const ring = document.createElement('div');
+    ring.className = 'ripple-ring';
+    ring.style.left = e.clientX + 'px';
+    ring.style.top  = e.clientY + 'px';
+    const spread = 1 + i * 0.28;
+    const maxW = Math.round((100 + Math.random() * 40) * spread);
+    const maxH = Math.round(maxW * (0.28 + Math.random() * 0.08));
+    ring.style.setProperty('--maxW', maxW + 'px');
+    ring.style.setProperty('--maxH', maxH + 'px');
+    ring.style.setProperty('--dur',  (1.1 + i * 0.22 + Math.random() * 0.15).toFixed(2) + 's');
+    ring.style.setProperty('--delay',(i * 0.11).toFixed(2) + 's');
+    ring.style.borderColor = `rgba(172,156,108,${(0.6 - i * 0.12).toFixed(2)})`;
+    document.body.appendChild(ring);
+    ring.addEventListener('animationend', () => ring.remove(), { once: true });
+  }
+});
+</script>
+</body>
+</html>
