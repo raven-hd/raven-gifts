@@ -1,0 +1,1 @@
+v4.4: added supplied personal captions under stamps in the collection gallery. Non-personal stamp captions retained.

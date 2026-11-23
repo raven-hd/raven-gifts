@@ -1,0 +1,1 @@
+v4.3: homepage collage changed to overlapping mixed-size collage without captions/cards; added CTA button.
