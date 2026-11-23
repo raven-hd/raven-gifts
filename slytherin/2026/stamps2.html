@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Коллекция марок — Слизерин 2026</title>
+<title>Коллекция марок — Слизерин 2025</title>
  <link rel="icon" type="image/x-icon" href="favicon-s.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
@@ -260,36 +260,7 @@
     }
   }
 
-  /* Кнопка копирования кода марки */
-  .copy-stamp {
-    position: absolute;
-    top: -0.52rem;
-    right: -0.52rem;
-    z-index: 35;
-    width: 1.72rem;
-    height: 1.72rem;
-    padding: 0;
-    border-radius: 50%;
-    border: 1px solid rgba(172,156,108,0.38);
-    background: rgba(8,13,12,0.90);
-    color: #d2c7a7;
-    display: grid;
-    place-items: center;
-    font-size: 0.75rem;
-    cursor: pointer;
-    opacity: 0.62;
-    box-shadow: 0 3px 9px rgba(0,0,0,0.35);
-    transition: opacity .18s ease, transform .18s ease, color .18s ease, border-color .18s ease;
-  }
-  .stamp-item:hover .copy-stamp,
-  .copy-stamp:focus-visible { opacity: 1; }
-  .copy-stamp:hover {
-    color: #ac9c6c;
-    border-color: rgba(172,156,108,0.72);
-    transform: scale(1.08);
-  }
-  .copy-stamp.copied { color: #849474; opacity: 1; }
-
+  .copy-stamp{position:absolute;top:-.55rem;right:-.55rem;z-index:35;width:1.72rem;height:1.72rem;padding:0;border-radius:50%;border:1px solid rgba(172,156,108,.38);background:rgba(8,13,12,.90);color:#d2c7a7;display:grid;place-items:center;font-size:.75rem;cursor:pointer;opacity:.62;box-shadow:0 3px 9px rgba(0,0,0,.35);transition:opacity .18s ease,transform .18s ease,color .18s ease,border-color .18s ease}.stamp-item:hover .copy-stamp,.copy-stamp:focus-visible{opacity:1}.copy-stamp:hover{color:#ac9c6c;border-color:rgba(172,156,108,.72);transform:scale(1.08)}.copy-stamp.copied{color:#849474;opacity:1}
 </style>
 </head>
 <body>
@@ -303,9 +274,9 @@
 
 <div class="nav-section">
   <div class="nav-buttons">
-    <a href="index.html" class="nav-btn">Главная</a>
-    <a href="stamps.html" class="nav-btn ">Коллекция марок</a>
-    <a href="stamps2.html" class="nav-btn active">Марки-символы</a>
+    <a href="https://rav-gifts.github.io/sly/2026/index.html" class="nav-btn">Главная</a>
+    <a href="https://rav-gifts.github.io/sly/2026/stamps.html" class="nav-btn ">Коллекция марок</a>
+    <a href="https://rav-gifts.github.io/sly/2026/stamps2.html" class="nav-btn active">Марки-символы</a>
     <a href="game.html" class="nav-btn">Игра кальмара</a>
   </div>
 </div>
@@ -328,20 +299,20 @@
 
 <script>
 // ─── STAMP DATA (полная коллекция) ───────────────────────────────
-const BASE = "images/stamps/";
+const BASE = "https://raw.githubusercontent.com/rav-gifts/rav-gifts.github.io/refs/heads/main/sly/2026/stamps/";
 const stamps = [
-  { src: BASE + "s_барон.webp",          name: "Кровавый Барон",        role: "Привидение факультета" },
-  { src: BASE + "s_джарви.webp",              name: "Джарви Нокс",              role: "Привратник подземелий" },
-  { src: BASE + "s_ковер.webp",              name: "Ковер слизеринский",              role: "" },
-  { src: BASE + "s_дк.webp",          name: "Дуэльный клуб",          role: "" },
-  { src: BASE + "s_зм.webp",             name: "Зефирная мастерская",             role: "" },
-  { src: BASE + "s_змеи.webp",         name: "Морские змеи",         role: "Питомцы подземелий" },
-  { src: BASE + "s_ковер2.webp",              name: "Ковер слизеринский",              role: "" },
-  { src: BASE + "s_кв.webp",           name: "Клыки Василиска",        role: "Сборная факультета по квиддичу" },
-  { src: BASE + "s_кз.webp",             name: "Клуб Зельеваров",             role: "" },
-  { src: BASE + "s_котокуст.webp",    name: "Котокуст",    role: "Живой кустарник" },
-  { src: BASE + "s_ковер3.webp",              name: "Ковер слизеринский",              role: "" },
-  { src: BASE + "s_юрасик.webp",               name: "Скелет Юрасик",               role: "Скелет. Старшина шайки Брука" },
+  { src: BASE + "09.webp",          name: "Кровавый Барон",        role: "Привидение факультета" },
+  { src: BASE + "23.webp",              name: "Джарви Нокс",              role: "Привратник подземелий" },
+  { src: BASE + "34.webp",              name: "Ковер слизеринский",              role: "" },
+  { src: BASE + "24.webp",          name: "Дуэльный клуб",          role: "" },
+  { src: BASE + "28.webp",             name: "Зефирная мастерская",             role: "" },
+  { src: BASE + "29.webp",         name: "Морские змеи",         role: "Питомцы подземелий" },
+  { src: BASE + "35.webp",              name: "Ковер слизеринский",              role: "" },
+  { src: BASE + "31.webp",           name: "Клыки Василиска",        role: "Сборная факультета по квиддичу" },
+  { src: BASE + "32.webp",             name: "Клуб Зельеваров",             role: "" },
+  { src: BASE + "37.webp",    name: "Котокуст",    role: "Живой кустарник" },
+  { src: BASE + "36.webp",              name: "Ковер слизеринский",              role: "" },
+  { src: BASE + "58.webp",               name: "Скелет Юрасик",               role: "Скелет. Старшина шайки Брука" },
 ];
 
 // ─── SEEDED RANDOM для мягкой вариации размеров и наклона ──────────
@@ -358,43 +329,8 @@ const field = document.getElementById('stamp-field');
 
 
 const PUBLIC_STAMP_BASE = "https://raven-hd.github.io/raven-gifts/slytherin/2026/images/stamps/";
-
-async function copyTextToClipboard(text) {
-  if (navigator.clipboard && window.isSecureContext) {
-    await navigator.clipboard.writeText(text);
-    return;
-  }
-
-  const textarea = document.createElement('textarea');
-  textarea.value = text;
-  textarea.setAttribute('readonly', '');
-  textarea.style.position = 'fixed';
-  textarea.style.opacity = '0';
-  document.body.appendChild(textarea);
-  textarea.select();
-  document.execCommand('copy');
-  textarea.remove();
-}
-
-async function copyStampCode(stamp, button) {
-  const filename = stamp.src.split('/').pop();
-  const imageUrl = PUBLIC_STAMP_BASE + encodeURIComponent(filename);
-  const bbcode = `\n\n[hr]\n[right][width=70][img]${imageUrl}[/img][/width][/right]`;
-
-  try {
-    await copyTextToClipboard(bbcode);
-    const icon = button.querySelector('i');
-    button.classList.add('copied');
-    icon.className = 'fas fa-check';
-
-    setTimeout(() => {
-      button.classList.remove('copied');
-      icon.className = 'fas fa-copy';
-    }, 1100);
-  } catch (error) {
-    console.error('Не удалось скопировать код марки:', error);
-  }
-}
+async function copyTextToClipboard(text){if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text);return;}const textarea=document.createElement('textarea');textarea.value=text;textarea.setAttribute('readonly','');textarea.style.position='fixed';textarea.style.opacity='0';document.body.appendChild(textarea);textarea.select();document.execCommand('copy');textarea.remove();}
+async function copyStampCode(stamp,button){const filename=stamp.src.split('/').pop();const imageUrl=PUBLIC_STAMP_BASE+filename;const bbcode=`\n\n[hr]\n[right][width=70][img]${imageUrl}[/img][/width][/right]`;try{await copyTextToClipboard(bbcode);const icon=button.querySelector('i');button.classList.add('copied');icon.className='fas fa-check';setTimeout(()=>{button.classList.remove('copied');icon.className='fas fa-copy';},1100);}catch(error){console.error('Не удалось скопировать код марки:',error);}}
 
 function buildStampGrid() {
   field.innerHTML = '';
@@ -466,19 +402,7 @@ function buildStampGrid() {
       img.draggable = false;
       img.loading = "lazy";
       el.appendChild(img);
-
-      const copyButton = document.createElement('button');
-      copyButton.type = 'button';
-      copyButton.className = 'copy-stamp';
-      copyButton.setAttribute('aria-label', 'Скопировать код марки');
-      copyButton.setAttribute('title', 'Скопировать код марки');
-      copyButton.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
-      copyButton.addEventListener('click', event => {
-        event.stopPropagation();
-        copyStampCode(stamp, copyButton);
-      });
-      el.appendChild(copyButton);
-
+      const copyButton=document.createElement('button');copyButton.type='button';copyButton.className='copy-stamp';copyButton.setAttribute('aria-label','Скопировать код марки');copyButton.setAttribute('title','Скопировать код марки');copyButton.innerHTML='<i class="fas fa-copy" aria-hidden="true"></i>';copyButton.addEventListener('click',event=>{event.stopPropagation();copyStampCode(stamp,copyButton);});el.appendChild(copyButton);
 
       el.addEventListener('click', () => openModal(stamp));
       rowEl.appendChild(el);

@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Сундук — Слизерин 2026</title>
-<link rel="icon" type="image/x-icon" href="favicon-s.ico">
+<title>Сундук — Слизерин 2025</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
 <style>
@@ -556,10 +555,10 @@ footer {
 
 <div class="nav-section">
   <div class="nav-buttons">
-    <a href="index.html" class="nav-btn">Главная</a>
-    <a href="stamps.html" class="nav-btn">Марки</a>
-	<a href="stamps2.html" class="nav-btn">Марки-символы</a>
-    <a href="game.html" class="nav-btn active">Игра кальмара</a>
+    <a href="https://rav-gifts.github.io/sly/2026/index.html" class="nav-btn">Главная</a>
+    <a href="https://rav-gifts.github.io/sly/2026/stamps.html" class="nav-btn">Марки</a>
+	<a href="https://rav-gifts.github.io/sly/2026/stamps2.html" class="nav-btn">Марки-символы</a>
+    <a href="https://rav-gifts.github.io/sly/2026/game.html" class="nav-btn active">Игра кальмара</a>
   </div>
 </div>
 
@@ -628,54 +627,54 @@ footer {
 
 <script>
 // ── ДАННЫЕ МАРОК ────────────────────────────────────────────────
-const BASE = "images/stamps/";
+const BASE = "https://raw.githubusercontent.com/rav-gifts/rav-gifts.github.io/refs/heads/main/sly/2026/stamps/";
 const stamps = [
-  { src: BASE + "s_эблекфорд.webp",       name: "Элайза Блекфорд",       role: "3 курс" },
-  { src: BASE + "s_норен.webp",            name: "Улла Норен",             role: "5 курс" },
-  { src: BASE + "s_хольмгрен.webp",        name: "Рогнеда Хольмгрен",     role: "выпускник" },
-  { src: BASE + "s_raygan.webp",           name: "Mia Raygan",             role: "выпускник" },
-  { src: BASE + "s_рейвенхарт.webp",       name: "Теодор Рейвенхарт",     role: "1 курс" },
-  { src: BASE + "s_montfort.webp",         name: "Amory de Montfort",      role: "7 курс" },
-  { src: BASE + "s_wilson.webp",           name: "Adrian Wilson",          role: "1 курс" },
-  { src: BASE + "s_тотен-нахтшталь.webp",  name: "Х. Тотен-Нахтшталь",   role: "3 курс" },
-  { src: BASE + "s_брук.webp",             name: "Томас Брук",             role: "выпускник" },
-  { src: BASE + "s_альба.webp",            name: "Идрис Альба",            role: "7 курс" },
-  { src: BASE + "s_игараси.webp",          name: "Игараси Кайто",          role: "1 курс" },
-  { src: BASE + "s_бэлл.webp",             name: "Джейсон Бэлл",           role: "1 курс" },
-  { src: BASE + "s_сезанс.webp",           name: "Кори Сезанс",            role: "выпускник" },
-  { src: BASE + "s_розье.webp",            name: "Каталина Розье",         role: "1 курс" },
-  { src: BASE + "s_вульф.webp",            name: "Каталина Вульф",         role: "4 курс" },
-  { src: BASE + "s_валтер.webp",           name: "Каланта Валтер",         role: "выпускник" },
-  { src: BASE + "s_эйвери.webp",           name: "Аделин Эйвери",          role: "3 курс" },
-  { src: BASE + "s_дру.webp",              name: "Роки Дру",               role: "выпускник" },
-  { src: BASE + "s_дария.webp",            name: "Дария",                  role: "Декан" },
-  { src: BASE + "s_грин.webp",             name: "Владислава Грин",        role: "3 курс" },
-  { src: BASE + "s_коваль.webp",           name: "Ананель Коваль",         role: "4 курс" },
-  { src: BASE + "s_феникс.webp",           name: "Алиса Феникс",           role: "2 курс" },
-  { src: BASE + "s_дюрансе-дейл.webp",     name: "Тиффани Дюрансе-Дейл",  role: "выпускник" },
-  { src: BASE + "s_вестендорф.webp",       name: "Мерседес Вестендорф",    role: "3 курс" },
-  { src: BASE + "s_дельмар.webp",          name: "Мира Дельмар",           role: "1 курс" },
-  { src: BASE + "s_брэнсон.webp",          name: "Лекси Брэнсон",          role: "выпускник" },
-  { src: BASE + "s_блэквуд.webp",          name: "Лилит Блэквуд",          role: "1 курс" },
-  { src: BASE + "s_миллер.webp",           name: "Кэтрин Миллер",          role: "1 курс" },
-  { src: BASE + "s_купер.webp",            name: "Кэтрин Купер",           role: "2 курс" },
-  { src: BASE + "s_helwell.webp",          name: "Gugo Helwell",           role: "Главный лекарь" },
-  { src: BASE + "s_моргрэн.webp",          name: "Эмилия Моргрэн",         role: "1 курс" },
-  { src: BASE + "s_bloodstone.webp",       name: "Agatha Bloodstone",      role: "1 курс" },
-  { src: BASE + "s_duart.webp",            name: "Aisha Duart",            role: "1 курс" },
-  { src: BASE + "s_шейд.webp",             name: "Амарисса Шейд",          role: "1 курс" },
-  { src: BASE + "s_миньярд.webp",          name: "Даниэль Миньярд",        role: "1 курс" },
-  { src: BASE + "s_ардер.webp",            name: "Дарья Ардер",            role: "2 курс" },
-  { src: BASE + "s_дэй.webp",              name: "Дездемона Дэй",          role: "1 курс" },
-  { src: BASE + "s_блэкторн.webp",         name: "Кларенс Блэкторн",       role: "1 курс" },
-  { src: BASE + "s_майерс.webp",           name: "Марс Майерс",            role: "6 курс" },
-  { src: BASE + "s_ноксвуд.webp",          name: "Мирабель Ноксвуд",       role: "2 курс" },
-  { src: BASE + "s_грейсон.webp",          name: "Нуада Грейсон",          role: "3 курс" },
-  { src: BASE + "s_тока.webp",             name: "Рин Тока",               role: "1 курс" },
-  { src: BASE + "s_блэкстоун.webp",        name: "Эдриан Блэкстоун",       role: "2 курс" },
-  { src: BASE + "s_фатхи.webp",            name: "Яхья Фатхи",             role: "выпускник" },
-  { src: BASE + "s_лблекфорд.webp",        name: "Лукреция Блекфорд",      role: "3 курс" },
-  { src: BASE + "s_леонора.webp",          name: "Парселт Леонора",         role: "1 курс" },
+  { src: BASE + "56.webp",       name: "Элайза Блекфорд",       role: "3 курс" },
+  { src: BASE + "46.webp",            name: "Улла Норен",             role: "5 курс" },
+  { src: BASE + "54.webp",        name: "Рогнеда Хольмгрен",     role: "выпускник" },
+  { src: BASE + "05.webp",           name: "Mia Raygan",             role: "выпускник" },
+  { src: BASE + "47.webp",       name: "Теодор Рейвенхарт",     role: "1 курс" },
+  { src: BASE + "04.webp",         name: "Amory de Montfort",      role: "7 курс" },
+  { src: BASE + "06.webp",           name: "Adrian Wilson",          role: "1 курс" },
+  { src: BASE + "51.webp",  name: "Х. Тотен-Нахтшталь",   role: "3 курс" },
+  { src: BASE + "13.webp",             name: "Томас Брук",             role: "выпускник" },
+  { src: BASE + "07.webp",            name: "Идрис Альба",            role: "7 курс" },
+  { src: BASE + "30.webp",          name: "Игараси Кайто",          role: "1 курс" },
+  { src: BASE + "15.webp",             name: "Джейсон Бэлл",           role: "1 курс" },
+  { src: BASE + "49.webp",           name: "Кори Сезанс",            role: "выпускник" },
+  { src: BASE + "48.webp",            name: "Каталина Розье",         role: "1 курс" },
+  { src: BASE + "18.webp",            name: "Каталина Вульф",         role: "4 курс" },
+  { src: BASE + "16.webp",           name: "Каланта Валтер",         role: "выпускник" },
+  { src: BASE + "57.webp",           name: "Аделин Эйвери",          role: "3 курс" },
+  { src: BASE + "25.webp",              name: "Роки Дру",               role: "выпускник" },
+  { src: BASE + "21.webp",            name: "Дария",                  role: "Декан" },
+  { src: BASE + "20.webp",             name: "Владислава Грин",        role: "3 курс" },
+  { src: BASE + "33.webp",           name: "Ананель Коваль",         role: "4 курс" },
+  { src: BASE + "53.webp",           name: "Алиса Феникс",           role: "2 курс" },
+  { src: BASE + "27.webp",     name: "Тиффани Дюрансе-Дейл",  role: "выпускник" },
+  { src: BASE + "17.webp",       name: "Мерседес Вестендорф",    role: "3 курс" },
+  { src: BASE + "22.webp",          name: "Мира Дельмар",           role: "1 курс" },
+  { src: BASE + "14.webp",          name: "Лекси Брэнсон",          role: "выпускник" },
+  { src: BASE + "10.webp",          name: "Лилит Блэквуд",          role: "1 курс" },
+  { src: BASE + "42.webp",           name: "Кэтрин Миллер",          role: "1 курс" },
+  { src: BASE + "38.webp",            name: "Кэтрин Купер",           role: "2 курс" },
+  { src: BASE + "03.webp",          name: "Gugo Helwell",           role: "Главный лекарь" },
+  { src: BASE + "44.webp",          name: "Эмилия Моргрэн",         role: "1 курс" },
+  { src: BASE + "01.webp",       name: "Agatha Bloodstone",      role: "1 курс" },
+  { src: BASE + "02.webp",            name: "Aisha Duart",            role: "1 курс" },
+  { src: BASE + "55.webp",             name: "Амарисса Шейд",          role: "1 курс" },
+  { src: BASE + "43.webp",          name: "Даниэль Миньярд",        role: "1 курс" },
+  { src: BASE + "08.webp",            name: "Дарья Ардер",            role: "2 курс" },
+  { src: BASE + "26.webp",              name: "Дездемона Дэй",          role: "1 курс" },
+  { src: BASE + "12.webp",         name: "Кларенс Блэкторн",       role: "1 курс" },
+  { src: BASE + "41.webp",           name: "Марс Майерс",            role: "6 курс" },
+  { src: BASE + "45.webp",          name: "Мирабель Ноксвуд",       role: "2 курс" },
+  { src: BASE + "19.webp",          name: "Нуада Грейсон",          role: "3 курс" },
+  { src: BASE + "50.webp",             name: "Рин Тока",               role: "1 курс" },
+  { src: BASE + "11.webp",        name: "Эдриан Блэкстоун",       role: "2 курс" },
+  { src: BASE + "52.webp",            name: "Яхья Фатхи",             role: "выпускник" },
+  { src: BASE + "39.webp",        name: "Лукреция Блекфорд",      role: "3 курс" },
+  { src: BASE + "40.webp",          name: "Парселт Леонора",         role: "1 курс" },
 ];
 
 // ── СОСТОЯНИЕ ИГРЫ ───────────────────────────────────────────────
