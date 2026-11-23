@@ -131,64 +131,64 @@
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; } }
 
   .home-hero {
-    width: min(1180px, calc(100% - 2rem));
+    width: min(1080px, calc(100% - 2rem));
     margin: 0 auto;
-    padding: 2.15rem 0 3.25rem;
+    padding: 1.8rem 0 2.6rem;
     display: grid;
-    grid-template-columns: minmax(280px, 1fr) minmax(360px, 470px);
-    gap: 2.25rem;
+    grid-template-columns: minmax(300px, 0.92fr) minmax(320px, 420px);
+    gap: clamp(1.4rem, 3vw, 2.4rem);
     align-items: center;
   }
   .welcome-plain {
-    padding-top: .2rem;
+    max-width: 30rem;
+    padding: 0;
   }
-  .welcome-plain .eyebrow { margin-bottom: .75rem; }
   .welcome-plain h2 {
-    margin: 0 0 1rem;
-    font-size: clamp(2rem, 4vw, 3rem);
-    line-height: 1.02;
+    margin: 0 0 .8rem;
+    font-size: clamp(1.85rem, 2.8vw, 2.65rem);
+    line-height: 1.04;
     color: var(--ink);
   }
   .welcome-plain p {
-    margin: 0 0 .95rem;
+    margin: 0 0 .72rem;
     color: #434d67;
-    font: 400 1.18rem/1.56 "Yanone Kaffeesatz", sans-serif;
-    letter-spacing: .015em;
-    max-width: 34rem;
-  }
-  .welcome-plain .callout {
-    margin-top: 1.2rem;
-    color: #7b6f56;
-    font: 500 1rem/1.35 "Yanone Kaffeesatz", sans-serif;
-    letter-spacing: .08em;
-    text-transform: uppercase;
+    font: 400 1.08rem/1.44 "Yanone Kaffeesatz", sans-serif;
+    letter-spacing: .012em;
+    max-width: 29rem;
   }
   .home-actions {
-    margin-top: 1.9rem;
+    margin-top: 1.25rem;
   }
   .hero-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 255px;
-    padding: .92rem 1.5rem .84rem;
-    border-radius: 18px;
-    border: 1px solid rgba(185,152,96,.35);
-    background: linear-gradient(180deg, #d7b787, #cfad79);
-    box-shadow: 0 8px 18px rgba(92, 76, 43, .13), inset 0 1px rgba(255,255,255,.24);
-    color: #fbf5ea;
+    padding: .56rem 1rem .5rem;
+    border: 1px solid rgba(32,41,68,.18);
+    border-radius: 999px;
+    color: var(--ink);
+    background: rgba(246,240,226,.5);
+    box-shadow: inset 0 1px rgba(255,255,255,.58);
     text-decoration: none;
-    font: 400 1.18rem "Cormorant Unicase", serif;
-    letter-spacing: .03em;
-    transition: transform .18s ease, filter .18s ease;
+    font: 500 1rem "Yanone Kaffeesatz", sans-serif;
+    letter-spacing: .035em;
+    transition: background .18s ease, border-color .18s ease, transform .18s ease;
+  }
+  .hero-button::after {
+    content: "  →";
+    white-space: pre;
   }
   .hero-button:hover {
+    background: rgba(32,41,68,.07);
+    border-color: rgba(32,41,68,.28);
     transform: translateY(-1px);
-    filter: brightness(1.03);
   }
   .stamp-collage {
     position: relative;
-    min-height: 690px;
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 0.72;
+    justify-self: end;
   }
   .stamp-collage .stamp-piece {
     position: absolute;
@@ -200,45 +200,39 @@
     transition: transform .22s ease, filter .22s ease;
   }
   .stamp-collage .stamp-piece:hover {
-    transform: rotate(var(--r)) translateY(-4px) scale(1.025);
-    filter: drop-shadow(0 14px 16px rgba(25,29,43,.24));
+    transform: rotate(var(--r)) translateY(-3px) scale(1.018);
+    filter: drop-shadow(0 12px 14px rgba(25,29,43,.22));
   }
   .stamp-collage .stamp-piece img {
     display: block;
     width: 100%;
     height: auto;
   }
-  .stamp-sheila { top: 18px; left: 70px; --w: 230px; --r: -4deg; z-index: 4; }
-  .stamp-club   { top: 150px; left: 8px;  --w: 185px; --r: -1deg; z-index: 2; }
-  .stamp-team   { top: 74px; left: 210px; --w: 190px; --r: 2deg;  z-index: 3; }
-  .stamp-candy  { top: 372px; left: 118px; --w: 195px; --r: 0deg;  z-index: 1; }
-  .stamp-grey   { top: 295px; left: 235px; --w: 160px; --r: -3deg; z-index: 5; }
-  .stamp-eagle  { top: 225px; left: 155px; --w: 130px; --r: 1deg;  z-index: 6; }
-  @media (max-width: 980px) {
+  .stamp-sheila { top: 2.5%;  left: 27%; --w: 50%; --r: -4deg; z-index: 4; }
+  .stamp-club   { top: 24%;   left: 1%;  --w: 40%; --r: -1deg; z-index: 2; }
+  .stamp-team   { top: 12%;   left: 55%; --w: 41%; --r: 2deg;  z-index: 3; }
+  .stamp-candy  { top: 61%;   left: 29%; --w: 42%; --r: 0deg;  z-index: 1; }
+  .stamp-grey   { top: 48%;   left: 61%; --w: 34%; --r: -3deg; z-index: 5; }
+  .stamp-eagle  { top: 39%;   left: 8%;  --w: 28%; --r: 1deg;  z-index: 6; }
+
+  /* Keep the two-column composition on ordinary desktop/tablet widths.
+     It only stacks on genuinely narrow screens. */
+  @media (max-width: 740px) {
     .home-hero {
       grid-template-columns: 1fr;
-      gap: 1.4rem;
-      width: min(100% - 1.25rem, 860px);
+      width: min(100% - 1.25rem, 620px);
+      gap: 1rem;
+    }
+    .welcome-plain {
+      max-width: none;
+    }
+    .welcome-plain p {
+      max-width: 34rem;
     }
     .stamp-collage {
-      order: 2;
-      min-height: 620px;
-      max-width: 470px;
-      width: 100%;
-      margin: 0 auto;
+      max-width: 370px;
+      justify-self: center;
     }
-  }
-  @media (max-width: 700px) {
-    .stamp-collage {
-      min-height: 530px;
-      max-width: 360px;
-    }
-    .stamp-sheila { top: 14px; left: 54px; --w: 185px; }
-    .stamp-club   { top: 118px; left: 0px;  --w: 150px; }
-    .stamp-team   { top: 62px; left: 170px; --w: 150px; }
-    .stamp-candy  { top: 300px; left: 90px;  --w: 155px; }
-    .stamp-grey   { top: 240px; left: 188px; --w: 130px; }
-    .stamp-eagle  { top: 188px; left: 118px; --w: 105px; }
   }
   </style>
 </head>
@@ -259,12 +253,10 @@
     </nav>
     <section class="home-hero">
       <article class="welcome-plain">
-        <span class="eyebrow">Добро пожаловать</span>
         <h2>С Днем Когтеврана!</h2>
         <p>Пусть этот день будет наполнен вдохновением, хорошими идеями, веселыми открытиями и маленькими чудесами, которые умеют случаться только в башне Когтеврана.</p>
         <p>Здесь собраны праздничные марки, специальные ВанКоги и другие маленькие факультетские радости. Заглядывайте в разделы, выполняйте активности, поддерживайте друг друга и пополняйте коллекции.</p>
         <p>А главное — оставайтесь такими же любознательными, остроумными, талантливыми и немного невыносимо прекрасными.</p>
-        <div class="callout">Мудрость · творчество · игра · полет фантазии</div>
         <div class="home-actions">
           <a class="hero-button" href="stamps.html">Открыть коллекцию</a>
         </div>
@@ -279,6 +271,6 @@
       </div>
     </section>
   </main>
-  <footer>День Когтеврана 2026 · Главная страница</footer>
+  <footer>День Когтеврана 2026</footer>
 </body>
 </html>

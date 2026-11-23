@@ -1,0 +1,1 @@
+v4.7: smaller stamps; compact scalable desktop homepage; removed welcome eyebrow/callout; subtle collection link; eagle repositioned; unified footer.
