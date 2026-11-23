@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Unicase:wght@300;400;500;600;700&family=Yanone+Kaffeesatz:wght@200..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
     html {
       scroll-behavior: smooth;
@@ -180,6 +181,51 @@
         max-height: 100px;
       }
     }
+
+    .stamp-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+    }
+
+    .copy-stamp {
+      position: absolute;
+      top: -0.4rem;
+      right: -0.4rem;
+      z-index: 20;
+      width: 1.72rem;
+      height: 1.72rem;
+      padding: 0;
+      border: 1px solid rgba(77, 59, 47, 0.18);
+      border-radius: 50%;
+      background: rgba(246, 242, 230, 0.94);
+      color: #4D3B2F;
+      display: grid;
+      place-items: center;
+      font-size: 0.76rem;
+      cursor: pointer;
+      opacity: 0.58;
+      box-shadow: 0 2px 6px rgba(0,0,0,.12);
+      transition: opacity .18s ease, transform .18s ease, background-color .18s ease;
+    }
+
+    .stamp-wrap:hover .copy-stamp,
+    .copy-stamp:focus-visible {
+      opacity: 1;
+    }
+
+    .copy-stamp:hover {
+      transform: scale(1.08);
+      background: #fffaf0;
+    }
+
+    .copy-stamp.copied {
+      color: #4d775a;
+      opacity: 1;
+    }
+
   </style>
 </head>
 <body>
@@ -250,6 +296,45 @@
     const rowPattern = [6, 5, 6, 5, 6, 5, 4];
     const mainGallery = document.getElementById('main-gallery');
 
+
+    const PUBLIC_STAMP_BASE = "https://raven-hd.github.io/raven-gifts/hufflepuff/2025/";
+
+    async function copyTextToClipboard(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.setAttribute('readonly', '');
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      textarea.remove();
+    }
+
+    async function copyStampCode(imgData, button) {
+      const imageUrl = PUBLIC_STAMP_BASE + imgData.src;
+      const bbcode = `\n\n[hr]\n[right][width=70][img]${imageUrl}[/img][/width][/right]`;
+
+      try {
+        await copyTextToClipboard(bbcode);
+        const icon = button.querySelector('i');
+        button.classList.add('copied');
+        icon.className = 'fas fa-check';
+
+        setTimeout(() => {
+          button.classList.remove('copied');
+          icon.className = 'fas fa-copy';
+        }, 1100);
+      } catch (error) {
+        console.error('Не удалось скопировать код марки:', error);
+      }
+    }
+
     function renderGallery() {
       mainGallery.innerHTML = '';
       let imageIndex = 0;
@@ -269,7 +354,29 @@
           img.setAttribute('style', `--angle: ${angle}; --scale: ${scale};`);
           img.setAttribute('data-caption', imgData.caption);
 
-          row.appendChild(img);
+          const stampWrap = document.createElement('div');
+          stampWrap.className = 'stamp-wrap';
+
+          const copyButton = document.createElement('button');
+          copyButton.type = 'button';
+          copyButton.className = 'copy-stamp';
+          copyButton.setAttribute('aria-label', 'Скопировать код марки');
+          copyButton.setAttribute('title', 'Скопировать код марки');
+          copyButton.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
+
+          copyButton.addEventListener('click', function (event) {
+            event.stopPropagation();
+            copyStampCode(imgData, copyButton);
+          });
+
+          stampWrap.appendChild(img);
+          stampWrap.appendChild(copyButton);
+
+          if (imgData.src === "_") {
+            stampWrap.style.display = "none";
+          }
+
+          row.appendChild(stampWrap);
           imageIndex++;
         }
         mainGallery.appendChild(row);
