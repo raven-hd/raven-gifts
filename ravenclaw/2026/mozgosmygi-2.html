@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#202944">
+  <title>Задача №2 — КОГТЕВРАНЦЫ И ИХ ПОДАРКИ — День Когтеврана 2026</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Unicase:wght@400;500;600;700&family=Yanone+Kaffeesatz:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="logic-grid.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="logic-grid.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <h1>Мозгошмыги</h1>
+      <p class="subtitle">Секретное задание · День Когтеврана 2026</p>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="secret-label">Логическое испытание · задача 02</div>
+    <div id="puzzlesContainer"></div>
+  </main>
+
+  <footer class="site-footer">День Когтеврана 2026 · Мозгошмыги</footer>
+
+  <script type="application/json" id="logicGridConfig">
+{
+  "puzzles": [
+    {
+      "id": "task2",
+      "title": "Задача №2 — КОГТЕВРАНЦЫ И ИХ ПОДАРКИ",
+      "description": "Когтевранцы любят радовать друг друга подарками и регулярно отправляют небольшие посылки своим друзьям. На прошлой неделе пятеро когтевранцев отправили друг другу подарки в разные дни. Сможете ли вы определить, кто отправлял подарок в каждый день недели, кому он предназначался и что находилось внутри посылки?",
+      "peopleName": "Отправитель",
+      "people": [
+        "Амилия",
+        "Кэмерин",
+        "Мерида",
+        "Шелия",
+        "Блейк"
+      ],
+      "categories": [
+        {
+          "name": "Дни недели",
+          "values": ["Понедельник", "Вторник", "Четверг", "Пятница", "Суббота"]
+        },
+        {
+          "name": "Получатели",
+          "values": ["Адрианна", "Эсмеральда", "Артемиссия", "Лина", "Теа"]
+        },
+        {
+          "name": "Подарки",
+          "values": ["Котёл", "Подушка с Тедди", "Книги", "Набор перьев", "Фрукты"]
+        }
+      ],
+      "clues": [
+        "По просьбе одной из подруг в день, предшествующий отправке подарка Эсмеральде, но после отправки подарка из Мериды, была отправлена посылка с фруктами.",
+        "Посылка с котлом была отправлена раньше, чем посылка с набором перьев. При этом набор перьев отправляли не Амилия.",
+        "В понедельник подарок отправляли не Лине, а в субботу отправитель был не Шелия.",
+        "Одна из посылок была отправлена от Блейк к Артемиссии. Это произошло либо за день до отправки набора перьев Лине, либо на следующий день после неё.",
+        "Подарок для Теи (не от Блейк) был отправлен на два дня позже посылки, отправленной из Мериды."
+      ]
+    }
+  ]
+}
+  </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#202944">
+  <title>Задача №1 — ПЯТЬ КОГТЕВРАНОК И ИХ ПОСЫЛКИ — День Когтеврана 2026</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Unicase:wght@400;500;600;700&family=Yanone+Kaffeesatz:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="logic-grid.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="logic-grid.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <h1>Мозгошмыги</h1>
+      <p class="subtitle">Секретное задание · День Когтеврана 2026</p>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="secret-label">Логическое испытание · задача 01</div>
+    <div id="puzzlesContainer"></div>
+  </main>
+
+  <footer class="site-footer">День Когтеврана 2026 · Мозгошмыги</footer>
+
+  <script type="application/json" id="logicGridConfig">
+{
+  "puzzles": [
+    {
+      "id": "task1",
+      "title": "Задача №1 — ПЯТЬ КОГТЕВРАНОК И ИХ ПОСЫЛКИ",
+      "description": "У каждого из пяти друзей есть любимый лондонский магазин, из которого он ждёт посылку, и любимый хогсмидовский магазин, из которого он также ждёт посылку. Кроме того, каждый из друзей ожидает определённое количество посылок. Определите, какой лондонский и хогсмидовский магазины выбрал каждый из друзей, а также сколько всего посылок он ждёт.",
+      "peopleName": "Имя",
+      "people": [
+        "Жужу",
+        "Хелена",
+        "Айлин",
+        "Беата",
+        "Нимерия"
+      ],
+      "categories": [
+        {
+          "name": "Лондон",
+          "values": ["Potter's teashop", "Всё для зельеварения", "Bomb'arda", "Sole", "Флориш и Блоттс"]
+        },
+        {
+          "name": "Хогсмид",
+          "values": ["Под крылом ворона", "Плюшевый чародей", "Сладкое Королевство", "Зонко", "Rich Peach"]
+        },
+        {
+          "name": "Количество посылок",
+          "values": ["2", "3", "4", "6", "7"]
+        }
+      ],
+      "clues": [
+        "У того, кто ждёт посылку из магазина «Всё для зельеварения», вдвое больше посылок, чем у человека, который ждёт посылку из магазина «Зонко».",
+        "Посылки из «Рич Пич» и «Bombarda» придут к одному и тому же человеку и это не Айлин. Однако этот человек может быть, а может и не быть тем, кто ждёт на три посылки меньше, чем Айлин.",
+        "У Нимерии на четыре посылки больше, чем у Хелены.",
+        "Девушка, которая ждёт две посылки, — не Жужу, которая ждёт посылку из магазина «Плюшевый чародей».",
+        "Та, кто ждёт посылку из магазина «Сладкое Королевство», ждёт меньше посылок, чем тот, кто ждёт посылку из магазина «Флориш и Блоттс».",
+        "Жужу не ждёт посылку из магазина «Sole»."
+      ]
+    }
+    ]
+}
+  </script>
+</body>
+</html>

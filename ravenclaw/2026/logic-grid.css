@@ -1,0 +1,440 @@
+* { box-sizing: border-box; }
+
+:root {
+  --ink: #202944;
+  --ink-soft: #2d3857;
+  --ink-deep: #171d31;
+  --paper: #eee5d1;
+  --paper-soft: #f7f1e5;
+  --paper-deep: #e2d6bd;
+  --cream: #f6f0e2;
+  --bronze: #9b8c70;
+  --bronze-soft: #c9b995;
+  --slate: #6d7587;
+  --muted: #616a80;
+  --line: rgba(32, 41, 68, .22);
+  --line-strong: rgba(32, 41, 68, .38);
+  --shadow: rgba(25, 29, 43, .14);
+  --mark-red: #c98378;
+  --mark-red-deep: #8f514a;
+  --mark-blue: #8799bb;
+  --mark-blue-deep: #405579;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,.55), transparent 43rem),
+    linear-gradient(135deg, #f3ecdd 0%, #e7dec9 52%, #eee7d9 100%);
+  font-family: "Cormorant Unicase", serif;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: .22;
+  background-image:
+    linear-gradient(rgba(32,41,68,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(32,41,68,.018) 1px, transparent 1px);
+  background-size: 26px 26px;
+  mask-image: linear-gradient(to bottom, black, transparent 78%);
+}
+
+.site-header {
+  position: relative;
+  z-index: 2;
+  color: var(--cream);
+  background:
+    radial-gradient(circle at 72% -30%, rgba(155,140,112,.22), transparent 30rem),
+    linear-gradient(135deg, #1d2540, #283453 70%, #202944);
+  border-bottom: 1px solid rgba(205,188,151,.48);
+  box-shadow: 0 5px 18px rgba(20,24,38,.14);
+}
+
+.header-inner {
+  width: min(1080px, calc(100% - 3rem));
+  margin: 0 auto;
+  padding: 2.25rem 0 1.85rem;
+  text-align: right;
+}
+
+.site-header h1 {
+  margin: 0;
+  font-size: clamp(2.05rem, 4vw, 3.25rem);
+  font-weight: 600;
+  letter-spacing: .015em;
+}
+
+.subtitle {
+  margin: .35rem 0 0;
+  color: #d8c9a9;
+  font: 400 clamp(1.08rem, 2vw, 1.35rem) "Yanone Kaffeesatz", sans-serif;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+  width: min(1280px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 2.35rem 0 3.5rem;
+}
+
+.secret-label {
+  width: min(1080px, 100%);
+  margin: 0 auto 1rem;
+  color: #897a5e;
+  font: 500 .88rem "Yanone Kaffeesatz", sans-serif;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.puzzle-card {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding: clamp(1rem, 2.4vw, 1.7rem);
+  margin: 0 0 1.5rem;
+  border: 1px solid rgba(32,41,68,.14);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 94% 4%, rgba(155,140,112,.11), transparent 22rem),
+    rgba(250,247,239,.78);
+  box-shadow:
+    inset 0 1px rgba(255,255,255,.72),
+    0 12px 30px rgba(25,29,43,.075);
+}
+
+.puzzle-card > h2 {
+  margin: 0 0 .55rem;
+  font-size: clamp(1.55rem, 2.7vw, 2.15rem);
+  font-weight: 600;
+  line-height: 1.12;
+}
+
+.puzzle-card > p {
+  max-width: 980px;
+  margin: 0 0 1.15rem;
+  color: #434d67;
+  font: 400 1.12rem/1.48 "Yanone Kaffeesatz", sans-serif;
+  letter-spacing: .015em;
+}
+
+.puzzle-card h3 {
+  margin: 1.5rem 0 .65rem;
+  font-size: 1.24rem;
+  font-weight: 600;
+}
+
+.puzzle-card ol {
+  margin: .45rem 0 1.35rem;
+  padding-left: 1.5rem;
+  color: #3f4963;
+  font: 400 1.06rem/1.5 "Yanone Kaffeesatz", sans-serif;
+}
+
+.puzzle-card li {
+  margin: .35rem 0;
+  padding-left: .18rem;
+}
+
+.logic-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(255,255,255,.52);
+  box-shadow: inset 0 1px rgba(255,255,255,.65);
+  scrollbar-color: rgba(32,41,68,.35) rgba(155,140,112,.12);
+}
+
+.logic-table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: var(--ink);
+  background: rgba(255,255,255,.55);
+  font: 400 .98rem "Yanone Kaffeesatz", sans-serif;
+}
+
+.logic-table th,
+.logic-table td {
+  border: 1px solid rgba(32,41,68,.24);
+  padding: 7px 9px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.marks-table {
+  width: max-content;
+  min-width: 100%;
+  table-layout: fixed;
+}
+
+.marks-table .corner-cell {
+  width: 112px;
+  min-width: 112px;
+  background: #e8dfcc;
+}
+
+.marks-table .category-group,
+.answers-table thead th {
+  color: var(--cream);
+  background:
+    linear-gradient(135deg, #263150, #202944);
+  font-family: "Cormorant Unicase", serif;
+  font-weight: 600;
+  letter-spacing: .02em;
+}
+
+.marks-table .category-group {
+  font-size: 1rem;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+.marks-table .column-value {
+  width: 40px;
+  min-width: 40px;
+  max-width: 40px;
+  height: 136px;
+  padding: 8px 5px;
+  background: #e9e1d1;
+  color: #35405c;
+  font-weight: 500;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  overflow: hidden;
+}
+
+.marks-table .row-group {
+  width: 38px;
+  min-width: 38px;
+  padding: 8px 5px;
+  color: var(--cream);
+  background:
+    linear-gradient(180deg, #2b3656, #202944);
+  font-family: "Cormorant Unicase", serif;
+  font-weight: 600;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  white-space: nowrap;
+}
+
+.marks-table .row-value {
+  width: 154px;
+  min-width: 154px;
+  text-align: left;
+  background: #f2ecdf;
+  color: #35405c;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.marks-table .mark-cell {
+  position: relative;
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  padding: 0;
+  cursor: pointer;
+  background: rgba(255,255,255,.76);
+  transition: background-color .12s ease, box-shadow .12s ease;
+}
+
+.marks-table .mark-cell:hover {
+  outline: 2px solid rgba(155,140,112,.86);
+  outline-offset: -2px;
+  background: #fffdf7;
+}
+
+.marks-table .mark-cell:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: -3px;
+}
+
+.marks-table .mark-cell.mark-red {
+  background: #ead1cb;
+}
+
+.marks-table .mark-cell.mark-red::after {
+  content: "×";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--mark-red-deep);
+  font: 600 1.45rem/1 "Yanone Kaffeesatz", sans-serif;
+}
+
+.marks-table .mark-cell.mark-blue {
+  background: #d6ddec;
+}
+
+.marks-table .mark-cell.mark-blue::after {
+  content: "●";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--mark-blue-deep);
+  font-size: .86rem;
+}
+
+.answers-table {
+  width: 100%;
+  min-width: 560px;
+}
+
+.answers-table thead th {
+  font-size: 1rem;
+}
+
+.answers-table .answer-person {
+  min-width: 150px;
+  text-align: left;
+  background: #eee6d7;
+  color: #35405c;
+}
+
+.answers-table .answer-cell {
+  min-width: 130px;
+  height: 44px;
+  text-align: left;
+  cursor: text;
+  background: rgba(255,255,255,.7);
+}
+
+.answers-table .answer-cell:focus {
+  outline: 2px solid var(--bronze);
+  outline-offset: -2px;
+  background: #fffdf8;
+}
+
+.answers-table .answer-cell:empty::before {
+  content: attr(data-placeholder);
+  color: #9a9aa0;
+}
+
+.screenshot-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.2rem;
+  border: 1px solid rgba(216,201,169,.34);
+  border-radius: 999px;
+  padding: .72rem 1.2rem .67rem;
+  color: var(--cream);
+  background:
+    linear-gradient(135deg, #2d3857, #202944);
+  box-shadow:
+    inset 0 1px rgba(255,255,255,.09),
+    0 5px 13px rgba(25,29,43,.14);
+  font: 500 1rem "Yanone Kaffeesatz", sans-serif;
+  letter-spacing: .035em;
+  cursor: pointer;
+  transition: transform .18s ease, filter .18s ease;
+}
+
+.screenshot-button:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+}
+
+.screenshot-button:disabled {
+  opacity: .6;
+  cursor: wait;
+  transform: none;
+}
+
+.error-message {
+  padding: 1rem 1.1rem;
+  border: 1px solid #b8726a;
+  border-radius: 12px;
+  color: #7d403a;
+  background: #f5e1dc;
+  font: 400 1rem "Yanone Kaffeesatz", sans-serif;
+}
+
+.site-footer {
+  position: relative;
+  z-index: 2;
+  padding: 1.1rem 1.5rem 1.25rem;
+  color: #d9cdb4;
+  text-align: center;
+  font: 400 .98rem "Yanone Kaffeesatz", sans-serif;
+  letter-spacing: .055em;
+  background: var(--ink);
+  border-top: 1px solid rgba(205,188,151,.35);
+}
+
+.muted {
+  color: var(--muted);
+  font: 400 .94rem "Yanone Kaffeesatz", sans-serif;
+}
+
+@media (max-width: 760px) {
+  .header-inner {
+    width: min(100% - 2rem, 720px);
+    padding: 1.65rem 0 1.35rem;
+  }
+
+  .page {
+    width: min(100% - 1rem, 720px);
+    padding: 1.35rem 0 2.4rem;
+  }
+
+  .puzzle-card {
+    padding: .9rem;
+    border-radius: 14px;
+  }
+
+  .marks-table .row-value {
+    min-width: 128px;
+    width: 128px;
+  }
+
+  .marks-table .category-group {
+    min-width: 150px;
+  }
+}
+
+@media (max-width: 460px) {
+  .page {
+    width: calc(100% - .6rem);
+  }
+
+  .puzzle-card {
+    border-radius: 11px;
+    padding: .65rem;
+  }
+
+  .puzzle-card ol {
+    padding-left: 1.25rem;
+  }
+
+  .logic-table th,
+  .logic-table td {
+    padding: 6px 7px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}
