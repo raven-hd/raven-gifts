@@ -222,15 +222,17 @@ main {
   padding: 0;
   border: 1px solid rgba(172,156,108,0.58);
   border-radius: 50%;
-  background: rgba(12,18,12,0.72);
+  background: rgba(12,18,12,0.78);
   color: var(--gold);
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.05rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
   line-height: 1;
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  opacity: 0.82;
+  opacity: 0.9;
   transition: opacity .2s ease, border-color .2s ease, background .2s ease, transform .2s ease;
 }
 #rules-fab:hover,
@@ -238,7 +240,7 @@ main {
   opacity: 1;
   border-color: var(--gold);
   background: rgba(172,156,108,0.10);
-  transform: scale(1.05);
+  transform: scale(1.03);
   outline: none;
 }
 
@@ -599,8 +601,8 @@ footer {
   <!-- СЦЕНА СУНДУКА -->
   <div id="chest-scene">
     <div id="chest-wrap">
-      <img id="chest-img" src="images/game/chest.png" alt="Сундук">
-      <img id="lock-img"  src="images/game/lock.png" alt="Замок">
+      <img id="chest-img" src="images/game/chest.webp" alt="Сундук">
+      <img id="lock-img"  src="images/game/lock.webp" alt="Замок">
     </div>
     <p id="chest-hint">Нажми на замок</p>
   </div>
@@ -630,7 +632,7 @@ footer {
 
     <!-- КАЛЬМАР (абсолютно справа, за границей поля) -->
     <div id="squid-wrap">
-      <img id="squid-img" src="images/game/squid.png" alt="Кальмар">
+      <img id="squid-img" src="images/game/squid.webp" alt="Кальмар">
     </div>
   </div>
 </main>
@@ -790,7 +792,7 @@ function renderTable() {
     card.innerHTML = `
       <div class="tc-inner">
         <div class="tc-back">
-          <div class="tc-back-inner"><img src="images/game/card-back.png" alt=""></div>
+          <div class="tc-back-inner"><img src="images/game/card-back.webp" alt=""></div>
         </div>
         <div class="tc-front">
           <img src="${stamp.src}" alt="${stamp.name}" loading="lazy">
