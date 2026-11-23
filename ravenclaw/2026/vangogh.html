@@ -77,7 +77,7 @@
     display: inline-flex; align-items: center; gap: .5rem; color: #8a8b93; background: rgba(246,240,226,.36);
     border-style: dashed; cursor: not-allowed; opacity: .9;
   }
-  nav .nav-disabled .fa-lock { color: #c39a4a; }
+  nav .nav-disabled .fa-lock { color: var(--ink); font-size: .72em; }
   main { position: relative; z-index: 1; flex: 1; width: 100%; }
   .content-shell { width: min(1080px, calc(100% - 3rem)); margin: 0 auto; padding: 2.35rem 0 3.5rem; }
   .intro-card {
@@ -89,6 +89,26 @@
   .intro-card h2 { margin: 0 0 .55rem; font-size: clamp(1.55rem, 2.7vw, 2.15rem); font-weight: 600; }
   .intro-card p { margin: 0; max-width: 860px; font: 400 1.12rem/1.48 "Yanone Kaffeesatz", sans-serif; letter-spacing: .018em; color: #3f4963; }
   .eyebrow { display: inline-block; margin-bottom: .6rem; color: #897a5e; font: 500 .88rem "Yanone Kaffeesatz", sans-serif; letter-spacing: .13em; text-transform: uppercase; }
+    .vangogh-intro {
+    margin: 0 0 1.7rem;
+    max-width: 880px;
+  }
+  .vangogh-intro h2 {
+    margin: 0 0 .45rem;
+    font-size: clamp(1.35rem, 2.35vw, 1.9rem);
+    font-weight: 600;
+  }
+  .vangogh-intro h3 {
+    margin: 0 0 .7rem;
+    font-size: clamp(1.55rem, 2.7vw, 2.15rem);
+    font-weight: 600;
+  }
+  .vangogh-intro p {
+    margin: 0;
+    color: #3f4963;
+    font: 400 1.12rem/1.52 "Yanone Kaffeesatz", sans-serif;
+    letter-spacing: .018em;
+  }
   .task-list { display: grid; gap: .8rem; }
   .task-card {
     display: grid; grid-template-columns: auto 1fr; gap: .9rem 1rem; align-items: start;
@@ -157,11 +177,11 @@
       <span class="nav-disabled"><i class="fa-solid fa-lock" aria-hidden="true"></i><span>Сотрудники месяца</span></span>
     </nav>
     <section class="content-shell">
-      <div class="intro-card">
-        <span class="eyebrow">Специальная коллекция ко Дню Когтеврана</span>
-        <h2>«ВанКоговские марки»</h2>
+      <section class="vangogh-intro">
+        <h2>Специальная коллекция ко Дню Когтеврана</h2>
+        <h3>«ВанКоговские марки»</h3>
         <p>За выполнение дополнительных активностей можно получить целых пять ВанКоговских марок, как это уже было в других факультетских коллекциях. Только в этот раз в игры играть не придется. Выбирайте направление по душе и пополняйте редкую праздничную серию.</p>
-      </div>
+      </section>
 
       <div class="task-list">
         <article class="task-card">
