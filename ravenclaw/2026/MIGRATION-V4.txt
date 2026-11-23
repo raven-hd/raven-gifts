@@ -1,1 +1,0 @@
-v4: home page added, gallery moved to stamps.html, Vangoghi content updated, employees section locked.

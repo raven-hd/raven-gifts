@@ -1,1 +1,0 @@
-v4.2: homepage collage changed to right-side collage with text left; lock icon switched to Font Awesome style.

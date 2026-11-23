@@ -130,11 +130,25 @@
   @media (max-width: 430px) { .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8rem .55rem; } }
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; } }
 
+
+  .task-card a,
+  .intro-card a {
+    color: #34466f;
+    text-decoration-color: rgba(52,70,111,.45);
+    text-underline-offset: .16em;
+    text-decoration-thickness: 1px;
+  }
+  .task-card a:hover,
+  .intro-card a:hover {
+    color: #202944;
+    text-decoration-color: #9b8c70;
+  }
   </style>
 </head>
 
 <body>
-  <header><div class="header-inner"><h1>ВанКоги</h1><p class="subtitle">Специальные марки · День Когтеврана 2026</p></div></header>
+  <header><div class="header-inner"><h1>ВанКоги</h1>
+      <p class="subtitle">Специальные марки · Игры кончились</p></div></header>
   <main>
     <nav aria-label="Навигация">
       <a href="index.html">Главная</a>
@@ -143,15 +157,53 @@
       <span class="nav-disabled"><i class="fa-solid fa-lock" aria-hidden="true"></i><span>Сотрудники месяца</span></span>
     </nav>
     <section class="content-shell">
-      <div class="intro-card"><span class="eyebrow">Специальная коллекция</span><h2>Ван Гоговские марки</h2><p>За выполнение дополнительных активностей можно получить специальные ВанКоги — особую серию марок с номинациями, как это уже было в других факультетских коллекциях. Выбирайте направление по душе и пополняйте редкую праздничную серию.</p></div>
-      <div class="task-list">
-        <article class="task-card"><div class="task-number">01</div><div><h3>Креативная группа</h3><p>Оставьте свою творческую работу в свечной мастерской, сонграйтерской RavenBro, Волшебной арт-студии или в мастерской леденцов.</p></div></article>
-        <article class="task-card"><div class="task-number">02</div><div><h3>Игротека века</h3><p>Сыграйте рейтинговый матч в Фруктобое.</p></div></article>
-        <article class="task-card"><div class="task-number">03</div><div><h3>Мозгошмыгные проделки</h3><p>Напишите отзыв на книгу в Литературном клубе или пополните когтевранскую библиотеку на 3 книги, полезные для учебы.</p></div></article>
-        <article class="task-card"><div class="task-number">04</div><div><h3>Деньги не проблема</h3><p>Совершите три покупки в когтевранских магазинах для себя или «вон тому парню»; если вы студент ПО — напишите для Блейк Эллингтон 5 вариантов, на чем еще можно заработать деньги на покупку Азкабана.</p></div></article>
-        <article class="task-card"><div class="task-number">05</div><div><h3>Полет нормальный</h3><p>Принесите плакат поддержки любому когтевранцу (включая судью), участвующему в ВШТ, на трибуны.</p></div></article>
+      <div class="intro-card">
+        <span class="eyebrow">Специальная коллекция ко Дню Когтеврана</span>
+        <h2>«ВанКоговские марки»</h2>
+        <p>За выполнение дополнительных активностей можно получить целых пять ВанКоговских марок, как это уже было в других факультетских коллекциях. Только в этот раз в игры играть не придется. Выбирайте направление по душе и пополняйте редкую праздничную серию.</p>
       </div>
-      <div class="placeholder-note">Номинации для специальных марок: <strong>Креативная группа</strong>, <strong>Игротека века</strong>, <strong>Мозгошмыгные проделки</strong>, <strong>Деньги не проблема</strong> и <strong>Полет нормальный</strong>.</div>
+
+      <div class="task-list">
+        <article class="task-card">
+          <div class="task-number">01</div>
+          <div>
+            <h3>Креативная группа</h3>
+            <p>Оставьте свою творческую работу в свечной мастерской, сонграйтерской <a href="https://rave.dhog.org/viewtopic.php?t=1248" target="_blank" rel="noopener noreferrer">RavenBro</a>, <a href="https://rave.dhog.org/viewforum.php?f=17" target="_blank" rel="noopener noreferrer">Волшебной арт-студии</a> или в <a href="https://rave.dhog.org/viewtopic.php?t=10" target="_blank" rel="noopener noreferrer">мастерской леденцов</a>.</p>
+          </div>
+        </article>
+
+        <article class="task-card">
+          <div class="task-number">02</div>
+          <div>
+            <h3>Игротека века</h3>
+            <p>Сыграйте рейтинговый матч в <a href="https://raven-hd.github.io/fruitkog-battle/?view=tournament#" target="_blank" rel="noopener noreferrer">Фруктобое</a>.</p>
+          </div>
+        </article>
+
+        <article class="task-card">
+          <div class="task-number">03</div>
+          <div>
+            <h3>Мозгошмыгные проделки</h3>
+            <p>Напишите отзыв на книгу в <a href="https://rave.dhog.org/viewforum.php?f=15" target="_blank" rel="noopener noreferrer">Литературном клубе</a> или пополните <a href="https://rave.dhog.org/viewtopic.php?t=1276" target="_blank" rel="noopener noreferrer">когтевранскую библиотеку</a> на 3 книги, полезные для учебы.</p>
+          </div>
+        </article>
+
+        <article class="task-card">
+          <div class="task-number">04</div>
+          <div>
+            <h3>Деньги не проблема</h3>
+            <p>Совершите три покупки в когтевранских магазинах <a href="https://hogsmeade.dhog.org/viewforum.php?f=85" target="_blank" rel="noopener noreferrer">«Под крылом Ворона»</a> или <a href="https://hogsmeade.dhog.org/viewforum.php?f=174" target="_blank" rel="noopener noreferrer">«Rich Peach»</a> для себя или «вон тому парню»; если вы студент ПО — напишите для Блейк Эллингтон 5 вариантов, на чем еще можно заработать деньги на покупку Азкабана.</p>
+          </div>
+        </article>
+
+        <article class="task-card">
+          <div class="task-number">05</div>
+          <div>
+            <h3>Полет нормальный</h3>
+            <p>Принесите плакат поддержки любому когтевранцу (включая судью), участвующему в ВШТ, на <a href="https://dhog.org/viewtopic.php?t=6360" target="_blank" rel="noopener noreferrer">трибуны</a>.</p>
+          </div>
+        </article>
+      </div>
     </section>
   </main>
   <footer>День Когтеврана 2026</footer>

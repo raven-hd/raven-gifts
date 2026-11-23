@@ -1,1 +1,0 @@
-v4.6: gallery captions removed; full captions remain only in modal; copy buttons preserved.
