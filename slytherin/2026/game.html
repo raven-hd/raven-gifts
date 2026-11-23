@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Сундук — Слизерин 2026</title>
+<title>Игра гигантского кальмара — Слизерин 2026</title>
+<link rel="icon" type="image/x-icon" href="favicon-s.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
 <style>
@@ -207,41 +208,6 @@ main {
   border-color: var(--gold);
   background: rgba(172,156,108,0.25);
   color: var(--gold);
-}
-
-.bubble-btns:empty { display: none; }
-
-/* маленькая кнопка правил — как в исходной версии */
-#rules-fab {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  z-index: 8;
-  width: 38px;
-  height: 38px;
-  padding: 0;
-  border: 1px solid rgba(172,156,108,0.58);
-  border-radius: 50%;
-  background: rgba(12,18,12,0.78);
-  color: var(--gold);
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  opacity: 0.9;
-  transition: opacity .2s ease, border-color .2s ease, background .2s ease, transform .2s ease;
-}
-#rules-fab:hover,
-#rules-fab:focus-visible {
-  opacity: 1;
-  border-color: var(--gold);
-  background: rgba(172,156,108,0.10);
-  transform: scale(1.03);
-  outline: none;
 }
 
 /* ── КОНТЕЙНЕР СТОЛА (центрирован) ── */
@@ -611,7 +577,6 @@ footer {
   <div id="game-area">
     <!-- ОБЛАКО КАЛЬМАРА (широкое, статическое, над картами) -->
     <div id="speech-bubble">
-      <button id="rules-fab" type="button" title="Узнать правила" aria-label="Узнать правила">?</button>
       <div class="bubble-text" id="bubble-text"></div>
       <div class="bubble-btns" id="bubble-btns"></div>
     </div>
@@ -851,11 +816,15 @@ function showSquidStart() {
   const wrap = document.getElementById('squid-wrap');
   setBubble(
     'Буль-буль... Сундук открыт! Открывай карты на столе одну за другой — слева направо.',
-    [],
+    [
+      { label: 'Узнать правила', id: 'btn-rules' }
+    ],
     false
   );
   wrap.style.display = 'flex';
   requestAnimationFrame(() => requestAnimationFrame(() => { wrap.style.opacity = '1'; }));
+
+  document.getElementById('btn-rules').addEventListener('click', openRules);
 }
 
 function updateSquidMid(stamp) {
@@ -912,7 +881,6 @@ function setBubble(htmlText, buttons, win) {
 function openRules() {
   document.getElementById('rules-modal').classList.add('open');
 }
-document.getElementById('rules-fab').addEventListener('click', openRules);
 document.getElementById('rules-close').addEventListener('click', () => {
   document.getElementById('rules-modal').classList.remove('open');
 });
