@@ -1,110 +1,558 @@
 <!DOCTYPE html>
-<html lang="ru"><head><meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Гроза кальмара — Слизерин 2026</title>
-<link rel="icon" type="image/x-icon" href="favicon-s.ico">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<style>
-:root{--mist:#d6c9ad;--parch:#efe5cd;--gold:#ac9c6c;--gold2:#c7b98b;--line:rgba(172,156,108,.35);}
-*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;min-height:100vh;font-family:'Cormorant Garamond',serif;color:var(--mist);background:radial-gradient(circle at 20% 18%, rgba(172,156,108,.12), transparent 30%),radial-gradient(circle at 80% 10%, rgba(172,156,108,.08), transparent 22%),linear-gradient(180deg,#0b1110 0%,#101716 52%,#0c1312 100%);display:flex;flex-direction:column}
-header{position:relative;z-index:10;overflow:hidden;padding:3.2rem 1rem 2rem;text-align:center;border-bottom:1px solid rgba(172,156,108,.16);background:radial-gradient(circle at 50% 14%, rgba(172,156,108,.13), transparent 34%),linear-gradient(180deg, rgba(10,15,14,.86), rgba(10,15,14,.58));}
-.header-inner{max-width:960px;margin:0 auto} .header-title{margin:0 0 .5rem;line-height:1.04;font-family:'Cinzel',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--parch);text-shadow:0 0 60px rgba(172,156,108,.4),0 0 120px rgba(172,156,108,.15)} .header-sub{font-style:italic;font-size:1.05rem;color:var(--parch);opacity:.85}
-.nav-section{position:relative;z-index:10;display:flex;justify-content:center;padding:1.2rem 1rem .8rem;background:transparent} .nav-buttons{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap} .nav-btn{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;color:var(--parch);padding:.5rem 1.2rem;border:1px solid rgba(155,140,94,.45);border-radius:2px;background:rgba(8,13,12,.65);backdrop-filter:blur(4px);transition:color .22s,border-color .22s,background .22s} .nav-btn:hover{color:var(--gold2);border-color:rgba(172,156,108,.7);background:rgba(8,13,12,.85)} .nav-btn.active{color:var(--gold2);border-color:rgba(172,156,108,.65);background:rgba(172,156,108,.18)}
-main{flex:1;max-width:1200px;width:100%;margin:0 auto;padding:1rem 1.2rem 4rem} .intro{max-width:920px;margin:0 auto 2.4rem;text-align:center;padding:1.3rem 1.4rem;color:var(--mist);border:1px solid var(--line);background:linear-gradient(180deg, rgba(18,26,24,.66), rgba(10,15,14,.74));box-shadow:0 12px 30px rgba(0,0,0,.18)} .intro p{margin:.45rem 0;font-size:1.1rem;line-height:1.55}
-.section-container{display:flex;flex-direction:column;align-items:center;margin-bottom:1.5rem} .section-title{text-align:center;font-family:'Cinzel',serif;font-size:1.7rem;color:var(--parch);margin:1.5rem 0 .8rem;padding-bottom:.65rem;display:inline-block;position:relative;letter-spacing:.04em} .section-title::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,880px);height:2px;background:linear-gradient(90deg, transparent, rgba(172,156,108,.7), transparent)}
-.gallery{display:flex;flex-direction:column;align-items:center;padding:.5rem;overflow:hidden;width:100%} .row{display:flex;justify-content:center;flex-wrap:wrap;gap:1rem;margin-bottom:1rem;position:relative;animation-duration:24s;animation-iteration-count:infinite;animation-timing-function:ease-in-out;animation-direction:alternate} .row:nth-child(odd){animation-name:moveRowOdd} .row:nth-child(even){animation-name:moveRowEven}
-@keyframes moveRowOdd{0%{transform:translateX(-26px)}100%{transform:translateX(26px)}} @keyframes moveRowEven{0%{transform:translateX(26px)}100%{transform:translateX(-26px)}}
-.stamp{height:auto;width:auto;max-height:220px;max-width:160px;transition:transform .28s ease;cursor:pointer;image-rendering:auto;filter:drop-shadow(0 8px 18px rgba(0,0,0,.34));object-fit:contain;margin:.35rem} .stamp:hover{transform:scale(1.06)}
-.stamp-wrap{position:relative;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}.copy-stamp{position:absolute;top:.15rem;right:.15rem;z-index:20;width:1.72rem;height:1.72rem;padding:0;border:1px solid rgba(172,156,108,.32);border-radius:50%;background:rgba(8,13,12,.88);color:var(--gold2);display:grid;place-items:center;font-size:.72rem;cursor:pointer;opacity:.58;box-shadow:0 2px 8px rgba(0,0,0,.28);transition:opacity .18s ease,transform .18s ease,background-color .18s ease,color .18s ease}.stamp-wrap:hover .copy-stamp,.copy-stamp:focus-visible{opacity:1}.copy-stamp:hover{transform:scale(1.08);background:rgba(172,156,108,.18)}.copy-stamp.copied{color:#9ab991;opacity:1}.modal{display:none;position:fixed;inset:0;background-color:rgba(0,0,0,.78);justify-content:center;align-items:center;z-index:1000;flex-direction:column;padding:1rem} .modal img{max-width:92%;max-height:78%} .caption{color:var(--parch);font-size:1.35rem;text-align:center;background-color:rgba(8,13,12,.92);padding:1rem 1.5rem;border:1px solid rgba(172,156,108,.4);border-radius:6px;margin-top:1rem;max-width:90%} .close-btn{margin-top:1rem;color:var(--parch);cursor:pointer;font-size:1rem;letter-spacing:.08em;text-transform:uppercase}
-footer{text-align:center;padding:1.5rem;font-size:1rem;background-color:#0d1413;color:var(--parch);font-family:'Cinzel',serif;border-top:1px solid rgba(172,156,108,.18)}
-@media (max-width:1200px){.stamp{max-height:200px;max-width:140px}} @media (max-width:1024px){.stamp{max-height:180px;max-width:120px}} @media (max-width:768px){.stamp{max-height:160px;max-width:100px} .section-title{font-size:1.45rem} .intro p{font-size:1rem} .nav-buttons{gap:.6rem} .nav-btn{letter-spacing:.12em;font-size:.64rem;padding:.48rem .85rem}} @media (max-width:560px){header{padding-top:2.6rem} .stamp{max-height:145px;max-width:88px} .row{gap:.5rem;animation:none} .caption{font-size:1.08rem;padding:.9rem 1rem}}
-</style></head><body>
-<header><div class="header-inner"><h1 class="header-title">Гроза кальмара</h1><p class="header-sub">Победители игры гигантского кальмара · День Слизерина 2026</p></div></header>
-<div class="nav-section"><div class="nav-buttons"><a href="index.html" class="nav-btn">Главная</a><a href="stamps.html" class="nav-btn">Марки</a><a href="stamps2.html" class="nav-btn">Марки-символы</a><a href="game.html" class="nav-btn">Игра кальмара</a><a href="squidstorm.html" class="nav-btn active">Гроза кальмара</a></div></div>
-<main><section class="intro"><p>Те, кто не побоялся сундука, щелкнул замок, перехитрил кальмара и собрал верные комбинации, заслужили особое место на этой странице.</p><p>Здесь собраны победители игры и их памятные марки — по группам, как и полагается настоящей грозе кальмара.</p></section><div id="sections-root"></div></main>
-<div class="modal" id="image-modal"><img id="modal-image" src="" alt="Увеличенное изображение марки"><div class="caption" id="modal-caption"></div><div class="close-btn" id="modal-close">Закрыть</div></div><footer>День Слизерина 2026</footer>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Победители кальмара — Слизерин 2026</title>
+ <link rel="icon" type="image/x-icon" href="favicon-s.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.cs<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg:     #324034;
+    --gold:   #ac9c6c;
+    --gold2:  #d2c7a7;
+    --olive:  #849474;
+    --parch:  #9b8c5e;
+  }
+
+  html, body { height: 100%; }
+
+  body {
+    background: var(--bg);
+    color: var(--gold2);
+    font-family: 'Cormorant Garamond', serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 20% 70%, rgba(92,103,78,0.25) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 60% at 80% 20%, rgba(60,76,60,0.20) 0%, transparent 55%),
+      radial-gradient(ellipse 80% 50% at 50% 50%, rgba(36,52,36,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse 100% 40% at 50% 100%, rgba(8,13,12,0.5) 0%, transparent 50%);
+    animation: bgDrift 18s ease-in-out infinite alternate;
+    pointer-events: none;
+  }
+  @keyframes bgDrift {
+    0%   { transform: scale(1) translate(0,0); }
+    100% { transform: scale(1.03) translate(-1%,1%); }
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: relative; z-index: 10;
+    padding: 2rem 2rem 1.4rem;
+    background: linear-gradient(to bottom, rgba(4,6,4,0.99) 0%, rgba(8,13,12,0.98) 100%);
+    text-align: right;
+  }
+  .header-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .header-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.6rem, 4vw, 2.8rem);
+    font-weight: 700; line-height: 1.15; color: var(--gold2);
+    text-shadow: 0 0 60px rgba(172,156,108,0.4), 0 0 120px rgba(172,156,108,0.15);
+    margin-bottom: 0.45rem;
+  }
+  .header-title em {
+    font-style: normal; color: var(--gold);
+    text-shadow: 0 0 35px rgba(172,156,108,0.6), 0 0 70px rgba(172,156,108,0.25);
+  }
+  .header-sub {
+    font-style: italic; font-size: 1.05rem; color: var(--parch); opacity: 0.85;
+  }
+
+  /* ── НАВИГАЦИЯ ── */
+  .nav-section {
+    position: relative; z-index: 10;
+    display: flex;
+    justify-content: center;
+    padding: 1.2rem 1rem 0.8rem;
+    background: transparent;
+  }
+  .nav-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .nav-btn {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--parch);
+    padding: 0.5rem 1.2rem;
+    border: 1px solid rgba(155,140,94,0.45);
+    border-radius: 2px;
+    background: rgba(8,13,12,0.65);
+    backdrop-filter: blur(4px);
+    transition: color 0.22s, border-color 0.22s, background 0.22s;
+  }
+  .nav-btn:hover {
+    color: var(--gold2);
+    border-color: rgba(172,156,108,0.7);
+    background: rgba(8,13,12,0.85);
+  }
+  .nav-btn.active {
+    color: var(--gold2);
+    border-color: rgba(172,156,108,0.65);
+    background: rgba(172,156,108,0.18);
+  }
+
+  /* ── INTRO ── */
+  .page-intro {
+    position: relative; z-index: 1;
+    text-align: center; padding: 1rem 2rem 0.2rem;
+    font-style: italic; color: var(--parch); opacity: 0.8; font-size: 0.95rem;
+  }
+
+  /* ── ПОЛЕ МАРОК: УВЕЛИЧЕННЫЕ ЗАЗОРЫ, УМЕНЬШЕННЫЙ РАЗМЕР ── */
+  #stamp-field {
+    position: relative; z-index: 1;
+    width: 100%;
+    padding: 1.2rem 4% 3rem;
+  }
+
+  .stamp-row {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 32px;                /* увеличен зазор между марками (горизонталь) */
+    margin-bottom: 38px;      /* увеличен вертикальный зазор между рядами */
+    flex-wrap: nowrap;
+  }
+
+  .stamp-item {
+    flex-shrink: 0;
+    cursor: pointer;
+    user-select: none;
+    transform: rotate(var(--rot, 0deg));
+    transition: transform 0.22s ease;
+    position: relative;
+  }
+  .stamp-item img {
+    display: block; width: 100%;
+    filter: drop-shadow(0 3px 10px rgba(0,0,0,0.5)) drop-shadow(0 0 5px rgba(155,140,94,0.08));
+    transition: filter 0.22s;
+  }
+  .stamp-item:hover {
+    transform: rotate(var(--rot, 0deg)) scale(1.1) translateY(-5px);
+    z-index: 20;
+  }
+  .stamp-item:hover img {
+    filter: drop-shadow(0 8px 20px rgba(0,0,0,0.65)) drop-shadow(0 0 14px rgba(172,156,108,0.28));
+  }
+
+  /* ── MODAL ── */
+  #modal {
+    display: none; position: fixed; inset: 0; z-index: 200;
+    background: rgba(8,13,12,0.92); backdrop-filter: blur(12px);
+    align-items: center; justify-content: center;
+  }
+  #modal.open { display: flex; }
+  #modal-inner {
+    position: relative; text-align: center;
+    animation: popIn 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    max-width: 540px; width: 92%;
+  }
+  @keyframes popIn {
+    from { transform: scale(0.85); opacity: 0; }
+    to   { transform: scale(1);    opacity: 1; }
+  }
+  #modal-img {
+    width: 440px; max-width: 85vw;
+    margin: 0 auto 1.5rem; display: block;
+    border: none; outline: none; border-radius: 4px;
+    filter:
+      drop-shadow(0 0 40px rgba(172,156,108,0.35))
+      drop-shadow(0 0 80px rgba(172,156,108,0.15))
+      drop-shadow(0 14px 40px rgba(0,0,0,0.85));
+  }
+  .modal-sep {
+    width: 60px; height: 1px;
+    background: linear-gradient(to right, transparent, rgba(172,156,108,0.45), transparent);
+    margin: 0 auto 1rem;
+  }
+  #modal-name {
+    font-family: 'Cinzel', serif; font-size: 1.15rem;
+    color: var(--gold2); margin-bottom: 0.4rem; letter-spacing: 0.06em;
+  }
+  #modal-role { font-style: italic; font-size: 1rem; color: var(--parch); line-height: 1.5; }
+  #modal-close {
+    position: absolute; top: -0.6rem; right: -0.6rem;
+    background: rgba(8,13,12,0.95); border: 1px solid rgba(155,140,94,0.3);
+    color: var(--parch); width: 2.2rem; height: 2.2rem;
+    border-radius: 50%; font-size: 1rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  #modal-close:hover { color: var(--gold2); border-color: var(--gold); }
+
+  /* ── FOOTER ── */
+  footer {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+    text-align: center; padding: 1rem 1.8rem;
+    font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 0.3em;
+    color: rgba(155,140,94,0.45);
+    border-top: 1px solid rgba(155,140,94,0.15);
+    background: linear-gradient(to top, rgba(4,6,4,0.97) 0%, rgba(8,13,12,0.92) 100%);
+    backdrop-filter: blur(6px);
+  }
+
+  /* ── RIPPLE ── */
+  .ripple-ring {
+    position: fixed; border-radius: 50%; pointer-events: none; z-index: 9999;
+    transform: translate(-50%,-50%); width: 0; height: 0;
+    border: 1.5px solid transparent;
+    animation: waterRipple var(--dur,1.4s) cubic-bezier(0.15,0.5,0.4,1) var(--delay,0s) forwards;
+  }
+  @keyframes waterRipple {
+    0%   { width:4px; height:2px; opacity:0.8; border-width:1.5px; }
+    40%  { opacity:0.5; }
+    100% { width:var(--maxW,220px); height:var(--maxH,70px); opacity:0; border-width:0.5px; }
+  }
+
+  /* ── АДАПТИВ: планшеты и мобильные ── */
+  @media (max-width: 900px) {
+    .stamp-row {
+      gap: 28px;
+      margin-bottom: 34px;
+    }
+  }
+  @media (max-width: 640px) {
+    header { padding: 1.6rem 1.2rem 0.8rem; }
+    .header-title { font-size: clamp(1.35rem,6vw,1.9rem); }
+    .nav-btn { font-size: 0.6rem; padding: 0.4rem 0.9rem; letter-spacing: 0.12em; }
+    .stamp-row {
+      gap: 22px;
+      margin-bottom: 28px;
+    }
+    #modal-img { width: 280px; }
+  }
+  @media (max-width: 500px) {
+    .stamp-row {
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+    .nav-buttons {
+      gap: 0.65rem;
+    }
+    .nav-btn {
+      font-size: 0.55rem;
+      padding: 0.35rem 0.75rem;
+    }
+  }
+  @media (max-width: 400px) {
+    .stamp-row {
+      gap: 14px;
+    }
+  }
+
+  .copy-stamp{position:absolute;top:-.55rem;right:-.55rem;z-index:35;width:1.72rem;height:1.72rem;padding:0;border-radius:50%;border:1px solid rgba(172,156,108,.38);background:rgba(8,13,12,.90);color:#d2c7a7;display:grid;place-items:center;font-size:.75rem;cursor:pointer;opacity:.62;box-shadow:0 3px 9px rgba(0,0,0,.35);transition:opacity .18s ease,transform .18s ease,color .18s ease,border-color .18s ease}.stamp-item:hover .copy-stamp,.copy-stamp:focus-visible{opacity:1}.copy-stamp:hover{color:#ac9c6c;border-color:rgba(172,156,108,.72);transform:scale(1.08)}.copy-stamp.copied{color:#849474;opacity:1}
+
+
+  /* ── ГРУППЫ ПОБЕДИТЕЛЕЙ: единственное дополнение к странице марок ── */
+  .winner-group {
+    position: relative;
+    margin: 0 0 1.1rem;
+  }
+  .winner-group-title {
+    position: relative; z-index: 2;
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold2);
+    margin: 0.8rem auto 1.5rem;
+    padding: 0 1rem 0.85rem;
+    width: fit-content;
+  }
+  .winner-group-title::after {
+    content: '';
+    position: absolute;
+    left: 50%; bottom: 0;
+    transform: translateX(-50%);
+    width: min(300px, 70vw);
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(172,156,108,0.5), transparent);
+  }
+  .winner-group + .winner-group {
+    margin-top: 1.2rem;
+  }
+</style>yle>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <h1 class="header-title">Победители кальмара</h1>
+    <p class="header-sub">День Слизерина 2026</p>
+  </div>
+</header>
+
+<div class="nav-section">
+  <div class="nav-buttons">
+    <a href="index.html" class="nav-btn">Главная</a>
+    <a href="stamps.html" class="nav-btn">Коллекция марок</a>
+    <a href="stamps2.html" class="nav-btn">Марки-символы</a>
+    <a href="game.html" class="nav-btn">Игра кальмара</a>
+    <a href="squidstorm.html" class="nav-btn active">Гроза кальмара</a>
+  </div>
+</div>
+
+<p class="page-intro"></p>
+
+<div id="stamp-field"></div>
+
+<div id="modal">
+  <div id="modal-inner">
+    <button id="modal-close">✕</button>
+    <img id="modal-img" src="" alt="">
+    <div class="modal-sep"></div>
+    <div id="modal-name"></div>
+    <div id="modal-role"></div>
+  </div>
+</div>
+
+<footer>© Подарок ко Дню Слизерина 2026 · С любовью от Когтеврана</footer>
+
 <script>
-const sections=[
-      {
-        title: "«Алладин»",
-        images: [
-          { src: "images/winners/award-01.webp", caption: "Ананель Коваль, 6 курс" },
-          { src: "images/winners/award-02.webp", caption: "Мэр Хогсмида и Магического Лондона Grace Diamond-de-Kur" },
-          { src: "images/winners/award-03.webp", caption: "Julietta Helwell-de-Kur, 3 курс" },
-          { src: "images/winners/award-04.webp", caption: "Хелена Кейн, 3 курс" },
-          { src: "images/winners/award-05.webp", caption: "Главный лекарь Gugo Helwell, выпускница" },
-          { src: "images/winners/award-06.webp", caption: "Даррен Кейн" },
-          { src: "images/winners/award-07.webp", caption: "Староста факультета Элайза Блекфорд, 4 курс" },
-          { src: "images/winners/award-08.webp", caption: "Беата ЛаВей, 4 курс" },
-          { src: "images/winners/award-09.webp", caption: "Мерида Морграфт, 5 курс" }
-        ]
-      }
-,      {
-        title: "«Возмутители спокойствия»",
-        images: [
-          { src: "images/winners/award-10.webp", caption: "Ананель Коваль, 6 курс" },
-          { src: "images/winners/award-11.webp", caption: "Мэр Хогсмида и Магического Лондона Grace Diamond-de-Kur" },
-          { src: "images/winners/award-12.webp", caption: "Julietta Helwell-de-Kur, 3 курс" },
-          { src: "images/winners/award-13.webp", caption: "Хелена Кейн, 3 курс" },
-          { src: "images/winners/award-14.webp", caption: "Главный лекарь Gugo Helwell, выпускница" },
-          { src: "images/winners/award-15.webp", caption: "Даррен Кейн" },
-          { src: "images/winners/award-16.webp", caption: "Староста факультета Элайза Блекфорд, 4 курс" },
-          { src: "images/winners/award-17.webp", caption: "Беата ЛаВей, 4 курс" },
-          { src: "images/winners/award-18.webp", caption: "Мерида Морграфт, 5 курс" }
-        ]
-      }
-,      {
-        title: "«Клубная карта»",
-        images: [
-          { src: "images/winners/award-19.webp", caption: "Ананель Коваль, 6 курс" },
-          { src: "images/winners/award-20.webp", caption: "Мэр Хогсмида и Магического Лондона Grace Diamond-de-Kur" },
-          { src: "images/winners/award-21.webp", caption: "Julietta Helwell-de-Kur, 3 курс" },
-          { src: "images/winners/award-22.webp", caption: "Хелена Кейн, 3 курс" },
-          { src: "images/winners/award-23.webp", caption: "Главный лекарь Gugo Helwell, выпускница" },
-          { src: "images/winners/award-24.webp", caption: "Даррен Кейн" },
-          { src: "images/winners/award-25.webp", caption: "Староста факультета Элайза Блекфорд, 4 курс" },
-          { src: "images/winners/award-26.webp", caption: "Беата ЛаВей, 4 курс" },
-          { src: "images/winners/award-27.webp", caption: "Мерида Морграфт, 5 курс" }
-        ]
-      }
-,      {
-        title: "«Острые языки»",
-        images: [
-          { src: "images/winners/award-28.webp", caption: "Ананель Коваль, 6 курс" },
-          { src: "images/winners/award-29.webp", caption: "Мэр Хогсмида и Магического Лондона Grace Diamond-de-Kur" },
-          { src: "images/winners/award-30.webp", caption: "Julietta Helwell-de-Kur, 3 курс" },
-          { src: "images/winners/award-31.webp", caption: "Хелена Кейн, 3 курс" },
-          { src: "images/winners/award-32.webp", caption: "Главный лекарь Gugo Helwell, выпускница" },
-          { src: "images/winners/award-33.webp", caption: "Даррен Кейн" },
-          { src: "images/winners/award-34.webp", caption: "Блейк Эллингтон, 6 курс" },
-          { src: "images/winners/award-35.webp", caption: "Староста факультета Элайза Блекфорд, 4 курс" },
-          { src: "images/winners/award-36.webp", caption: "Беата ЛаВей, 4 курс" },
-          { src: "images/winners/award-37.webp", caption: "Мерида Морграфт, 5 курс" }
-        ]
-      }
-,      {
-        title: "«Трендсеттеры»",
-        images: [
-          { src: "images/winners/award-38.webp", caption: "Ананель Коваль, 6 курс" },
-          { src: "images/winners/award-39.webp", caption: "Мэр Хогсмида и Магического Лондона Grace Diamond-de-Kur" },
-          { src: "images/winners/award-40.webp", caption: "Julietta Helwell-de-Kur, 3 курс" },
-          { src: "images/winners/award-41.webp", caption: "Хелена Кейн, 3 курс" },
-          { src: "images/winners/award-42.webp", caption: "Главный лекарь Gugo Helwell, выпускница" },
-          { src: "images/winners/award-43.webp", caption: "Даррен Кейн" },
-          { src: "images/winners/award-44.webp", caption: "Амилия Лиссаранд, 5 курс" },
-          { src: "images/winners/award-45.webp", caption: "Староста факультета Элайза Блекфорд, 4 курс" },
-          { src: "images/winners/award-46.webp", caption: "Беата ЛаВей, 4 курс" },
-          { src: "images/winners/award-47.webp", caption: "Мерида Морграфт, 5 курс" }
-        ]
-      }
+// ─── WINNER DATA ───────────────────────────────────────────────
+const BASE = "images/winners/";
+const winnerGroups = [
+  {
+    title: "«Алладин»",
+    stamps: [
+      { src: BASE + "award-01.webp", name: "Ананель Коваль", role: "6 курс" },
+      { src: BASE + "award-02.webp", name: "Grace Diamond-de-Kur", role: "Мэр Хогсмида и Магического Лондона" },
+      { src: BASE + "award-03.webp", name: "Julietta Helwell-de-Kur", role: "3 курс" },
+      { src: BASE + "award-04.webp", name: "Хелена Кейн", role: "3 курс" },
+      { src: BASE + "award-05.webp", name: "Gugo Helwell", role: "Главный лекарь, выпускница" },
+      { src: BASE + "award-06.webp", name: "Даррен Кейн", role: "" },
+      { src: BASE + "award-07.webp", name: "Элайза Блекфорд", role: "Староста факультета, 4 курс" },
+      { src: BASE + "award-08.webp", name: "Беата ЛаВей", role: "4 курс" },
+      { src: BASE + "award-09.webp", name: "Мерида Морграфт", role: "5 курс" }
+    ]
+  },
+  {
+    title: "«Возмутители спокойствия»",
+    stamps: [
+      { src: BASE + "award-10.webp", name: "Ананель Коваль", role: "6 курс" },
+      { src: BASE + "award-11.webp", name: "Grace Diamond-de-Kur", role: "Мэр Хогсмида и Магического Лондона" },
+      { src: BASE + "award-12.webp", name: "Julietta Helwell-de-Kur", role: "3 курс" },
+      { src: BASE + "award-13.webp", name: "Хелена Кейн", role: "3 курс" },
+      { src: BASE + "award-14.webp", name: "Gugo Helwell", role: "Главный лекарь, выпускница" },
+      { src: BASE + "award-15.webp", name: "Даррен Кейн", role: "" },
+      { src: BASE + "award-16.webp", name: "Элайза Блекфорд", role: "Староста факультета, 4 курс" },
+      { src: BASE + "award-17.webp", name: "Беата ЛаВей", role: "4 курс" },
+      { src: BASE + "award-18.webp", name: "Мерида Морграфт", role: "5 курс" }
+    ]
+  },
+  {
+    title: "«Клубная карта»",
+    stamps: [
+      { src: BASE + "award-19.webp", name: "Ананель Коваль", role: "6 курс" },
+      { src: BASE + "award-20.webp", name: "Grace Diamond-de-Kur", role: "Мэр Хогсмида и Магического Лондона" },
+      { src: BASE + "award-21.webp", name: "Julietta Helwell-de-Kur", role: "3 курс" },
+      { src: BASE + "award-22.webp", name: "Хелена Кейн", role: "3 курс" },
+      { src: BASE + "award-23.webp", name: "Gugo Helwell", role: "Главный лекарь, выпускница" },
+      { src: BASE + "award-24.webp", name: "Даррен Кейн", role: "" },
+      { src: BASE + "award-25.webp", name: "Элайза Блекфорд", role: "Староста факультета, 4 курс" },
+      { src: BASE + "award-26.webp", name: "Беата ЛаВей", role: "4 курс" },
+      { src: BASE + "award-27.webp", name: "Мерида Морграфт", role: "5 курс" }
+    ]
+  },
+  {
+    title: "«Острые языки»",
+    stamps: [
+      { src: BASE + "award-28.webp", name: "Ананель Коваль", role: "6 курс" },
+      { src: BASE + "award-29.webp", name: "Grace Diamond-de-Kur", role: "Мэр Хогсмида и Магического Лондона" },
+      { src: BASE + "award-30.webp", name: "Julietta Helwell-de-Kur", role: "3 курс" },
+      { src: BASE + "award-31.webp", name: "Хелена Кейн", role: "3 курс" },
+      { src: BASE + "award-32.webp", name: "Gugo Helwell", role: "Главный лекарь, выпускница" },
+      { src: BASE + "award-33.webp", name: "Даррен Кейн", role: "" },
+      { src: BASE + "award-34.webp", name: "Блейк Эллингтон", role: "6 курс" },
+      { src: BASE + "award-35.webp", name: "Элайза Блекфорд", role: "Староста факультета, 4 курс" },
+      { src: BASE + "award-36.webp", name: "Беата ЛаВей", role: "4 курс" },
+      { src: BASE + "award-37.webp", name: "Мерида Морграфт", role: "5 курс" }
+    ]
+  },
+  {
+    title: "«Трендсеттеры»",
+    stamps: [
+      { src: BASE + "award-38.webp", name: "Ананель Коваль", role: "6 курс" },
+      { src: BASE + "award-39.webp", name: "Grace Diamond-de-Kur", role: "Мэр Хогсмида и Магического Лондона" },
+      { src: BASE + "award-40.webp", name: "Julietta Helwell-de-Kur", role: "3 курс" },
+      { src: BASE + "award-41.webp", name: "Хелена Кейн", role: "3 курс" },
+      { src: BASE + "award-42.webp", name: "Gugo Helwell", role: "Главный лекарь, выпускница" },
+      { src: BASE + "award-43.webp", name: "Даррен Кейн", role: "" },
+      { src: BASE + "award-44.webp", name: "Амилия Лиссаранд", role: "5 курс" },
+      { src: BASE + "award-45.webp", name: "Элайза Блекфорд", role: "Староста факультета, 4 курс" },
+      { src: BASE + "award-46.webp", name: "Беата ЛаВей", role: "4 курс" },
+      { src: BASE + "award-47.webp", name: "Мерида Морграфт", role: "5 курс" }
+    ]
+  }
 ];
-const root=document.getElementById('sections-root'),modal=document.getElementById('image-modal'),modalImage=document.getElementById('modal-image'),modalCaption=document.getElementById('modal-caption'),modalClose=document.getElementById('modal-close');
-const PUBLIC_STAMP_BASE="https://raven-hd.github.io/raven-gifts/slytherin/2026/";
-async function copyTextToClipboard(text){if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text);return;}const textarea=document.createElement('textarea');textarea.value=text;textarea.setAttribute('readonly','');textarea.style.position='fixed';textarea.style.opacity='0';document.body.appendChild(textarea);textarea.select();document.execCommand('copy');textarea.remove();}
-async function copyStampCode(item,button){const imageUrl=PUBLIC_STAMP_BASE+item.src;const bbcode=`\n\n[hr]\n[right][width=70][img]${imageUrl}[/img][/width][/right]`;try{await copyTextToClipboard(bbcode);const icon=button.querySelector('i');button.classList.add('copied');icon.className='fas fa-check';setTimeout(()=>{button.classList.remove('copied');icon.className='fas fa-copy';},1100);}catch(error){console.error('Не удалось скопировать код марки:',error);}}
-function chunk(arr,size){const result=[];for(let i=0;i<arr.length;i+=size)result.push(arr.slice(i,i+size));return result;}
-sections.forEach(section=>{const wrap=document.createElement('section');wrap.className='section-container';const title=document.createElement('h2');title.className='section-title';title.textContent=section.title;wrap.appendChild(title);const gallery=document.createElement('div');gallery.className='gallery';chunk(section.images,6).forEach(items=>{const row=document.createElement('div');row.className='row';items.forEach(item=>{const img=document.createElement('img');img.className='stamp';img.src=item.src;img.alt=item.caption;img.loading='lazy';img.addEventListener('click',()=>{modalImage.src=item.src;modalCaption.textContent=item.caption;modal.style.display='flex';});const wrap=document.createElement('div');wrap.className='stamp-wrap';const copyButton=document.createElement('button');copyButton.type='button';copyButton.className='copy-stamp';copyButton.setAttribute('aria-label','Скопировать код марки');copyButton.setAttribute('title','Скопировать код марки');copyButton.innerHTML='<i class="fas fa-copy" aria-hidden="true"></i>';copyButton.addEventListener('click',(event)=>{event.stopPropagation();copyStampCode(item,copyButton);});wrap.appendChild(img);wrap.appendChild(copyButton);row.appendChild(wrap);});gallery.appendChild(row);});wrap.appendChild(gallery);root.appendChild(wrap);});
-function closeModal(){modal.style.display='none';modalImage.src='';modalCaption.textContent='';} modalClose.addEventListener('click',closeModal); modal.addEventListener('click',(e)=>{if(e.target===modal)closeModal();}); document.addEventListener('keydown',(e)=>{if(e.key==='Escape'&&modal.style.display==='flex')closeModal();});
-</script></body></html>
+
+// ─── SEEDED RANDOM: тот же принцип, что на странице марок ──────
+function seededRand(seed) {
+  let s = seed;
+  return function() {
+    s = (s * 1664525 + 1013904223) & 0xffffffff;
+    return (s >>> 0) / 0xffffffff;
+  };
+}
+
+const field = document.getElementById('stamp-field');
+const PUBLIC_STAMP_BASE = "https://raven-hd.github.io/raven-gifts/slytherin/2026/images/winners/";
+
+async function copyTextToClipboard(text){
+  if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text);return;}
+  const textarea=document.createElement('textarea');
+  textarea.value=text; textarea.setAttribute('readonly','');
+  textarea.style.position='fixed'; textarea.style.opacity='0';
+  document.body.appendChild(textarea); textarea.select(); document.execCommand('copy'); textarea.remove();
+}
+async function copyStampCode(stamp,button){
+  const filename=stamp.src.split('/').pop();
+  const imageUrl=PUBLIC_STAMP_BASE+filename;
+  const bbcode=`\n\n[hr]\n[right][width=70][img]${imageUrl}[/img][/width][/right]`;
+  try{
+    await copyTextToClipboard(bbcode);
+    const icon=button.querySelector('i'); button.classList.add('copied'); icon.className='fas fa-check';
+    setTimeout(()=>{button.classList.remove('copied');icon.className='fas fa-copy';},1100);
+  }catch(error){console.error('Не удалось скопировать код марки:',error);}
+}
+
+function createRows(stamps, groupIndex) {
+  const rand = seededRand(23 + groupIndex * 101);
+  const fw = document.body.clientWidth || window.innerWidth;
+
+  let colPattern;
+  if (fw < 500) colPattern = [3, 3, 4, 3];
+  else if (fw < 750) colPattern = [5, 4, 5, 4];
+  else colPattern = [6, 5, 6, 5, 6];
+
+  const maxCols = Math.max(...colPattern);
+  const GAP_X = fw < 500 ? 12 : (fw < 750 ? 20 : 28);
+  const PAD = fw * 0.045;
+  const SIZE_FACTOR = 0.58;
+  let baseWidth = Math.round((fw - PAD * 2 - GAP_X * (maxCols - 1)) / maxCols * SIZE_FACTOR);
+  if (baseWidth < 46) baseWidth = 46;
+
+  const rows = [];
+  let idx = 0, patIdx = 0;
+  while (idx < stamps.length) {
+    const cols = colPattern[patIdx % colPattern.length];
+    const count = Math.min(cols, stamps.length - idx);
+    rows.push({ cols, items: stamps.slice(idx, idx + count) });
+    idx += count; patIdx++;
+  }
+
+  const fragment = document.createDocumentFragment();
+  rows.forEach((row, rowIdx) => {
+    const rowEl = document.createElement('div');
+    rowEl.className = 'stamp-row';
+    rowEl.style.alignItems = rowIdx % 2 === 0 ? 'flex-end' : 'flex-start';
+
+    const rawSizes = row.items.map(() => 0.80 + rand() * 0.38);
+    rawSizes.sort((a, b) => b - a);
+    const rowSizes = new Array(row.items.length);
+    let lo = 0, hi = rawSizes.length - 1;
+    for (let i = 0; i < rawSizes.length; i++) {
+      rowSizes[i] = i % 2 === 0 ? rawSizes[lo++] : rawSizes[hi--];
+    }
+
+    row.items.forEach((stamp, colIdx) => {
+      const sizeScale = rowSizes[colIdx];
+      const stampWidth = Math.round(baseWidth * sizeScale);
+      const sign = (rowIdx + colIdx) % 2 === 0 ? 1 : -1;
+      const rot = sign * (1.2 + rand() * 7.5);
+
+      const el = document.createElement('div');
+      el.className = 'stamp-item';
+      el.style.cssText = `width:${stampWidth}px; --rot:${rot.toFixed(1)}deg;`;
+
+      const img = document.createElement('img');
+      img.src = stamp.src; img.alt = stamp.name; img.draggable = false; img.loading = 'lazy';
+      el.appendChild(img);
+
+      const copyButton=document.createElement('button');
+      copyButton.type='button'; copyButton.className='copy-stamp';
+      copyButton.setAttribute('aria-label','Скопировать код марки');
+      copyButton.setAttribute('title','Скопировать код марки');
+      copyButton.innerHTML='<i class="fas fa-copy" aria-hidden="true"></i>';
+      copyButton.addEventListener('click',event=>{event.stopPropagation();copyStampCode(stamp,copyButton);});
+      el.appendChild(copyButton);
+
+      el.addEventListener('click', () => openModal(stamp));
+      rowEl.appendChild(el);
+    });
+    fragment.appendChild(rowEl);
+  });
+  return fragment;
+}
+
+function buildStampGrid() {
+  field.innerHTML = '';
+  winnerGroups.forEach((group, groupIndex) => {
+    const groupEl = document.createElement('section');
+    groupEl.className = 'winner-group';
+    const title = document.createElement('h2');
+    title.className = 'winner-group-title';
+    title.textContent = group.title;
+    groupEl.appendChild(title);
+    groupEl.appendChild(createRows(group.stamps, groupIndex));
+    field.appendChild(groupEl);
+  });
+}
+
+window.addEventListener('load', buildStampGrid);
+let resizeTimer;
+window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(buildStampGrid, 220); });
+
+// ─── MODAL: тот же, что на странице марок ─────────────────────
+const modal  = document.getElementById('modal');
+const mImg   = document.getElementById('modal-img');
+const mName  = document.getElementById('modal-name');
+const mRole  = document.getElementById('modal-role');
+const mClose = document.getElementById('modal-close');
+function openModal(stamp) {
+  mImg.src = stamp.src; mName.textContent = stamp.name; mRole.textContent = stamp.role; modal.classList.add('open');
+}
+mClose.addEventListener('click', () => modal.classList.remove('open'));
+modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('open'); });
+
+// ─── ЭФФЕКТ КОЛЕБАНИЯ ВОДЫ: тот же, что на странице марок ────
+document.addEventListener('click', e => {
+  if (e.target.closest('#modal')) return;
+  for (let i = 0; i < 4; i++) {
+    const ring = document.createElement('div');
+    ring.className = 'ripple-ring'; ring.style.left = e.clientX + 'px'; ring.style.top = e.clientY + 'px';
+    const spread = 1 + i * 0.28;
+    const maxW = Math.round((100 + Math.random() * 40) * spread);
+    const maxH = Math.round(maxW * (0.28 + Math.random() * 0.08));
+    ring.style.setProperty('--maxW', maxW + 'px'); ring.style.setProperty('--maxH', maxH + 'px');
+    ring.style.setProperty('--dur', (1.1 + i * 0.22 + Math.random() * 0.15).toFixed(2) + 's');
+    ring.style.setProperty('--delay',(i * 0.11).toFixed(2) + 's');
+    ring.style.borderColor = `rgba(172,156,108,${(0.6 - i * 0.12).toFixed(2)})`;
+    document.body.appendChild(ring);
+    ring.addEventListener('animationend', () => ring.remove(), { once: true });
+  }
+});
+</script>
+</body>
+</html>
