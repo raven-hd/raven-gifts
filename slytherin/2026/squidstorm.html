@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Гроза кальмара — Слизерин 2026</title>
+<link rel="icon" type="image/x-icon" href="favicon-s.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{--mist:#d6c9ad;--parch:#efe5cd;--gold:#ac9c6c;--gold2:#c7b98b;--line:rgba(172,156,108,.35);}
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;min-height:100vh;font-family:'Cormorant Garamond',serif;color:var(--mist);background:radial-gradient(circle at 20% 18%, rgba(172,156,108,.12), transparent 30%),radial-gradient(circle at 80% 10%, rgba(172,156,108,.08), transparent 22%),linear-gradient(180deg,#0b1110 0%,#101716 52%,#0c1312 100%);display:flex;flex-direction:column}
+header{position:relative;z-index:10;overflow:hidden;padding:3.2rem 1rem 2rem;text-align:center;border-bottom:1px solid rgba(172,156,108,.16);background:radial-gradient(circle at 50% 14%, rgba(172,156,108,.13), transparent 34%),linear-gradient(180deg, rgba(10,15,14,.86), rgba(10,15,14,.58));}
+.header-inner{max-width:960px;margin:0 auto} .header-title{margin:0 0 .5rem;line-height:1.04;font-family:'Cinzel',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--parch);text-shadow:0 0 60px rgba(172,156,108,.4),0 0 120px rgba(172,156,108,.15)} .header-sub{font-style:italic;font-size:1.05rem;color:var(--parch);opacity:.85}
+.nav-section{position:relative;z-index:10;display:flex;justify-content:center;padding:1.2rem 1rem .8rem;background:transparent} .nav-buttons{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap} .nav-btn{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;color:var(--parch);padding:.5rem 1.2rem;border:1px solid rgba(155,140,94,.45);border-radius:2px;background:rgba(8,13,12,.65);backdrop-filter:blur(4px);transition:color .22s,border-color .22s,background .22s} .nav-btn:hover{color:var(--gold2);border-color:rgba(172,156,108,.7);background:rgba(8,13,12,.85)} .nav-btn.active{color:var(--gold2);border-color:rgba(172,156,108,.65);background:rgba(172,156,108,.18)}
+main{flex:1;max-width:1200px;width:100%;margin:0 auto;padding:1rem 1.2rem 4rem} .intro{max-width:920px;margin:0 auto 2.4rem;text-align:center;padding:1.3rem 1.4rem;color:var(--mist);border:1px solid var(--line);background:linear-gradient(180deg, rgba(18,26,24,.66), rgba(10,15,14,.74));box-shadow:0 12px 30px rgba(0,0,0,.18)} .intro p{margin:.45rem 0;font-size:1.1rem;line-height:1.55}
+.section-container{display:flex;flex-direction:column;align-items:center;margin-bottom:1.5rem} .section-title{text-align:center;font-family:'Cinzel',serif;font-size:1.7rem;color:var(--parch);margin:1.5rem 0 .8rem;padding-bottom:.65rem;display:inline-block;position:relative;letter-spacing:.04em} .section-title::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,880px);height:2px;background:linear-gradient(90deg, transparent, rgba(172,156,108,.7), transparent)}
+.gallery{display:flex;flex-direction:column;align-items:center;padding:.5rem;overflow:hidden;width:100%} .row{display:flex;justify-content:center;flex-wrap:wrap;gap:1rem;margin-bottom:1rem;position:relative;animation-duration:24s;animation-iteration-count:infinite;animation-timing-function:ease-in-out;animation-direction:alternate} .row:nth-child(odd){animation-name:moveRowOdd} .row:nth-child(even){animation-name:moveRowEven}
+@keyframes moveRowOdd{0%{transform:translateX(-26px)}100%{transform:translateX(26px)}} @keyframes moveRowEven{0%{transform:translateX(26px)}100%{transform:translateX(-26px)}}
+.stamp{height:auto;width:auto;max-height:220px;max-width:160px;transition:transform .28s ease;cursor:pointer;image-rendering:auto;filter:drop-shadow(0 8px 18px rgba(0,0,0,.34));object-fit:contain;margin:.35rem} .stamp:hover{transform:scale(1.06)}
+.stamp-wrap{position:relative;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}.copy-stamp{position:absolute;top:.15rem;right:.15rem;z-index:20;width:1.72rem;height:1.72rem;padding:0;border:1px solid rgba(172,156,108,.32);border-radius:50%;background:rgba(8,13,12,.88);color:var(--gold2);display:grid;place-items:center;font-size:.72rem;cursor:pointer;opacity:.58;box-shadow:0 2px 8px rgba(0,0,0,.28);transition:opacity .18s ease,transform .18s ease,background-color .18s ease,color .18s ease}.stamp-wrap:hover .copy-stamp,.copy-stamp:focus-visible{opacity:1}.copy-stamp:hover{transform:scale(1.08);background:rgba(172,156,108,.18)}.copy-stamp.copied{color:#9ab991;opacity:1}.modal{display:none;position:fixed;inset:0;background-color:rgba(0,0,0,.78);justify-content:center;align-items:center;z-index:1000;flex-direction:column;padding:1rem} .modal img{max-width:92%;max-height:78%} .caption{color:var(--parch);font-size:1.35rem;text-align:center;background-color:rgba(8,13,12,.92);padding:1rem 1.5rem;border:1px solid rgba(172,156,108,.4);border-radius:6px;margin-top:1rem;max-width:90%} .close-btn{margin-top:1rem;color:var(--parch);cursor:pointer;font-size:1rem;letter-spacing:.08em;text-transform:uppercase}
+footer{text-align:center;padding:1.5rem;font-size:1rem;background-color:#0d1413;color:var(--parch);font-family:'Cinzel',serif;border-top:1px solid rgba(172,156,108,.18)}
+@media (max-width:1200px){.stamp{max-height:200px;max-width:140px}} @media (max-width:1024px){.stamp{max-height:180px;max-width:120px}} @media (max-width:768px){.stamp{max-height:160px;max-width:100px} .section-title{font-size:1.45rem} .intro p{font-size:1rem} .nav-buttons{gap:.6rem} .nav-btn{letter-spacing:.12em;font-size:.64rem;padding:.48rem .85rem}} @media (max-width:560px){header{padding-top:2.6rem} .stamp{max-height:145px;max-width:88px} .row{gap:.5rem;animation:none} .caption{font-size:1.08rem;padding:.9rem 1rem}}
+</style></head><body>
+<header><div class="header-inner"><h1 class="header-title">Гроза кальмара</h1><p class="header-sub">Победители игры гигантского кальмара · День Слизерина 2026</p></div></header>
+<div class="nav-section"><div class="nav-buttons"><a href="index.html" class="nav-btn">Главная</a><a href="stamps.html" class="nav-btn">Марки</a><a href="stamps2.html" class="nav-btn">Марки-символы</a><a href="game.html" class="nav-btn">Игра кальмара</a><a href="squidstorm.html" class="nav-btn active">Гроза кальмара</a></div></div>
+<main><section class="intro"><p>Те, кто не побоялся сундука, щелкнул замок, перехитрил кальмара и собрал верные комбинации, заслужили особое место на этой странице.</p><p>Здесь собраны победители игры и их памятные марки — по группам, как и полагается настоящей грозе кальмара.</p></section><div id="sections-root"></div></main>
+<div class="modal" id="image-modal"><img id="modal-image" src="" alt="Увеличенное изображение марки"><div class="caption" id="modal-caption"></div><div class="close-btn" id="modal-close">Закрыть</div></div><footer>День Слизерина 2026</footer>
+<script>
+const sections=[
+      {
+        title: "«Алладин»",
+        images: [
+          { src: "images/winners/award-01.webp", caption: "Ананель Коваль, 6 курс" },
+          { src: "images/winners/award-02.webp", caption: "Мэр Хогсмида и Магического Лондона Grace Diamond-de-Kur" },
+          { src: "images/winners/award-03.webp", caption: "Julietta Helwell-de-Kur, 3 курс" },
+          { src: "images/winners/award-04.webp", caption: "Хелена Кейн, 3 курс" },
+          { src: "images/winners/award-05.webp", caption: "Главный лекарь Gugo Helwell, выпускница" },
+          { src: "images/winners/award-06.webp", caption: "Даррен Кейн" },
+          { src: "images/winners/award-07.webp", caption: "Староста факультета Элайза Блекфорд, 4 курс" },
+          { src: "images/winners/award-08.webp", caption: "Беата ЛаВей, 4 курс" },
+          { src: "images/winners/award-09.webp", caption: "Мерида Морграфт, 5 курс" }
+        ]
+      }
+,      {
+        title: "«Возмутители спокойствия»",
+        images: [
+          { src: "images/winners/award-10.webp", caption: "Ананель Коваль, 6 курс" },
+          { src: "images/winners/award-11.webp", caption: "Мэр Хогсмида и Магического Лондона Grace Diamond-de-Kur" },
+          { src: "images/winners/award-12.webp", caption: "Julietta Helwell-de-Kur, 3 курс" },
+          { src: "images/winners/award-13.webp", caption: "Хелена Кейн, 3 курс" },
+          { src: "images/winners/award-14.webp", caption: "Главный лекарь Gugo Helwell, выпускница" },
+          { src: "images/winners/award-15.webp", caption: "Даррен Кейн" },
+          { src: "images/winners/award-16.webp", caption: "Староста факультета Элайза Блекфорд, 4 курс" },
+          { src: "images/winners/award-17.webp", caption: "Беата ЛаВей, 4 курс" },
+          { src: "images/winners/award-18.webp", caption: "Мерида Морграфт, 5 курс" }
+        ]
+      }
+,      {
+        title: "«Клубная карта»",
+        images: [
+          { src: "images/winners/award-19.webp", caption: "Ананель Коваль, 6 курс" },
+          { src: "images/winners/award-20.webp", caption: "Мэр Хогсмида и Магического Лондона Grace Diamond-de-Kur" },
+          { src: "images/winners/award-21.webp", caption: "Julietta Helwell-de-Kur, 3 курс" },
+          { src: "images/winners/award-22.webp", caption: "Хелена Кейн, 3 курс" },
+          { src: "images/winners/award-23.webp", caption: "Главный лекарь Gugo Helwell, выпускница" },
+          { src: "images/winners/award-24.webp", caption: "Даррен Кейн" },
+          { src: "images/winners/award-25.webp", caption: "Староста факультета Элайза Блекфорд, 4 курс" },
+          { src: "images/winners/award-26.webp", caption: "Беата ЛаВей, 4 курс" },
+          { src: "images/winners/award-27.webp", caption: "Мерида Морграфт, 5 курс" }
+        ]
+      }
+,      {
+        title: "«Острые языки»",
+        images: [
+          { src: "images/winners/award-28.webp", caption: "Ананель Коваль, 6 курс" },
+          { src: "images/winners/award-29.webp", caption: "Мэр Хогсмида и Магического Лондона Grace Diamond-de-Kur" },
+          { src: "images/winners/award-30.webp", caption: "Julietta Helwell-de-Kur, 3 курс" },
+          { src: "images/winners/award-31.webp", caption: "Хелена Кейн, 3 курс" },
+          { src: "images/winners/award-32.webp", caption: "Главный лекарь Gugo Helwell, выпускница" },
+          { src: "images/winners/award-33.webp", caption: "Даррен Кейн" },
+          { src: "images/winners/award-34.webp", caption: "Блейк Эллингтон, 6 курс" },
+          { src: "images/winners/award-35.webp", caption: "Староста факультета Элайза Блекфорд, 4 курс" },
+          { src: "images/winners/award-36.webp", caption: "Беата ЛаВей, 4 курс" },
+          { src: "images/winners/award-37.webp", caption: "Мерида Морграфт, 5 курс" }
+        ]
+      }
+,      {
+        title: "«Трендсеттеры»",
+        images: [
+          { src: "images/winners/award-38.webp", caption: "Ананель Коваль, 6 курс" },
+          { src: "images/winners/award-39.webp", caption: "Мэр Хогсмида и Магического Лондона Grace Diamond-de-Kur" },
+          { src: "images/winners/award-40.webp", caption: "Julietta Helwell-de-Kur, 3 курс" },
+          { src: "images/winners/award-41.webp", caption: "Хелена Кейн, 3 курс" },
+          { src: "images/winners/award-42.webp", caption: "Главный лекарь Gugo Helwell, выпускница" },
+          { src: "images/winners/award-43.webp", caption: "Даррен Кейн" },
+          { src: "images/winners/award-44.webp", caption: "Амилия Лиссаранд, 5 курс" },
+          { src: "images/winners/award-45.webp", caption: "Староста факультета Элайза Блекфорд, 4 курс" },
+          { src: "images/winners/award-46.webp", caption: "Беата ЛаВей, 4 курс" },
+          { src: "images/winners/award-47.webp", caption: "Мерида Морграфт, 5 курс" }
+        ]
+      }
+];
+const root=document.getElementById('sections-root'),modal=document.getElementById('image-modal'),modalImage=document.getElementById('modal-image'),modalCaption=document.getElementById('modal-caption'),modalClose=document.getElementById('modal-close');
+const PUBLIC_STAMP_BASE="https://raven-hd.github.io/raven-gifts/slytherin/2026/";
+async function copyTextToClipboard(text){if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text);return;}const textarea=document.createElement('textarea');textarea.value=text;textarea.setAttribute('readonly','');textarea.style.position='fixed';textarea.style.opacity='0';document.body.appendChild(textarea);textarea.select();document.execCommand('copy');textarea.remove();}
+async function copyStampCode(item,button){const imageUrl=PUBLIC_STAMP_BASE+item.src;const bbcode=`\n\n[hr]\n[right][width=70][img]${imageUrl}[/img][/width][/right]`;try{await copyTextToClipboard(bbcode);const icon=button.querySelector('i');button.classList.add('copied');icon.className='fas fa-check';setTimeout(()=>{button.classList.remove('copied');icon.className='fas fa-copy';},1100);}catch(error){console.error('Не удалось скопировать код марки:',error);}}
+function chunk(arr,size){const result=[];for(let i=0;i<arr.length;i+=size)result.push(arr.slice(i,i+size));return result;}
+sections.forEach(section=>{const wrap=document.createElement('section');wrap.className='section-container';const title=document.createElement('h2');title.className='section-title';title.textContent=section.title;wrap.appendChild(title);const gallery=document.createElement('div');gallery.className='gallery';chunk(section.images,6).forEach(items=>{const row=document.createElement('div');row.className='row';items.forEach(item=>{const img=document.createElement('img');img.className='stamp';img.src=item.src;img.alt=item.caption;img.loading='lazy';img.addEventListener('click',()=>{modalImage.src=item.src;modalCaption.textContent=item.caption;modal.style.display='flex';});const wrap=document.createElement('div');wrap.className='stamp-wrap';const copyButton=document.createElement('button');copyButton.type='button';copyButton.className='copy-stamp';copyButton.setAttribute('aria-label','Скопировать код марки');copyButton.setAttribute('title','Скопировать код марки');copyButton.innerHTML='<i class="fas fa-copy" aria-hidden="true"></i>';copyButton.addEventListener('click',(event)=>{event.stopPropagation();copyStampCode(item,copyButton);});wrap.appendChild(img);wrap.appendChild(copyButton);row.appendChild(wrap);});gallery.appendChild(row);});wrap.appendChild(gallery);root.appendChild(wrap);});
+function closeModal(){modal.style.display='none';modalImage.src='';modalCaption.textContent='';} modalClose.addEventListener('click',closeModal); modal.addEventListener('click',(e)=>{if(e.target===modal)closeModal();}); document.addEventListener('keydown',(e)=>{if(e.key==='Escape'&&modal.style.display==='flex')closeModal();});
+</script></body></html>
